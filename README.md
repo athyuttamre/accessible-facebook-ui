@@ -4,7 +4,7 @@ Accessible Facebook UI
 An accessible reimplementation of Facebook's core functions, designed to work with eye-tracking technology.
 
 
-===== TO DO =====
+### To-Do
 
 - Implement SimplePost with new architecture
 - server.js basic template
@@ -15,7 +15,8 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - Side bars (copy and paste two divs + center div)
 
 
-==== SERVER =====
+### Server
+
 / (/index)
 	index.html - Home page
 	First page that is loaded (will redirect to /login if first time)
