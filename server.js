@@ -20,11 +20,6 @@ app.get('/login', function(request, response) {
 	response.render('login.html');
 });
 
-// GET request for Home Page
-app.get('/', function(request, response) {
-	console.log('GET request for index.html')
-});
-
 // GET request for Newsfeed
 app.get('/newsfeed', function(request, response) {
 	console.log('GET request for newsfeed.html')
@@ -53,4 +48,9 @@ app.get('/notifications', function(request, response) {
 // GET request for Messaging
 app.get('/messaging', function(request, response) {
 	console.log('GET request for messaging.html')
+});
+
+// GET request for Home Page
+app.get('/', function(request, response) {
+	console.log('GET request for index.html')
 });
