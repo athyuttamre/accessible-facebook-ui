@@ -54,3 +54,7 @@ app.get('/notifications', function(request, response) {
 app.get('/messaging', function(request, response) {
 	console.log('GET request for messaging.html')
 });
+
+app.listen(8080, function() {
+	console.log('Accessible Facebook UI listening on Port 8080...')
+});
