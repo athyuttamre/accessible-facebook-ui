@@ -57,3 +57,4 @@ app.get('/', function(request, response) {
 
 app.listen(8080, function() {
 	console.log('Accessible Facebook UI listening on Port 8080...')
+});
