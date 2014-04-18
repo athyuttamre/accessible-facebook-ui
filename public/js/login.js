@@ -1,4 +1,22 @@
-var globalFB;
+// Info about queues and calling FB object outside fbAsyncInit from:
+// http://stackoverflow.com/questions/12743356/how-to-call-fb-api-outside-window-fbasyncinit/12746422#12746422
+
+var FB; // to avoid error "undeclared variable", until FB got initialized
+var myQueue = new Array();
+
+function queueAdd(f){
+  if (FB == undefined)
+    myQueue.push(f);
+  else
+    f();
+}
+
+function processQueue(){
+  console.log('Processing queue...');
+  var f;
+  while(f = myQueue.shift())
+    f();
+}
 
 // Load the SDK (Software Development Kit) asynchronously
 (function(d){
@@ -14,6 +32,7 @@ var globalFB;
 //The SDK is loaded in the next function, the one that follows window.fbAsyncInit.
 window.fbAsyncInit = function() {
 	//Initializing the FB object with out App ID and other details;
+	console.log('Running FB.init()...');
 	FB.init({
 		appId      : '610602015680966',
 		status     : true, // check login status
@@ -21,7 +40,7 @@ window.fbAsyncInit = function() {
 		xfbml      : true  // parse XFBML
 	});
 
-	globalFB = FB;
+	processQueue();
 
 	//Facebook Login Status can be checked two ways: 1. Deliberately asking for the login status, using
 	//the getLoginStatus() method, or always listening for changes in login status, using the Event.subscribe
@@ -65,13 +84,18 @@ window.fbAsyncInit = function() {
 	});
 };
 
-function isLoggedIn() {
-	var FB = globalFB;
+function isLoggedIn(callback, params) {
+	console.log('isLoggedIn was called...');
 	FB.getLoginStatus(function(response) {
 		if(response.status === 'connected') {
-			return this;
+			console.log('Logged in, returning FB object...');
+			FB.api('/me', function(response) {
+			       console.log('Doing this in login.js, ' + response.name + '.');
+			     });
+			callback(FB);
 		} else {
-			return null;
+			console.log('Not logged in, asking to login...');
+			callback(undefined);
 		}
 	});
 }
