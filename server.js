@@ -54,3 +54,7 @@ app.get('/messaging', function(request, response) {
 app.get('/', function(request, response) {
 	console.log('GET request for index.html')
 });
+
+app.listen(8080, function() {
+	console.log('Accessible Facebook UI listening on Port 8080...')
+});
