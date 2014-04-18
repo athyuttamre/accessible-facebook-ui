@@ -20,11 +20,6 @@ app.get('/login', function(request, response) {
 	response.render('login.html');
 });
 
-// GET request for Home Page
-app.get('/', function(request, response) {
-	console.log('GET request for index.html')
-});
-
 // GET request for Newsfeed
 app.get('/newsfeed', function(request, response) {
 	console.log('GET request for newsfeed.html')
@@ -55,6 +50,10 @@ app.get('/messaging', function(request, response) {
 	console.log('GET request for messaging.html')
 });
 
+// GET request for Home Page
+app.get('/', function(request, response) {
+	console.log('GET request for index.html')
+});
+
 app.listen(8080, function() {
 	console.log('Accessible Facebook UI listening on Port 8080...')
-});
