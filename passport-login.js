@@ -23,7 +23,8 @@ var engines = require('consolidate');
 app.engine('html', engines.hogan); // Tell Express to run .html files through Hogan
 app.set('views', __dirname + '/views'); // Tell Express where to find templates
 
-// ========== Passport start ============
+// ========== Passport START ==========
+
 app.configure(function() {
 	// Initialize passport! (use passport.session middleware)
 		/// for persistent login sessions
@@ -64,13 +65,14 @@ passport.use(new FacebookStrategy({
 		});
 	}
 ));
-// =========== Passport END =============
 
+// =========== Passport END =============
 
 // =========== Express START ============
 app.get('/', function(req, res) {
 /////
 	console.log('Successfully redirected to / after logging in!');
+	
 	res.render('index.html');
 });
 
