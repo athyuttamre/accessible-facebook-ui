@@ -21,6 +21,7 @@ function processQueue() {
 
 // Load the SDK (Software Development Kit) asynchronously
 (function(d){
+	console.log('////////// LOADING FB //////////');
 	console.log('Loading Facebook SDK asynchronously');
 	var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
 	if (d.getElementById(id)) {return;}
@@ -50,14 +51,15 @@ window.fbAsyncInit = function() {
 	//Each time the page is loaded, we deliberately ask for login status once using getLoginStatus. If it is connected
 	//the statements in the next method's connected section will be executed. If not, then we must render the login
 	//page.
-	FB.getLoginStatus(function(response) {
-		if(response.status === 'connected') {
-			console.log('Logged in!');
-		}
-		else if(response.status == 'not_authorized' || response.status == 'unknown') {
-			console.log('Not logged in!');
-		}
-	});
+
+	// FB.getLoginStatus(function(response) {
+	// 	if(response.status === 'connected') {
+	// 		console.log('Logged in!');
+	// 	}
+	// 	else if(response.status == 'not_authorized' || response.status == 'unknown') {
+	// 		console.log('Not logged in!');
+	// 	}
+	// });
 
 	//Using the Event.subscribe method, we are always listening to changes in authorization status.
 	// Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
@@ -90,6 +92,7 @@ function isLoggedIn(callback, params) {
 	FB.getLoginStatus(function(response) {
 		if(response.status === 'connected') {
 			console.log('Logged in, returning FB object...');
+			console.log('////////////////////////////////\n');
 			callback(FB);
 		} else {
 			console.log('Not logged in, asking to login...');
