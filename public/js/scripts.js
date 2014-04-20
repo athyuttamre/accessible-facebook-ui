@@ -1,7 +1,14 @@
 var FB;
 
+var dwellTime = 1000;
+
 $('document').ready(function() {
 	queueAdd(getFB);
+
+/////////// rough
+	// $('button, a').dwell(1000, true);
+
+	// $('.notdwell').notDwell();
 });
 
 function getFB() {
