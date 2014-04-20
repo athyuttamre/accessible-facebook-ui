@@ -26,6 +26,22 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 	- search.html
 
 
+### Dwell
+For the moment, the only important thing for you guys is, when you do want to create any kind of clickable function 
+including for buttons and divs, instead of using onclick in the html, use .click in the js.  For the moment, you will need to add $(foo).dwell(1000, true) to enable dwell click on anything, but this should be abstracted out to main.js.
+
+So the js should look like this:
+window.onload = function() {
+	$(foo).dwell(1000, true);
+	$(foo).click(function(){
+		alert('dwell clicked');
+	})
+};
+
+and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
+For more, see the dwell example
+
+
 ### ATTY and MICHAEL To-Do
 
 - Implement SimplePost with new architecture
@@ -35,3 +51,5 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 	-- i.e. link to Status page, simplepost functionality
 - Create .html files for each page (can just be stubs)
 - Side bars (copy and paste two divs + center div)
+
+
