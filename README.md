@@ -25,6 +25,19 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - /search
 	- search.html
 
+### HTML File Instructions
+
+- Load CSS files in the <head>
+- Load JS files at the bottom
+- In the JS files, keep this order: 
+	1. JQuery
+	2. The JS file for this particular page. For index.html, this would be index.js. Copy the start function from
+	     index.js, and put all functionality within this. This is exactly like how you would use $('document').ready()
+	     in a normal project. Except here you're writing all your code in the 'start' method.
+	3. login.js, this is for testing whether or not the user is logged in. If yes, your code above will be executed,
+		if not, the user will be redirected.
+	4. main.js, where the FB object is fetched, and the 'start' function from your file above is called. If you want to 
+		modify main.js, please talk to Atty and work on this together.
 
 ### Dwell
 For the moment, the only important thing for you guys is, when you do want to create any kind of clickable function 
@@ -40,7 +53,6 @@ window.onload = function() {
 
 and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
 For more, see the dwell example
-
 
 ### ATTY and MICHAEL To-Do
 
