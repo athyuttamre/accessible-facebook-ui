@@ -5,14 +5,14 @@ var FB; // to avoid error "undeclared variable", until FB got initialized
 
 var myQueue = new Array();
 
-function queueAdd(f){
+function queueAdd(f) {
   if (FB == undefined)
     myQueue.push(f);
   else
     f();
 }
 
-function processQueue(){
+function processQueue() {
   console.log('Processing queue...');
   var f;
   while(f = myQueue.shift())
