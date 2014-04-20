@@ -2,6 +2,7 @@
 // http://stackoverflow.com/questions/12743356/how-to-call-fb-api-outside-window-fbasyncinit/12746422#12746422
 
 var FB; // to avoid error "undeclared variable", until FB got initialized
+
 var myQueue = new Array();
 
 function queueAdd(f){
@@ -29,7 +30,7 @@ function processQueue(){
 }(document));
 
 //window.fbAsyncInit is called only after the Facebook SDK is completely loaded client-side.
-//The SDK is loaded in the next function, the one that follows window.fbAsyncInit.
+//The SDK is loaded above.
 window.fbAsyncInit = function() {
 	//Initializing the FB object with out App ID and other details;
 	console.log('Running FB.init()...');
@@ -89,9 +90,6 @@ function isLoggedIn(callback, params) {
 	FB.getLoginStatus(function(response) {
 		if(response.status === 'connected') {
 			console.log('Logged in, returning FB object...');
-			FB.api('/me', function(response) {
-			       console.log('Doing this in login.js, ' + response.name + '.');
-			     });
 			callback(FB);
 		} else {
 			console.log('Not logged in, asking to login...');
