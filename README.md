@@ -35,3 +35,21 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 	- notifications.html
 - /search
 	- search.html
+
+
+### Dwell
+For the moment, the only important thing for you guys is, when you do want to create any kind of clickable function 
+including for buttons and divs, instead of using onclick in the html, use .click in the js.  For the moment, you will need to add $(foo).dwell(1000, true) to enable dwell click on anything, but this should be abstracted out to script.js.
+
+So the js should look like this:
+window.onload = function() {
+	$(foo).dwell(1000, true);
+	$(foo).click(function(){
+		alert('dwell clicked');
+	})
+};
+
+and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
+For more, see the dwell example
+
+
