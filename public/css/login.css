@@ -17,6 +17,7 @@ h1{
 	font-size: 30px;
 }
 #loginButton{
+	display: block;
 	border: 2px solid #cccccc;
 	color: #777777;
 	font-size: 30px;
@@ -24,4 +25,5 @@ h1{
 	width: 300px;
 	height: 125px;
 	text-align: center;
+	margin: auto;
 }

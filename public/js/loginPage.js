@@ -17,6 +17,7 @@ function start() {
 	});
 }
 
+$('button').dwell(1000, true);
 $('#loginButton').click(function() {
 	FB.login(function(response) {
 		if (response.authResponse) {
