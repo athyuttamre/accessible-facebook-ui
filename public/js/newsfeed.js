@@ -1,5 +1,8 @@
 var user;
 
+var feedItems = [];
+var currentItemIndex = 0;
+
 /*
 * start
 * 
@@ -14,4 +17,26 @@ function start(FB) {
 				user = response;
 				console.log('Doing this in newsfeed.js, ' + response.name + '.');
 			});
+
+	FB.api('/me/home', function(response) {
+		if(response && !response.error) {
+			renderNewsfeed(response);
+		} else {
+			console.log('Error: could not retrieve newsfeed');
+		}
+	});
+
+	function renderNewsfeed(newsfeed) {
+		feedItems = newsfeed.data;
+		renderItem(currentItemIndex);
+	}
+
+	function renderItem(index) {
+		console.log(feedItems);
+		var item = feedItems[index];
+		console.log("Rendering item " + index + ": " + item);
+		var from = item.from;
+		var story = item.story;
+		var description = item.description;
+	}
 }

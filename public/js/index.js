@@ -13,6 +13,7 @@ function start(FB) {
 	FB.api('/me', function(response) {
 				user = response;
 			    console.log('Doing this in index.js, ' + user.name + '.');
+			    $('#welcomeMessage').text('Welcome, ' + user.name);
 			});
 
 	$('#logoutButton').click(function(e) {

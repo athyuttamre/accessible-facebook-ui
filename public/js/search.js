@@ -12,6 +12,6 @@ function start(FB) {
 	console.log('start has been called with FB object: ' + FB);
 	FB.api('/me', function(response) {
 				user = response;
-				console.log('Doing this in messaging.js, ' + response.name + '.');
+				console.log('Doing this in search.js, ' + response.name + '.');
 			});
 }
