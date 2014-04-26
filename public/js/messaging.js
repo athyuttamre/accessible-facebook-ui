@@ -27,7 +27,7 @@ function start(FB) {
 
 		$('#container').append(loginButton);
 	}
-	
+
 	var pic_data = {"photos":{"next":null,"data":{},"num":0,"loadMore":null},"albums":{"next":null,"data":{},"num":0,"loadMore":null},"photos_tagged":{"next":null,"data":{},"num":0,"loadMore":null}};
 	var album_data = {};
 
@@ -287,5 +287,4 @@ function start(FB) {
 			
 		},"json");
 	}
->>>>>>> 5f78a8a7f1c5a5294f1842814b2c02ed11f15c74
 }
