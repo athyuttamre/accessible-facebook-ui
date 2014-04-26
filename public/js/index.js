@@ -1,3 +1,5 @@
+var user;
+
 /*
 * start
 * 
@@ -9,6 +11,12 @@ function start(FB) {
 	console.log('Welcome to index.js!');
 	console.log('start has been called with FB object: ' + FB);
 	FB.api('/me', function(response) {
-			       console.log('Doing this in index.js, ' + response.name + '.');
-			     });
+				user = response;
+			    console.log('Doing this in index.js, ' + user.name + '.');
+			});
+
+	$('#logoutButton').click(function(e) {
+		e.preventDefault();
+		logout();
+	})
 }

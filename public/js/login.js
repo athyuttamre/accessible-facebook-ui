@@ -1,7 +1,7 @@
 // Info about queues and calling FB object outside fbAsyncInit from:
 // http://stackoverflow.com/questions/12743356/how-to-call-fb-api-outside-window-fbasyncinit/12746422#12746422
 
-var FB; // to avoid error "undeclared variable", until FB got initialized
+var FB; // to avoid error "undeclared variable", until FB gets initialized
 
 var myQueue = new Array();
 
@@ -87,7 +87,7 @@ window.fbAsyncInit = function() {
 	});
 };
 
-function isLoggedIn(callback, params) {
+function checkLogin(callback, params) {
 	console.log('isLoggedIn was called...');
 	FB.getLoginStatus(function(response) {
 		if(response.status === 'connected') {
@@ -96,7 +96,24 @@ function isLoggedIn(callback, params) {
 			callback(FB);
 		} else {
 			console.log('Not logged in, asking to login...');
-			callback(undefined);
+			redirect('login');		
 		}
 	});
+}
+
+function logout() {
+	FB.logout(function(response) {
+			console.log('User logged out.');
+			redirect('login');
+		})
+}
+
+function redirect(page) {
+	if(page === 'index') {
+		// When redirect command is issued for 'index', we redirect to root
+		page = ''; 
+	}
+	var redirectURL = 'http://' + window.location.hostname + ':' + location.port + '/' + page;
+	console.log('Redirecting to ' + redirectURL);
+	window.location.replace(redirectURL);
 }

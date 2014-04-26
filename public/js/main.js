@@ -5,8 +5,8 @@ $('document').ready(function() {
 });
 
 function getFB() {
-	console.log('getFB has been called in scripts.js...');
-	isLoggedIn(function(givenFB) {
+	console.log('getFB has been called in main.js...');
+	checkLogin(function(givenFB) {
 		FB = givenFB;
 		start(FB);
 	});
