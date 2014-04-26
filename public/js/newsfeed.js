@@ -1,3 +1,5 @@
+var user;
+
 /*
 * start
 * 
@@ -9,6 +11,7 @@ function start(FB) {
 	console.log('Welcome to newsfeed.js!');
 	console.log('start has been called with FB object: ' + FB);
 	FB.api('/me', function(response) {
-			       console.log('Doing this in newsfeed.js, ' + response.name + '.');
-			     });
+				user = response;
+				console.log('Doing this in newsfeed.js, ' + response.name + '.');
+			});
 }

@@ -1,3 +1,5 @@
+var user;
+
 $('document').ready(function() {
 	queueAdd(start)
 });
@@ -18,7 +20,8 @@ function start() {
 function loginToFacebook() {
 	FB.login(function(response) {
 		if (response.authResponse) {
-			console.log('Welcome, ' + response.name);
+			user = response;
+			console.log('Welcome, ' + user.name);
 			redirect('index');
 		} else {
 			// The person cancelled the login dialog
