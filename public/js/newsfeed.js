@@ -43,11 +43,13 @@ function start(FB) {
 		var story = (item.story) ? item.story : "";
 		var description = (item.description) ? item.description : "";
 		var message = (item.message) ? item.message : "";
+		var picture = (item.picture) ? item.picture : "";
 
 		$(".from").html(from.name);
 		$(".story").html(story);
 		$(".description").html(description);
 		$(".message").html(message);
+		$(".image").html("<img src='" + picture + "'>");
 	}
 
 	$('#next').click(function(e) {
