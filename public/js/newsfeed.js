@@ -18,25 +18,61 @@ function start(FB) {
 				console.log('Doing this in newsfeed.js, ' + response.name + '.');
 			});
 
-	FB.api('/me/home', function(response) {
-		if(response && !response.error) {
-			renderNewsfeed(response);
-		} else {
-			console.log('Error: could not retrieve newsfeed');
-		}
-	});
+	refreshNewsfeed();
+
+	function refreshNewsfeed() {
+		FB.api('/me/home', function(response) {
+			if(response && !response.error) {
+				renderNewsfeed(response);
+			} else {
+				console.log('Error: could not retrieve newsfeed');
+			}
+		});
+	}
 
 	function renderNewsfeed(newsfeed) {
 		feedItems = newsfeed.data;
+		console.log(feedItems);
 		renderItem(currentItemIndex);
 	}
 
 	function renderItem(index) {
-		console.log(feedItems);
 		var item = feedItems[index];
 		console.log("Rendering item " + index + ": " + item);
-		var from = item.from;
-		var story = item.story;
-		var description = item.description;
+		var from = (item.from) ? item.from : "";
+		var story = (item.story) ? item.story : "";
+		var description = (item.description) ? item.description : "";
+		var message = (item.message) ? item.message : "";
+		var picture = (item.picture) ? item.picture : "";
+
+		$(".from").html(from.name);
+		$(".story").html(story);
+		$(".description").html(description);
+		$(".message").html(message);
+		$(".image").html("<img src='" + picture + "'>");
 	}
+
+	$('#next').click(function(e) {
+		e.preventDefault();
+		currentItemIndex = (currentItemIndex + 1) % 25;
+		renderItem(currentItemIndex);
+	});
+
+	$('#previous').click(function(e) {
+		e.preventDefault();
+		currentItemIndex = (currentItemIndex - 1);
+
+		if(currentItemIndex < 0) {
+			currentItemIndex = 0;
+			refreshNewsfeed();
+		} else {
+			renderItem(currentItemIndex);
+		}
+	});
+
+	$('#refresh').click(function(e) {
+		e.preventDefault();
+		currentItemIndex = 0;
+		refreshNewsfeed();
+	});
 }
