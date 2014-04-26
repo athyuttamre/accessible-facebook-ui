@@ -1,66 +1,89 @@
+/*@tb_width: 100%-(@side_width*2);*/
+/*@fb_blue: blue;*/
 body {
   margin: 0;
   padding: 0;
   z-index: 0;
-}
-#top_bar {
-  height: 12%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  background-color: gray;
-  opacity: .5;
+  font-family: Helvetica;
+  color: #4860a5;
 }
 #right_bar {
-  width: 14%;
-  height: 76%;
-  top: 12%;
-  bottom: 12%;
+  width: 11%;
+  height: 100%;
   float: right;
-  background-color: gray;
+  background-color: #f2f2f2;
   position: fixed;
-  right: 0;
-  z-index: -1;
+  right: -2px;
+  /*border-right: 2px solid gray;*/
   display: table;
   text-align: center;
+  border-left: 2px solid #777777;
 }
 #right_bar div table {
-  /*border: 2px red solid;*/
   margin-left: auto;
   margin-right: auto;
 }
 #left_bar {
-  /*border: 2px solid green;*/
-  width: 14%;
-  height: 76%;
-  line-height: 76%;
+  width: 11%;
+  height: 100%;
+  line-height: 100%;
   position: fixed;
-  background-color: gray;
-  z-index: -1;
-  top: 12%;
-  bottom: 12%;
-  /*margin-top: 96px;*/
+  background-color: #f2f2f2;
   display: table;
-  /*vertical-align: middle;*/
   text-align: center;
+  border-right: 2px solid #777777;
+}
+.side_button {
+  list-style-type: none;
+  /*border: 1px solid black;*/
+  /*margin:auto;*/
+}
+.side_button li {
+  text-align: center;
+  margin-left: -50;
+  margin-top: 10px;
+}
+.side_button li img {
+  height: 50px;
+  width: 50px;
 }
 .bar_content {
   vertical-align: middle;
   display: table-cell;
 }
 #bottom_bar {
-  /*border: 2px solid blue;*/
-  height: 12%;
+  bottom: 0;
+}
+#top_bar {
+  top: 0;
+}
+.tb_bar {
+  text-align: center;
+  height: 10%;
   width: 100%;
   position: fixed;
-  bottom: 0;
-  background-color: gray;
-  opacity: .5;
+  background-color: #4860a5;
+  opacity: .4;
+  z-index: -1;
+  /*line-height: @tb_height;*/
+  /*display: table;*/
+}
+.tb_bar img {
+  /*display: table-cell;*/
+  vertical-align: middle;
+  /*line-height: @tb_height;*/
+  height: 50px;
+  width: 50px;
+}
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 #frame {
-  margin: 12% 14% 12% 14%;
+  margin: 10% 11% 10% 11%;
   position: absolute;
-  width: 72%;
-  height: 76%;
+  width: 78%;
+  height: 100%;
   z-index: -2;
 }
