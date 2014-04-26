@@ -14,32 +14,10 @@ function start(FB) {
 		user = response;
 		console.log('Doing this in messaging.js, ' + response.name + '.');
 		renderApp();
-		var name = meta("page");
-		showData(name);
-
-		// alert(meta("page"));
 	});
 	
 }
 
-function showData(name) {
-	
-	if(name=="photos"){
-		getPhotos(user.id, "photos", pic_data.photos, "/photos", "phot");
-	}else if(name=="photos_tagged"){
-		getPhotos(user.id, "photos_tagged", pic_data.photos_tagged, "/photos/uploaded", "photTag");		
-	}else{
-		getAlbums(user.id,"albums");
-	}
-}
-
-
-function meta(name) {
-    var tag = document.querySelector('meta[name=' + name + ']');
-    if (tag != null)
-        return tag.content;
-    return '';
-}
 // Global variable to store picture info and album info
 var pic_data = {"photos":{"next":null,"data":{},"num":0,"loadMore":null},"albums":{"next":null,"data":{},"num":0,"loadMore":null},"photos_tagged":{"next":null,"data":{},"num":0,"loadMore":null}};
 
@@ -66,14 +44,16 @@ function renderApp() {
 	// var id = "/ham.hamington.5";
 	$("#pic_container > div:not(#folders)").hide();
 	$("#folders").empty();
-	$("#folders").append("<div id='phot' class='innerfolder'><a href='/photos/photos'><img src='/images/folder.png'>Photos</a></div>");
-	// onclick='showPics(\"photos\")'
-	$("#folders").append("<div id='photTag' class='innerfolder'><a  href='/photos/photos_tagged'><img src='/images/folder.png'>Tagged Photos</a></div>");
-	// onclick='showPics(\"photos_tagged\")'
+	$("#folders").append("<div id='phot' class='innerfolder'><a onclick='showPics(\"photos\")'><img src='/images/folder.png'>Photos</a></div>");
+	$("#folders").append("<div id='photTag' class='innerfolder'><a  onclick='showPics(\"photos_tagged\")'><img src='/images/folder.png'>Tagged Photos</a></div>");
+
 
 	// TODO change this 
-	$("#folders").append("<div id='alb' class='innerfolder'><a href='albums'><img src='/images/folder.png'>Albums</a></div>");
-	// onclick='showAlbum(\"albums\")'
+	$("#folders").append("<div id='alb' class='innerfolder'><a onclick='showAlbum(\"albums\")'><img src='/images/folder.png'>Albums</a></div>");
+
+	getAlbums(id,"albums");
+	getPhotos(id, "photos", pic_data.photos, "/photos", "phot");
+	getPhotos(id, "photos_tagged", pic_data.photos_tagged, "/photos/uploaded", "photTag");
 }
 
 // Displays albums 
@@ -126,7 +106,6 @@ function getPhotos(id, toAppend, data, toUpload, toHide){
 			checkFull();
 			// $('#'+toAppend).append("<p>No photos of this user</p>");
 		}
-		showPics(toAppend);
 	});
 	
 }
@@ -151,7 +130,6 @@ function getAlbums(id,toAppend){
 			$("#alb").hide();
 			checkFull();
 		}
-		showAlbum(toAppend);
 	});
 }
 

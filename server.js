@@ -22,48 +22,67 @@ app.get('/login', function(request, response) {
 
 // GET request for Newsfeed
 app.get('/newsfeed', function(request, response) {
-	console.log('GET request for newsfeed.html')
+	console.log('GET request for newsfeed.html');
 	response.render('newsfeed.html');
 });
 
 // GET request for Profile
 app.get('/profile', function(request, response) {
-	console.log('GET request for profile.html')
+	console.log('GET request for profile.html');
 	response.render('profile.html');
 });
 
 // GET request for Search
 app.get('/search', function(request, response) {
-	console.log('GET request for search.html')
+	console.log('GET request for search.html');
 	response.render('search.html');
 });
 
 // GET request for Status
 app.get('/status', function(request, response) {
-	console.log('GET request for status.html')
+	console.log('GET request for status.html');
 	response.render('status.html');
 });
 
 // GET request for Notifications
 app.get('/notifications', function(request, response) {
-	console.log('GET request for notifications.html')
+	console.log('GET request for notifications.html');
 	response.render('notifications.html');
 });
 
 // GET request for Messaging
 app.get('/messaging', function(request, response) {
-	console.log('GET request for messaging.html')
+	console.log('GET request for messaging.html');
 	response.render('messaging.html');
 });
 
 // GET request for pictures TODO take out later
-app.get('/photos', function(request, response) {
-	console.log('GET request for photos.html')
-	response.render('photos.html');
+app.get('/photos/photos', function(request, response) {
+	console.log('GET request for photos.html');
+	response.render('photos.html', {page:"photos"});
 });
+
+// GET request for pictures TODO take out later
+app.get('/photos/photos_tagged', function(request, response) {
+	console.log('GET request for photos.html');
+	response.render('photos.html', {page:"photos_tagged"});
+});
+
+// GET request for pictures TODO take out later
+app.get('/photos/albums', function(request, response) {
+	console.log('GET request for photos.html');
+	response.render('photos.html', {page:"albums"});
+});
+
+// GET request for pictures TODO take out later
+app.get('/photos', function(request, response) {
+	console.log('GET request for photos.html');
+	response.render('photos_index.html');
+});
+
 // GET request for Home Page
 app.get('/', function(request, response) {
-	console.log('GET request for index.html')
+	console.log('GET request for index.html');
 	response.render('index.html');
 });
 
