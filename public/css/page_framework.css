@@ -1,64 +1,66 @@
-body{
-	margin: 0;
-	padding: 0;
-	z-index: 0;
+body {
+  margin: 0;
+  padding: 0;
+  z-index: 0;
 }
-#top_bar{
-	height: 12%;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	background-color: gray;
-	opacity: .5;
+#top_bar {
+  height: 12%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: gray;
+  opacity: .5;
 }
-#right_bar{
-	width: 150px;
-	height: 76%;
-	float: right;
-	background-color: gray;
-	position: fixed;
-	right: 0;
-	z-index: -1;
-	margin-top: 96px;
-	display: table;
-	text-align: center;
+#right_bar {
+  width: 14%;
+  height: 76%;
+  top: 12%;
+  bottom: 12%;
+  float: right;
+  background-color: gray;
+  position: fixed;
+  right: 0;
+  z-index: -1;
+  display: table;
+  text-align: center;
 }
-#right_bar div table{
-	/*border: 2px red solid;*/
-	margin-left: auto;
-	margin-right: auto;
+#right_bar div table {
+  /*border: 2px red solid;*/
+  margin-left: auto;
+  margin-right: auto;
 }
-#left_bar{
-	/*border: 2px solid green;*/
-	width: 150px;
-	height: 76%;
-	line-height: 76%;
-	position: fixed;
-	background-color: gray;
-	z-index: -1;
-	margin-top: 96px;
-	display: table;
-	/*vertical-align: middle;*/
-	text-align: center;
+#left_bar {
+  /*border: 2px solid green;*/
+  width: 14%;
+  height: 76%;
+  line-height: 76%;
+  position: fixed;
+  background-color: gray;
+  z-index: -1;
+  top: 12%;
+  bottom: 12%;
+  /*margin-top: 96px;*/
+  display: table;
+  /*vertical-align: middle;*/
+  text-align: center;
 }
-.bar_content{
-	vertical-align: middle;
-	display: table-cell;
+.bar_content {
+  vertical-align: middle;
+  display: table-cell;
 }
-#bottom_bar{
-	/*border: 2px solid blue;*/
-	height: 12%;
-	width: 100%;
-	position: fixed;
-	bottom: 0;	
-	background-color: gray;
-	opacity: .5;
+#bottom_bar {
+  /*border: 2px solid blue;*/
+  height: 12%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: gray;
+  opacity: .5;
 }
-#frame{
-	/*border: 10px red solid;*/
-	/*height: 100%;*/
-	/*width: 100%;*/
-	padding: 120px 170px 120px 170px;
-	position: absolute;
-	z-index: -2;
+#frame {
+  margin: 12% 14% 12% 14%;
+  position: absolute;
+  width: 72%;
+  height: 76%;
+  z-index: -2;
 }
