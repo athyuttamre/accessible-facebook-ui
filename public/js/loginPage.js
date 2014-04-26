@@ -1,5 +1,5 @@
 var user;
-
+var scope = 'publish_actions read_stream user_photos user_friends friends_photos';
 $('document').ready(function() {
 	queueAdd(start)
 });
@@ -27,5 +27,5 @@ function loginToFacebook() {
 			// The person cancelled the login dialog
 			console.log('User cancelled connection.');
 		}
-	}, {scope: 'publish_actions read_stream'});
+	}, {scope: scope});
 }

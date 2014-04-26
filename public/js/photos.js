@@ -11,22 +11,10 @@ function start(FB) {
 	FB.api('/me', function(response) {
 		console.log('Doing this in messaging.js, ' + response.name + '.');
 	});
-	renderLogin();
+	renderApp();
 	
 }
 
-function renderLogin() {
-	console.log('renderLogin was called');
-	$('body').removeClass('app_page');
-	$('body').addClass('login_page');
-
-	var loginButton = document.createElement('button');
-	loginButton.setAttribute('id', 'loggerButton');
-	loginButton.setAttribute('onclick', 'loginToApp()');
-	loginButton.innerHTML = 'Login to Facebook';
-
-	$('#container').append(loginButton);
-}
 var pic_data = {"photos":{"next":null,"data":{},"num":0,"loadMore":null},"albums":{"next":null,"data":{},"num":0,"loadMore":null},"photos_tagged":{"next":null,"data":{},"num":0,"loadMore":null}};
 var album_data = {};
 //Renders the app when the user is logged in
@@ -47,9 +35,9 @@ function renderApp() {
 	// var id = "/zachariah.u.medeiros";
 	$("#pic_container > div:not(#folders)").hide();
 	$("#folders").empty();
-	$("#folders").append("<div id='phot' class='innerfolder'><a onclick='showPics(\"photos\")'><img src='folder.png'>Photos</a></div>");
-	$("#folders").append("<div id='photTag' class='innerfolder'><a  onclick='showPics(\"photos_tagged\")'><img src='folder.png'>Tagged Photos</a></div>");
-	$("#folders").append("<div id='alb' class='innerfolder'><a onclick='showPics(\"albums\")'><img src='folder.png'>Albums</a></div>");
+	$("#folders").append("<div id='phot' class='innerfolder'><a onclick='showPics(\"photos\")'><img src='/images/folder.png'>Photos</a></div>");
+	$("#folders").append("<div id='photTag' class='innerfolder'><a  onclick='showPics(\"photos_tagged\")'><img src='/images/folder.png'>Tagged Photos</a></div>");
+	$("#folders").append("<div id='alb' class='innerfolder'><a onclick='showPics(\"albums\")'><img src='/images/folder.png'>Albums</a></div>");
 
 	getAlbums(id,"albums");
 	getPics(id,"photos");
