@@ -17,7 +17,7 @@ function start() {
 	});
 }
 
-function loginToFacebook() {
+$('#loginButton').click(function() {
 	FB.login(function(response) {
 		if (response.authResponse) {
 			user = response;
@@ -28,4 +28,4 @@ function loginToFacebook() {
 			console.log('User cancelled connection.');
 		}
 	}, {scope: scope});
-}
+});
