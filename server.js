@@ -56,6 +56,11 @@ app.get('/messaging', function(request, response) {
 	response.render('messaging.html');
 });
 
+// GET request for pictures TODO take out later
+app.get('/photos', function(request, response) {
+	console.log('GET request for photos.html')
+	response.render('photos.html');
+});
 // GET request for Home Page
 app.get('/', function(request, response) {
 	console.log('GET request for index.html')

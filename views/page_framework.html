@@ -6,9 +6,10 @@
 
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>   
         <link rel="stylesheet" href="../public/css/page_framework.css" type="text/css" />
+        <!-- <link rel="stylesheet" href="page_framework.css" type="text/css" /> -->
     </head>
     <body>
-        <div id='top_bar'></div>
+        <div class="tb_bar" id='top_bar'><span class='helper'></span><img src="../public/images/page_framework/WhiteTopButton.svg"></div>
         <div id='frame'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a nunc vitae tellus congue sollicitudin in id orci. Mauris fringilla purus iaculis risus eleifend, nec aliquet enim lobortis. Sed euismod, erat et pretium posuere, turpis elit mattis tortor, ut condimentum dui dui non dolor. Praesent rutrum justo et ante condimentum, sed lobortis mi feugiat. Nulla in tincidunt enim, eget elementum nisi. Proin faucibus vehicula ipsum, non vulputate tortor dapibus sit amet. Vestibulum varius purus et turpis molestie, ac bibendum ligula iaculis. Donec purus risus, feugiat in nulla sed, posuere egestas lectus. In consectetur lorem non tristique imperdiet. Duis aliquam aliquet facilisis.
 
@@ -31,24 +32,38 @@
             Duis luctus magna enim, nec consequat mi aliquet in. Quisque viverra pharetra enim ac egestas. Aenean ullamcorper fringilla sapien vitae ornare. Aliquam sit amet odio non diam dapibus lacinia cursus egestas elit. Vestibulum id libero auctor, adipiscing libero sollicitudin, egestas tellus. Praesent pretium tellus eu lacus molestie fermentum. Mauris nulla eros, fermentum quis felis in, venenatis sollicitudin neque. Proin ultricies ultricies sodales.
 
 
-<br>
-<br>
-<br>
-DONEODNODJODJODJDON
         </div>
-        <div id='left_bar'> <div class='bar_content'>Back</div></div>
+        <div id='left_bar'> 
+            <div class='bar_content'>
+<!--             <center></center> -->
+                <ul class='side_button'>
+                    <li><img src="../public/images/page_framework/LeftButton.svg"></li>
+                    <li>Back</li>
+                </ul>
+            </div>
+        </div>
         <div id='right_bar'>
             <div class='bar_content'>
                 <table>
                     <tr>
-                        <td> View</td>
+                        <td>
+                            <ul class='side_button'>
+                                <li><img src="../public/images/page_framework/RightButton.svg"></li>
+                                <li>View</li>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
-                        <td> View</td>
+                        <td>
+                            <ul class='side_button'>
+                                <li><img src="../public/images/page_framework/RightButton.svg"></li>
+                                <li>View</li>
+                            </ul>
+                        </td>
                     </tr>                
                 </table>
             </div>
         </div>
-        <div id='bottom_bar'></div>
+        <div id='bottom_bar' class="tb_bar"> <span class='helper'></span>  <img src="../public/images/page_framework/WhiteBottomButton.svg"></div>
     </body>
 </html>
