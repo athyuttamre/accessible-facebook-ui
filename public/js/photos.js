@@ -30,9 +30,11 @@ function renderApp() {
 	// var id = "/Sydney.Sprinkle";
 	// var id = "/lunar.eclipse.71";
 	var id ="/elyse.mcmanus";
+	// var id = "/beverly.naigles";
 	// var id = "/athyuttamre";
 	// var id = "/arcyqwertyx";
 	// var id = "/zachariah.u.medeiros";
+	// var id = "/ham.hamington.5";
 	$("#pic_container > div:not(#folders)").hide();
 	$("#folders").empty();
 	$("#folders").append("<div id='phot' class='innerfolder'><a onclick='showPics(\"photos\")'><img src='/images/folder.png'>Photos</a></div>");
@@ -53,6 +55,7 @@ function showPics(name){
 
 function getAlbums(id,toAppend){
 	FB.api(id+'/albums', function(response) {
+		console.log(response);
 		if(response.data.length>0){
 			var arr = response.data;
 			var next = response.paging.next;
@@ -65,7 +68,7 @@ function getAlbums(id,toAppend){
 			$('#'+toAppend).append(pic_data.albums.loadMore);
 			for(var x in arr){
 				pic_data.albums.data[arr[x].id]=arr[x];
-				$('#'+toAppend).append("<div class='innerfolder'><a onclick='goToAlbum(\""+arr[x].id+"\")'><img src='folder.png'>"+arr[x].name+"</a></div>");
+				$('#'+toAppend).append("<div class='innerfolder'><a onclick='goToAlbum(\""+arr[x].id+"\")'><img src='/images/folder.png'>"+arr[x].name+"</a></div>");
 			}
 		}else{
 			$("#alb").hide();
@@ -94,9 +97,6 @@ function goToAlbum(dataID) {
 	
 	if(album_data[data.id]==undefined){
 		FB.api(dataID+'/photos', function(response) {
-			// console.log("HIHIHIHIHIHIHI");
-			// console.log(response);
-			// console.log("HIHIHIHIHIHIHI");
 			var arr = response.data;
 			var next = null;
 			if(response.paging!=undefined){
@@ -124,9 +124,6 @@ function goToAlbum(dataID) {
 
 function getPicsTagged(id,toAppend){
 	FB.api(id+'/photos/uploaded', function(response) {
-		// console.log("*$*$*$*$*$*$*$*#*#*$*$*#*#*$*$*$*#**#**$");
-		// console.log(response);
-		// console.log("*$*$*$*$*$*$*$*#*#*$*$*#*#*$*$*$*#**#**$");
 		if(response!=undefined && response.data.length>0){
 			var arr = response.data;
 			var next = response.paging.next;
@@ -145,31 +142,31 @@ function getPicsTagged(id,toAppend){
 	});
 }
 
+// Displays photo individually with comments and like data
 function goToPic(fold, id){
+	alert(fold);
 	$(".inner_folder").hide();
 	$("#pictures").show();
 	var data = pic_data[fold]["data"][id];
-	console.log(data);
 	$("#pictures").empty();
 	$("#pictures").append("<img src='"+data.source+"'>");
 
+	// Adds comments to picture 
 	var comment = "<div class='comment_container'>";
-	for(var x in data.comments.data){
-		// console.log(data.comments[x]);
-		comment+="<div class='comment_div'><span class='name'>"+data.comments.data[x].from.name+"</span> <span class='comment'>"+data.comments.data[x].message+"</span></div>";
+	if(data.comments!=undefined){
+		for(var x in data.comments.data){
+			comment+="<div class='comment_div'><span class='name'>"+data.comments.data[x].from.name+"</span> <span class='comment'>"+data.comments.data[x].message+"</span></div>";
+		}
+		if(data.comments.paging.next!=undefined){
+			loadComments("#pictures > .comment_container",data.comments);
+		}
+		comment+="</div>";	
+		$("#pictures").append(comment);
 	}
-	if(data.comments.paging.next!=undefined){
-		loadComments("#pictures > .comment_container",data.comments);
-	}
-	comment+="</div>";	
-	$("#pictures").append(comment);
 }
 
 function getPics(id,toAppend) {
 	FB.api(id+'/photos', function(response) {
-		// console.log("*#****************************");
-		// console.log(response);
-		// console.log("*FFF****************************");
 		if(response!=undefined && response.data.length>0){
 			var arr = response.data;
 			var next = response.paging.next;
@@ -202,9 +199,6 @@ function loadAlbumPosts(dataID){
 
 	if(nextPage!=undefined&&nextPage!=null){
 		$.get(nextPage,function (response){
-			// console.log("!@!@!@!@!@!@!@!@!@!@!@!@!@");
-			// console.log(response);
-			// console.log("!@!@!@!@!@!@!@!@!@!@!@!@!@");
 			for(var pic in response.data){
 				album_data[dataID]["pics"][response.data[pic].id]=response.data[pic];
 				$("#individual_album").append("<img src='"+response.data[pic].picture+"' data-all='"+response.data[pic].id+"'>");
@@ -224,16 +218,11 @@ function loadAlbumPosts(dataID){
 }
 
 function loadComments(toAppend, data){
-	console.log(data);
-	// pic_data[fold]["data"][id][comments][paging]
-	// pic_data[fold]["data"][id][comments][data]
 	$.get(data.paging.next,function (response){
 		for(var pic in response.data){
 			data.data.push(response.data[pic]);
 			$(toAppend).append("<div class='comment_div'><span class='name'>"+response.data[pic].from.name+"</span> <span class='comment'>"+response.data[pic].message+"</span></div>");
-			// pic_data[fold]["data"][id]["comments"]["data"].push(response.data[pic]);
 		}
-		// pic_data[fold]["data"][id]["comments"]["paging"].next=response.paging.next;		
 		data.paging.next=response.paging.next;
 		if(response.paging.next!=undefined){
 			loadComments(toAppend,data);
@@ -243,23 +232,13 @@ function loadComments(toAppend, data){
 
 
 function loadPosts(toAppend){
-	alert(toAppend);
-	// alert(nextPage);
-	// alert(JSON.stringify(pic_data));
-	var nextPage = pic_data[toAppend].next;
 	// alert(toAppend);
-	// console.log("!!!!!!!!!!!!!!!!!!!!!!!!");
-	// console.log(pic_data);
-	// console.log("!!!!!!!!!!!!!!!!!!!!!!!!");
-	// alert($("container > img:first-child").attr("src"));
+	var nextPage = pic_data[toAppend].next;
 	$.get(nextPage,function (response){
-		// console.log("!@!@!@!@!@!@!@!@!@!@!@!@!@");
-		// console.log(response);
-		// console.log("!@!@!@!@!@!@!@!@!@!@!@!@!@");
 		for(var pic in response.data){
-			// <a class='photos' onclick='goToPic(\"photos\", \""+arr[x].id+"\")'>
-			if(toAppend=="photos"){
-				
+			pic_data[toAppend].data[response.data[pic].id]=response.data[pic];
+			if(toAppend=="photos"){	
+
 				$("#"+toAppend).append("<a class='photos' onclick='goToPic(\""+toAppend+"\", \""+response.data[pic].id+"\")'><img src='"+response.data[pic].picture+"' ></a>");
 			}else{
 				$("#"+toAppend).append("<img src='"+response.data[pic].picture+"' data-all="+response.data[pic]+">");
