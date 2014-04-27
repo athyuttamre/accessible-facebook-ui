@@ -47,10 +47,14 @@ function start(FB) {
 				}
 			}else{
 				//TODO scroll through pics for non-albums
-				// var next = album_data[data_lis[2]]["pics"][data_lis[1]].my_next;
-				var next = pic_data[data_lis[0]][data_lis[1]];
-				console.log(next);
-				console.log(data_lis);
+				var next = pic_data[data_lis[0]]["data"][data_lis[1]].my_next;
+				if(next==null){
+					$("#mainPhoto").append(pic_data[data_lis[0]].loadMore);
+					$(".loadMore").click();
+				}else{
+					goToPic(data_lis[0],next,data_lis[1]);
+				}
+
 
 			}
 		}
@@ -115,11 +119,11 @@ function renderApp() {
 
 	// var id = "/Sydney.Sprinkle";
 	// var id = "/lunar.eclipse.71";
-	var id =user.id;
+	// var id =user.id;
 	// var id = "/beverly.naigles";
 	// var id = "/athyuttamre";
 	// var id = "/arcyqwertyx";
-	// var id = "/zachariah.u.medeiros";
+	var id = "/zachariah.u.medeiros";
 	// var id = "/ham.hamington.5";
 	$("#pic_container > div:not(#folders)").hide();
 	$("#folders").empty();
@@ -279,7 +283,7 @@ function changeMeta(name, toChange){
 function goToPic(fold, id, folderID){
 	changeMeta("one_pic", "true");
 	var data = pic_data[fold]["data"][id];
-	if(folderID!=undefined){
+	if(folderID!=undefined&&fold=="albums"){
 		data = album_data[folderID].pics[id];
 	}
 	$("#mainPhoto").empty();
@@ -364,28 +368,34 @@ function loadComments(toAppend, data){
 // Displays individual pictures 
 function loadPosts(toAppend){
 	var nextPage = pic_data[toAppend].next;
-	if(toAppend!="photos"&&toAppend!="photos_tagged"){
-		nextPage = album_data[dataID].next;
-	}
 	if(nextPage!=undefined&&nextPage!=null){
 		$.get(nextPage,function (response){
+			var prevID = getFirstLast(pic_data[toAppend].data,"my_next");
+			var firstID = getFirstLast(pic_data[toAppend].data,"my_previous");
+			console.log(prevID);
+			console.log(firstID);
 			for(var pic in response.data){
-				if(toAppend=="photos"||toAppend=="photos_tagged"){	
-					pic_data[toAppend].data[response.data[pic].id]=response.data[pic];
+				if(firstID==null){
+					firstID=response.data[pic].id;
+				}
+				response.data[pic].my_previous = prevID;
+				response.data[pic].my_next = firstID;
+				if(prevID!=null){
+					pic_data[toAppend]["data"][prevID].my_next=response.data[pic].id;
+				}
+				pic_data[toAppend].data[response.data[pic].id]=response.data[pic];
+				prevID = response.data[pic].id;
+				if(meta("one_pic")=="false"){
 					$("#mainPhoto").append("<a class='photos' onclick='goToPic(\""+toAppend+"\", \""+response.data[pic].id+"\")'><img src='"+response.data[pic].picture+"' ></a>");
-				}else{
-					album_data[dataID]["pics"][response.data[pic].id]=response.data[pic];
-					$("#mainPhoto").append("<a class='photos' onclick='goToPic(\"albums\", \""+response.data[pic].id+"\",\""+toAppend+"\")'><img src='"+response.data[pic].picture+"' data-all='"+response.data[pic].id+"'></a>");
 				}
 			}
 			if(response.paging!=undefined&&response.paging.next!=undefined){
-				if(toAppend=="photos"||toAppend=="photos_tagged"){	
-					pic_data[toAppend].next=response.paging.next;
-				}else{
-					album_data[dataID].next=response.paging.next;
-				}
+				pic_data[toAppend].next=response.paging.next;
 			}else{
 				$("#mainPhoto.loadMore").html("DONENANANA");
+			}
+			if(meta("one_pic")=="true"){
+				$("#right_bar tr:first-of-type").click();
 			}			
 		},"json");
 	}else{
