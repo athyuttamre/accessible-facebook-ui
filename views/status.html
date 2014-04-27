@@ -5,9 +5,19 @@
 	    <!--Meta Tags-->
 	    <!--CSS-->
 	    <link rel='stylesheet' type='text/css' href='css/main.css'/>
+	    <link rel='stylesheet' type='text/css' href='css/page_framework.css'/>
 	</head>
 	
 	<body>
+
+        <div class="tb_bar" id='top_bar'>
+            <span class='helper'></span>
+            <img src="images/page_framework/WhiteTopButton.svg">
+        </div>
+
+        <div id='frame'>
+        <!-- SCRIPT CODE -->
+
 		<div id='fb-root'></div>
 		<header>
 			<h1>Status</h1>
@@ -17,6 +27,43 @@
 			<input id='statusInput' type='text' name='status' autocomplete='off'>
 			<input id='statusSubmit' type='submit'>
 		</form>
+		<!-- END SCRIPT CODE -->
+        </div>
+
+        <div id='left_bar'> 
+            <div class='bar_content'>
+                    <ul class='side_button'>
+                        <li><img src="../public/images/page_framework/LeftButton.svg"></li>
+                        <li>Back</li>
+                    </ul>
+            </div>
+        </div>
+
+        <div id='right_bar'>
+            <div class='bar_content'>
+                <ul>
+                    <li>
+                        <ul class='side_button'>
+                            <li><img src="../public/images/page_framework/RightButton.svg"></li>
+                            <li>View</li>
+                        </ul>                    
+                    </li>
+                    <li>
+                        <ul class='side_button'>
+                            <li><img src="../public/images/page_framework/RightButton.svg"></li>
+                            <li>View</li>
+                        </ul>                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id='bottom_bar' class="tb_bar">
+            <span class='helper'></span> 
+            <img src="../public/images/page_framework/WhiteBottomButton.svg">
+        </div>
+
+
 	</body>
 	
 	<!--Scripts-->
