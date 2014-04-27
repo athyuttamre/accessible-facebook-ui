@@ -43,7 +43,7 @@ function start(FB) {
 
 	// Goes to next picture if looking at individual pictures when TOP 
 	//	view bar on right is clicked 
-	$("#right_bar tr:first-of-type").on("click", function(){
+	$("#right_bar .side_button:first-of-type").on("click", function(){
 		if(meta("one_pic")=="true"){
 			var data = $("#mainPhoto img").attr("data-all");
 			var data_lis = data.split(",");
@@ -69,7 +69,7 @@ function start(FB) {
 
 	// Scrolls up when top bar clicked
 	$("#top_bar").on("click", function(){
-		
+
 		// $("#top_bar").get(0).scrollIntoView();
 		// $('html, body').animate({
 		 	// scrollTop: $("#top_bar").offset().top
