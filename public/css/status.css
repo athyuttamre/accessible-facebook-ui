@@ -1,0 +1,17 @@
+body{
+	height: 100%;
+	background-color: #e5e5e5;
+}
+#statusInput{
+	width: 90%;
+	height: 80%;
+	font-size: 20px;
+	position: absolute;
+	text-align: top;
+}
+#statusSubmit{
+	display: none;
+}
+#catch{
+	/*border: 2px red solid;*/
+}

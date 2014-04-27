@@ -16,7 +16,7 @@ $.fn.dwell = function(delay, click, new_color){
 	//error check
 	if (new_color === undefined)
 		new_color = '#4860a5';
-	console.log(new_color);
+	// console.log(new_color);
 
 	
 
@@ -31,19 +31,19 @@ $.fn.dwell = function(delay, click, new_color){
 			if (timeout){
 				$target = $(e.target);
 				clearTimeout(timeout);
-				$target.stop();
+				$(this).stop();
 				//return to original color/ style
 			}	
-			$target.css("background-color",original_color);
+			$(this).css("background-color",original_color);
 		});
 		$(this).mouseover(function(e){
 			$target = $(e.target);
 			$target.css("background-color",original_color);
-			$target.animate({
+			$(this).animate({
 			    backgroundColor: new_color
 			  }, delay, function() {
 			 });
-			$target.css("background-color",original_color);
+			$(this).css("background-color",original_color);
 			timeout = setTimeout(function(){
 				$target.trigger('dwellClick');
 				if (click){

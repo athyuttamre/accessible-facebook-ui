@@ -15,7 +15,11 @@ function start(FB) {
 				console.log('Doing this in status.js, ' + response.name + '.');
 			});
 
-	$(':submit').dwell(1000, true);
+	$('#catch').dwell(1000, true);
+	$('#catch').click(function(){
+		$('#statusForm').submit();
+	})
+	// $(':submit').dwell(1000, true);
 	$('#statusForm').submit(function(e) {
 		e.preventDefault();
 		var body = $('#statusInput').val();
