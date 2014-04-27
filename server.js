@@ -14,6 +14,12 @@ app.use(express.favicon(path.join(__dirname, 'public/images/favicon.ico'))); // 
 
 app.use(express.bodyParser());
 
+// GET request for Framework Page
+app.get('/framework', function(request, response) {
+	console.log('GET request for page_framework.html');
+	response.render('page_framework.html');
+})
+
 // GET request for Login Page
 app.get('/login', function(request, response) {
 	console.log('GET request for login.html');

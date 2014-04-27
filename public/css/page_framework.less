@@ -1,26 +1,21 @@
 
 @side_width: 10%;
 @side_height: 100%;
+
 @tb_height:10%;
-/*@tb_width: 100%-(@side_width*2);*/
 @tb_width:100%;
-@frame_width:100%-(@side_width*2);
+
+@frame_width:100%-(@side_width * 2);
 @frame_height:100%;
 
 @bar_color: #f2f2f2;
 @fb_blue: #4860a5;
 @border_color: #777777;
-/*@fb_blue: blue;*/
-
-
 
 body{
-	margin: 0;
-	padding: 0;
-	z-index: 0;
-	font-family: Helvetica;
 	color: @fb_blue;
 }
+
 #right_bar{
 	width: @side_width + 1%;
 	height: @side_height;
@@ -33,10 +28,12 @@ body{
 	text-align: center;
 	border-left: 2px solid @border_color;
 }
+
 #right_bar div table{
 	margin-left: auto;
 	margin-right: auto;
 }
+
 #left_bar{
 	width: @side_width + 1%;
 	height: @side_height;
@@ -47,18 +44,20 @@ body{
 	text-align: center;
 	border-right: 2px solid @border_color;
 }
-.side_button{
-		list-style-type: none;
-		li{
-			text-align: center;
-			margin-top: 10px;
 
-			img{
-			height: 50px;
-			width: 50px;
-			}
+.side_button{
+	list-style-type: none;
+	li{
+		text-align: center;
+		margin-top: 10px;
+
+		img{
+		height: 50px;
+		width: 50px;
 		}
 	}
+}
+
 .bar_content{
 	vertical-align: middle;
 	display: table-cell;
@@ -72,12 +71,15 @@ body{
 		}
 	}
 }
+
 #bottom_bar{
 	bottom: 0;
 }
+
 #top_bar{
 	top: 0;
 }
+
 .tb_bar{
 	text-align: center;
 	height: @tb_height;
@@ -97,11 +99,13 @@ body{
 		width: 50px;
 	}
 }
+
 .helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
+
 #frame{
 	margin: @tb_height (@side_width + 1) @tb_height (@side_width + 1);
 	position: absolute;
