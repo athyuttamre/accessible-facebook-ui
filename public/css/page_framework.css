@@ -40,7 +40,7 @@ body {
 }
 .side_button li {
   text-align: center;
-  margin-left: -50;
+  /*margin-left: -50;*/
   margin-top: 10px;
 }
 .side_button li img {
@@ -50,6 +50,16 @@ body {
 .bar_content {
   vertical-align: middle;
   display: table-cell;
+}
+.bar_content ul {
+  list-style: none;
+  /*border: 2px solid red;*/
+}
+.bar_content ul li {
+  /*display: inline;*/
+  text-align: center;
+  margin-right: 40px;
+  /*margin-top: 20px;*/
 }
 #bottom_bar {
   bottom: 0;
