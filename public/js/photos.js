@@ -18,6 +18,63 @@ function start(FB) {
 
 		showData(name, id);
 	});
+
+	// Back bar -- window.back for pages, 
+	// 	Goes back to individual picture for individual pictures
+	$("#left_bar").on("click",function(){
+		getPageType();
+	});
+
+	// Scrolls down
+	$("#bottom_bar").on("click",function(){
+		$(".loadMore").click();
+	});
+
+	// Goes to next picture if looking at individual pictures when TOP 
+	//	view bar on right is clicked 
+	$("#right_bar tr:first-of-type").on("click", function(){
+		if(meta("one_pic")=="true"){
+			var data = $("#mainPhoto img").attr("data-all");
+			var data_lis = data.split(",");
+			if(data_lis[0]=="albums"){
+				var next = album_data[data_lis[2]]["pics"][data_lis[1]].my_next;
+				// console.log(next);
+				if(next==null){
+					$("#mainPhoto").append(album_data[data_lis[2]].button);
+					$(".loadMore").click();
+				}else{
+					goToPic(data_lis[0],next,data_lis[2]);
+				}
+			}else{
+				//TODO scroll through pics for non-albums
+				// var next = album_data[data_lis[2]]["pics"][data_lis[1]].my_next;
+				var next = pic_data[data_lis[0]][data_lis[1]];
+				console.log(next);
+				console.log(data_lis);
+
+			}
+		}
+	});
+
+	// 	TODO This is where you want to add funcionality for commenting 
+	//		and liking things
+	$("#right_bar tr:last-of-type").on("click", function(){
+		alert("LOLOLOOLOL");
+	});
+
+
+}
+
+function getPageType(){
+	if(meta("one_pic")=="false"){
+		parent.history.back();
+		return false; 
+	}else{
+		console.log(meta("one_pic"));
+		// var data = $("#mainPhoto img").attr("data-all");
+		// var data_lis = data.split(",");
+
+	}
 }
 
 // Takes meta data and displays correct info 
@@ -104,15 +161,20 @@ function getPhotos(id, toAppend, data, toUpload, toHide){
 			var arr = response.data;
 			var next = response.paging.next;
 			data.next=next;
-			data.loadMore="<button class='loadMore' onclick='loadPosts(\""+toAppend+"\")'>Load More</button>";
-			var picPrev = null;
+			data.loadMore="<button class='loadMore' style='display:none' onclick='loadPosts(\""+toAppend+"\")'>Load More</button>";
+			var firstID = arr[0].id;
+			if(next!=null||next!=undefined){
+				firstID = null;
+			}
+			var prevID = null;
 			for(var x in arr){
-				arr[x].my_previous=picPrev;
-				if(picPrev!=null){
-					data.data[picPrev].my_next=arr[x].id;
+				arr[x].my_previous = prevID;
+				arr[x].my_next = firstID;
+				
+				if(prevID!=null){
+					data.data[prevID].my_next=arr[x].id;
 				}
-				picPrev=arr[x].id;
-
+				prevID=arr[x].id;
 				data.data[arr[x].id]=arr[x];
 			}
 		}else{
@@ -132,9 +194,9 @@ function getAlbums(id,toAppend,albId){
 			var next = response.paging.next;
 			pic_data.albums.next=next;
 			if(next==undefined){
-				pic_data.albums.loadMore="<button class='loadMore' onclick='loadPosts(\"albums\")'>DONENANANA</button>";
+				pic_data.albums.loadMore="<button class='loadMore' style='display:none' onclick='loadPosts(\"albums\")'>DONENANANA</button>";
 			}else{
-				pic_data.albums.loadMore="<button class='loadMore' onclick='loadPosts(\"albums\")'>Load More</button>";
+				pic_data.albums.loadMore="<button class='loadMore' style='display:none' onclick='loadPosts(\"albums\")'>Load More</button>";
 			}
 			for(var x in arr){
 				pic_data.albums.data[arr[x].id]=arr[x];
@@ -177,9 +239,22 @@ function goToAlbum(dataID) {
 			if(response.paging!=undefined){
 				next = response.paging.next;
 			}
-			var obj = {"next":next,"pics":{},"button":"<button class='loadMore' onclick='loadAlbumPosts(\""+dataID+"\")'>Load More</button>"}
+			var obj = {"next":next,"pics":{},"button":"<button class='loadMore' style='display:none' onclick='loadAlbumPosts(\""+dataID+"\")'>Load More</button>"}
 			$('#mainPhoto').append(obj.button);
+			var firstID=arr[0].id;
+			if(next!=null||next!=undefined){
+				firstID = null;
+			}
+			var prevID = null;
 			for(var x in arr){
+				arr[x].my_previous = prevID;
+				arr[x].my_next = firstID;
+				if(prevID!=null){
+					obj["pics"][prevID].my_next=arr[x].id;
+				}
+				prevID = arr[x].id;
+
+
 				obj["pics"][arr[x].id]=arr[x];
 				$("#mainPhoto").append("<a class='photos' onclick='goToPic(\"albums\", \""+arr[x].id+"\",\""+dataID+"\")'><img src='"+arr[x].picture+"' data-all='"+arr[x].id+"'></a>");
 				$(".no_photos").hide();
@@ -195,15 +270,21 @@ function goToAlbum(dataID) {
 	}
 }
 
+// Changes the value in a meta tag
+function changeMeta(name, toChange){
+	$("meta[name="+name+"]").attr("content", toChange);
+}
+
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
+	changeMeta("one_pic", "true");
 	var data = pic_data[fold]["data"][id];
 	if(folderID!=undefined){
 		data = album_data[folderID].pics[id];
 	}
 	$("#mainPhoto").empty();
 	$("#mainPhoto").show();
-	$("#mainPhoto").append("<img src='"+data.source+"'>");
+	$("#mainPhoto").append("<img src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'>");
 
 	// Adds comments to picture 
 	var comment = "<div class='comment_container'>";
@@ -219,14 +300,37 @@ function goToPic(fold, id, folderID){
 	}
 }
 
+function getFirstLast(list,firstLast){
+	for(var x in list){
+		if(list[x][firstLast]==null){
+			return list[x].id;
+		}
+	}
+	return null;
+}
+
 // Displays individual pictures for albums
 function loadAlbumPosts(dataID){
 	var nextPage = album_data[dataID].next;
 	if(nextPage!=undefined&&nextPage!=null){
 		$.get(nextPage,function (response){
+			var prevID = getFirstLast(album_data[dataID]["pics"],"my_next");
+			var firstID = getFirstLast(album_data[dataID]["pics"], "my_previous");
 			for(var pic in response.data){
+				if(firstID==null){
+					firstID=response.data[pic].id;
+				}
+				response.data[pic].my_previous = prevID;
+				response.data[pic].my_next = firstID;
+				if(prevID!=null){
+					album_data[dataID]["pics"][prevID].my_next = response.data[pic].id;
+				}
 				album_data[dataID]["pics"][response.data[pic].id]=response.data[pic];
-				$("#mainPhoto").append("<a class='photos' onclick='goToPic(\"albums\", \""+response.data[pic].id+"\",\""+dataID+"\")'><img src='"+response.data[pic].picture+"' data-all='"+response.data[pic].id+"'></a>");
+				prevID = response.data[pic].id;
+				// TODO HERE
+				if(meta("one_pic")=="false"){
+					$("#mainPhoto").append("<a class='photos' onclick='goToPic(\"albums\", \""+response.data[pic].id+"\",\""+dataID+"\")'><img src='"+response.data[pic].picture+"' data-all='"+response.data[pic].id+"'></a>");
+				}
 			}
 			if(response.paging!=undefined && response.paging.next!=undefined){
 				album_data[dataID].next=response.paging.next;
@@ -234,7 +338,9 @@ function loadAlbumPosts(dataID){
 				album_data[dataID].next=null;
 				$("#mainPhoto > .loadMore").html("DONENANANA");
 			}
-			
+			if(meta("one_pic")=="true"){
+				$("#right_bar tr:first-of-type").click();
+			}
 		},"json");
 	}else{
 		$("#mainPhoto > .loadMore").html("DONENANANA");

@@ -83,7 +83,7 @@ app.get('/photos/albums', function(request, response) {
 // GET request for pictures 
 app.get('/photos', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos_index.html');
+	response.render('photos_index.html', {page:"home"});
 });
 
 // GET request for Home Page
