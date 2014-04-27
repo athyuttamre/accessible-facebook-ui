@@ -54,6 +54,10 @@ window.onload = function() {
 and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
 For more, see the dwell example
 
+ADDED TO DWELL
+Dwell will now change the background color of the clicked element.  It takes a color as an optional third argument, it defaults to 'facebook blue'.
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> must be added to get the color change properties
+
 ### ATTY and MICHAEL To-Do
 
 - Implement SimplePost with new architecture
