@@ -60,6 +60,8 @@ function start(FB) {
 				if(next==null){
 					$("#mainPhoto").append(pic_data[data_lis[0]].loadMore);
 					$(".loadMore").click();
+					// goToPic(data_lis[0],next,data_lis[1]);
+
 				}else{
 					goToPic(data_lis[0],next,data_lis[1]);
 				}
@@ -69,7 +71,8 @@ function start(FB) {
 
 	// Scrolls up when top bar clicked
 	$("#top_bar").on("click", function(){
-
+		alert("hi");
+		$("#frame").scroll(500);
 		// $("#top_bar").get(0).scrollIntoView();
 		// $('html, body').animate({
 		 	// scrollTop: $("#top_bar").offset().top
@@ -78,7 +81,7 @@ function start(FB) {
 
 	// 	TODO This is where you want to add funcionality for commenting 
 	//		and liking things
-	$("#right_bar tr:last-of-type").on("click", function(){
+	$("#right_bar .side_button:last-of-type").on("click", function(){
 		alert("LOLOLOOLOL");
 	});
 
@@ -105,7 +108,8 @@ function getPageType(){
 		}else{
 			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
 			if(prev==null){
-				parent.history.back();
+				// parent.history.back();
+				window.location.reload();
 				return false;
 			}else{
 				goToPic(data_lis[0],prev,data_lis[1]);
@@ -366,7 +370,7 @@ function loadAlbumPosts(dataID){
 				$("#mainPhoto > .loadMore").html("DONENANANA");
 			}
 			if(meta("one_pic")=="true"){
-				$("#right_bar tr:first-of-type").click();
+				$("#right_bar .side_button:first-of-type").click();
 			}
 		},"json");
 	}else{
@@ -417,7 +421,7 @@ function loadPosts(toAppend){
 				pic_data[toAppend].next=null;
 			}
 			if(meta("one_pic")=="true"){
-				$("#right_bar tr:first-of-type").click();
+				$("#right_bar .side_button:first-of-type").click();
 			}			
 		},"json");
 	}else{
