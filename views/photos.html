@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- NOTE: NOT TO BE LINKED TO, this will be used to augment existing .html files -->
+
 <html>
     <head>
         <title>Photos | Accessible Facebook UI</title>
@@ -6,61 +7,65 @@
         <meta name="page" content="{{page}}">
         <meta name="page_id" content="{{id}}">
         <meta name="one_pic" content="false">
-        
+
         <!--CSS-->
-        <link rel='stylesheet' type='text/css' href='../css/main.css'/>
+        <link rel="stylesheet" href="../css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/page_framework.css" type="text/css"/>
         <link rel='stylesheet' type='text/css' href='../css/photos.css'>
-        <link rel="stylesheet" href="../css/meyers_reset.css" type="text/css" />
-        <link rel="stylesheet" href="../css/page_framework.css" type="text/css" />
     </head>
+
     <body>
-        <div id='fb-root'></div>
-        <div class="tb_bar" id='top_bar'><span class='helper'></span><img src="../images/page_framework/WhiteTopButton.svg"></div>
-        <div id='frame'>
-            <div id="main_container">
-            <div id='container'>
-                <div id='logotype'>SimplePost Pictures</div>
-                <div class="folders" id="folders"></div>
-                <div id="pic_container">
-                    <div class="inner_folder" id="mainPhoto"></div>
+        <div id='left_bar'> 
+            <ul class='bar_content'>
+                <li>
+                    <div class='side_button'>
+                        <img src="../../images/page_framework/LeftButton.svg">
+                        <p>Back</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id='container'>
+            <div id='top_bar'>
+                <img src="../../images/page_framework/WhiteTopButton.svg">
+            </div>
+
+            <div id='frame'>
+               <div id="main_container">
+                <div id='container_inner'>
+                    <div id='logotype'>SimplePost Pictures</div>
+                    <div class="folders" id="folders"></div>
+                    <div id="pic_container">
+                        <div class="inner_folder" id="mainPhoto"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div id='left_bar'> 
-            <div class='bar_content'>
-<!--             <center></center> -->
-                <ul class='side_button'>
-                    <li><img src="../images/page_framework/LeftButton.svg"></li>
-                    <li>Back</li>
-                </ul>
+
+            <div id='bottom_bar'>
+                <img src="../../images/page_framework/WhiteBottomButton.svg">
             </div>
         </div>
+
         <div id='right_bar'>
-            <div class='bar_content'>
-                <table>
-                    <tr>
-                        <td>
-                            <ul class='side_button'>
-                                <li><img src="../images/page_framework/RightButton.svg"></li>
-                                <li>View</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <ul class='side_button'>
-                                <li><img src="../images/page_framework/RightButton.svg"></li>
-                                <li>View</li>
-                            </ul>
-                        </td>
-                    </tr>                
-                </table>
-            </div>
+            <ul class='bar_content'>
+                <li>
+                    <div class='side_button'>
+                        <img src="../../images/page_framework/RightButton.svg">
+                        <p>View</p>
+                    </div>                    
+                </li>
+                <li>
+                    <div class='side_button'>
+                        <img src="../../images/page_framework/RightButton.svg">
+                        <p>View</p>
+                    </div>                    
+                </li>
+            </ul>
         </div>
-        <div id='bottom_bar' class="tb_bar"> <span class='helper'></span>  <img src="../images/page_framework/WhiteBottomButton.svg"></div>
+
     </body>
-    <!--Scripts-->
+     <!--Scripts-->
     <script type='text/javascript' src='../js/jquery/jquery.js'></script>
     <script type='text/javascript' src='../js/photos.js'></script>
     <script type='text/javascript' src='../js/login.js'></script>

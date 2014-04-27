@@ -14,8 +14,16 @@ function start(FB) {
 		console.log('Doing this in messaging.js, ' + response.name + '.');
 		renderApp();
 		var name = meta("page");
-		var id = meta("page_id");
-
+		// var id = meta("page_id");
+		// var id = "/Sydney.Sprinkle";
+		// var id = "/lunar.eclipse.71";
+		var id =user.id;
+		// var id = "/beverly.naigles";
+		// var id = "/athyuttamre";
+		// var id = "/arcyqwertyx";
+		// var id = "/zachariah.u.medeiros";
+		// var id = "/ham.hamington.5";
+		// alert(id);
 		showData(name, id);
 	});
 
@@ -28,6 +36,9 @@ function start(FB) {
 	// Scrolls down
 	$("#bottom_bar").on("click",function(){
 		$(".loadMore").click();
+		 $('html, body').animate({
+		 	scrollTop: $("#bottom_bar").offset().top
+		 }, 2000);
 	});
 
 	// Goes to next picture if looking at individual pictures when TOP 
@@ -38,7 +49,6 @@ function start(FB) {
 			var data_lis = data.split(",");
 			if(data_lis[0]=="albums"){
 				var next = album_data[data_lis[2]]["pics"][data_lis[1]].my_next;
-				// console.log(next);
 				if(next==null){
 					$("#mainPhoto").append(album_data[data_lis[2]].button);
 					$(".loadMore").click();
@@ -46,7 +56,6 @@ function start(FB) {
 					goToPic(data_lis[0],next,data_lis[2]);
 				}
 			}else{
-				//TODO scroll through pics for non-albums
 				var next = pic_data[data_lis[0]]["data"][data_lis[1]].my_next;
 				if(next==null){
 					$("#mainPhoto").append(pic_data[data_lis[0]].loadMore);
@@ -54,10 +63,17 @@ function start(FB) {
 				}else{
 					goToPic(data_lis[0],next,data_lis[1]);
 				}
-
-
 			}
 		}
+	});
+
+	// Scrolls up when top bar clicked
+	$("#top_bar").on("click", function(){
+		
+		// $("#top_bar").get(0).scrollIntoView();
+		// $('html, body').animate({
+		 	// scrollTop: $("#top_bar").offset().top
+		 // }, 2000);
 	});
 
 	// 	TODO This is where you want to add funcionality for commenting 
@@ -69,33 +85,50 @@ function start(FB) {
 
 }
 
+// Gets info on whether there is a single photo being viewed or not
 function getPageType(){
 	if(meta("one_pic")=="false"){
 		parent.history.back();
 		return false; 
 	}else{
 		console.log(meta("one_pic"));
-		// var data = $("#mainPhoto img").attr("data-all");
-		// var data_lis = data.split(",");
-
+		var data = $("#mainPhoto img").attr("data-all");
+		var data_lis = data.split(",");
+		if(data_lis[0]=="albums"){
+			var prev = album_data[data_lis[2]]["pics"][data_lis[1]].my_previous;
+			if(prev==null){
+				parent.history.back();
+				return false;
+			}else{
+				goToPic(data_lis[0],prev,data_lis[2]);
+			}
+		}else{
+			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
+			if(prev==null){
+				parent.history.back();
+				return false;
+			}else{
+				goToPic(data_lis[0],prev,data_lis[1]);
+			}
+		}
 	}
 }
 
 // Takes meta data and displays correct info 
 function showData(name, id) {
 	if(name=="photos"){
-		getPhotos(user.id, "photos", pic_data.photos, "/photos", "phot");
+		getPhotos(id, "photos", pic_data.photos, "/photos", "phot");
 	}else if(name=="photos_tagged"){
-		getPhotos(user.id, "photos_tagged", pic_data.photos_tagged, "/photos/uploaded", "photTag");		
+		getPhotos(id, "photos_tagged", pic_data.photos_tagged, "/photos/uploaded", "photTag");		
 	}else if(name=="albums"){
-		if(id!="undefined"){
-			getAlbums(user.id,"albums", id);
+		var pageid = meta("page_id");
+		if(pageid!="undefined"){
+			getAlbums(id,"albums", pageid);
 		}else{
-			getAlbums(user.id,"albums");
+			getAlbums(id,"albums");
 		}
 	}
 }
-
 
 // Gets meta data by name from html page
 function meta(name) {
@@ -116,15 +149,6 @@ var album_data = {};
 function renderApp() {
 	console.log('renderApp was called');
 	$('body').addClass('app_page');
-
-	// var id = "/Sydney.Sprinkle";
-	// var id = "/lunar.eclipse.71";
-	// var id =user.id;
-	// var id = "/beverly.naigles";
-	// var id = "/athyuttamre";
-	// var id = "/arcyqwertyx";
-	var id = "/zachariah.u.medeiros";
-	// var id = "/ham.hamington.5";
 	$("#pic_container > div:not(#folders)").hide();
 	$("#folders").empty();
 	$("#folders").append("<div id='phot' class='innerfolder'><a href='/photos/photos'><img src='/images/folder.png'>Photos</a></div>");
@@ -182,12 +206,10 @@ function getPhotos(id, toAppend, data, toUpload, toHide){
 				data.data[arr[x].id]=arr[x];
 			}
 		}else{
-			$("#"+toHide).hide();
-			checkFull();
+			$("#container_inner").append("<div>This user has no photos in this album.</div>");
 		}
 		showPics(toAppend);
 	});
-	
 }
 
 // Displays albums when album page is loaded
@@ -219,14 +241,14 @@ function getAlbums(id,toAppend,albId){
 }
 
 // Checks if a given folder is empty (of the 3 at top of page)
-// If empty, it takes it out, and if all of them are empty (the user had no pictures)
-//	 displays a message saying the user has no photos
+// If empty, it takes it out, and if all of them are empty 
+//	 (the user had no pictures) displays a message saying the user has no photos
 function checkFull(){
 	var full = $("#phot").is(":visible");
 	var full2 = $("#photTag").is(":visible");
 	var full3 = $("#alb").is(":visible");
 	if(!full&&!full2&&!full3){
-		$("#container").append("<div>This user has no photos</div>");
+		$("#container_inner").append("<div>This user has no photos in this album</div>");
 	}
 }
 
@@ -304,6 +326,8 @@ function goToPic(fold, id, folderID){
 	}
 }
 
+// Gets first or last picture in the linked list of pictures
+// 	used to add to list when downloading new pictures
 function getFirstLast(list,firstLast){
 	for(var x in list){
 		if(list[x][firstLast]==null){
@@ -331,7 +355,6 @@ function loadAlbumPosts(dataID){
 				}
 				album_data[dataID]["pics"][response.data[pic].id]=response.data[pic];
 				prevID = response.data[pic].id;
-				// TODO HERE
 				if(meta("one_pic")=="false"){
 					$("#mainPhoto").append("<a class='photos' onclick='goToPic(\"albums\", \""+response.data[pic].id+"\",\""+dataID+"\")'><img src='"+response.data[pic].picture+"' data-all='"+response.data[pic].id+"'></a>");
 				}
@@ -372,8 +395,6 @@ function loadPosts(toAppend){
 		$.get(nextPage,function (response){
 			var prevID = getFirstLast(pic_data[toAppend].data,"my_next");
 			var firstID = getFirstLast(pic_data[toAppend].data,"my_previous");
-			console.log(prevID);
-			console.log(firstID);
 			for(var pic in response.data){
 				if(firstID==null){
 					firstID=response.data[pic].id;
@@ -393,6 +414,7 @@ function loadPosts(toAppend){
 				pic_data[toAppend].next=response.paging.next;
 			}else{
 				$("#mainPhoto.loadMore").html("DONENANANA");
+				pic_data[toAppend].next=null;
 			}
 			if(meta("one_pic")=="true"){
 				$("#right_bar tr:first-of-type").click();
