@@ -1,5 +1,5 @@
 var user;
-var scope = 'publish_actions read_stream user_photos user_friends friends_photos';
+var scope = 'publish_actions read_stream user_photos user_friends friends_photos friends_about_me user_about_me friends_location user_location';
 $('document').ready(function() {
 	queueAdd(start)
 });

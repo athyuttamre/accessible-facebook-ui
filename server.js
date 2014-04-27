@@ -32,6 +32,12 @@ app.get('/newsfeed', function(request, response) {
 	response.render('newsfeed.html');
 });
 
+// GET request for Profile about page
+app.get('/profile/about', function(request, response) {
+	console.log('GET request for profile.html');
+	response.render('profile.html', {type:"about"});
+});
+
 // GET request for Profile
 app.get('/profile', function(request, response) {
 	console.log('GET request for profile.html');
@@ -77,7 +83,7 @@ app.get('/photos/photos_tagged', function(request, response) {
 // GET request for albums
 app.get('/photos/albums/:album_id', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos_album.html', {page:"albums", id:request.params.album_id});
+	response.render('photos.html', {page:"albums", id:request.params.album_id});
 });
 
 // GET request for pictures 
@@ -89,7 +95,7 @@ app.get('/photos/albums', function(request, response) {
 // GET request for pictures 
 app.get('/photos', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos_index.html', {page:"home"});
+	response.render('photos.html', {page:"home"});
 });
 
 // GET request for Home Page
