@@ -1,5 +1,4 @@
 var user;
-
 /*
 * start
 * 
@@ -21,6 +20,7 @@ function start(FB) {
 	});
 }
 
+// Takes meta data and displays correct info 
 function showData(name, id) {
 	if(name=="photos"){
 		getPhotos(user.id, "photos", pic_data.photos, "/photos", "phot");
@@ -33,9 +33,6 @@ function showData(name, id) {
 			getAlbums(user.id,"albums");
 		}
 	}
-	console.log(id);
-	
-
 }
 
 
@@ -85,7 +82,6 @@ function showAlbum(name){
 	$('#mainPhoto').append(pic_data.albums.loadMore);
 	for(var x in data){
 		$("#mainPhoto").append("<div class='innerfolder'><a href='/photos/albums/"+x+"'><img src='/images/folder.png'>"+data[x].name+"</a></div>");
-		// onclick='goToAlbum(\""+x+"\")'
 	}
 }
 
@@ -109,7 +105,6 @@ function getPhotos(id, toAppend, data, toUpload, toHide){
 			var next = response.paging.next;
 			data.next=next;
 			data.loadMore="<button class='loadMore' onclick='loadPosts(\""+toAppend+"\")'>Load More</button>";
-			// $('#'+toAppend).append("<button class='loadMore' onclick='loadPosts(\""+toAppend+"\")'>Load More</button>");
 			var picPrev = null;
 			for(var x in arr){
 				arr[x].my_previous=picPrev;
@@ -149,13 +144,9 @@ function getAlbums(id,toAppend,albId){
 			checkFull();
 		}
 		if(albId.length>0){
-			// alert(albId);
-
 			showAlbum(toAppend);
 			goToAlbum(albId);
 		}else{
-			// alert("HI "+albId);
-
 			showAlbum(toAppend);
 		}
 	});
@@ -175,7 +166,6 @@ function checkFull(){
 
 // Displays pictures from a specific album 
 function goToAlbum(dataID) {
-	// alert(dataID);
 	$("#mainPhoto").empty();
 	$("#show").empty();
 	var data = pic_data.albums.data[dataID];
