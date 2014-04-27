@@ -2,8 +2,9 @@ body{
 	height: 100%;
 	background-color: #e5e5e5;
 }
-#statusInput{
-	width: 90%;
+#statusForm{
+	/*width: 90%;*/
+	width: 500px;
 	height: 80%;
 	font-size: 20px;
 	position: absolute;

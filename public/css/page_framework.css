@@ -51,6 +51,7 @@ body {
   position: absolute;
   padding: 8% 3%;
   overflow: scroll;
+  width: 100%;
 }
 #top_bar,
 #bottom_bar {

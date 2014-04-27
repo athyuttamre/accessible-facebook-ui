@@ -11,12 +11,23 @@
 	
 	<body>
 
-        <div id='top_bar'>
-            <span class='helper'></span>
-            <img src="images/page_framework/WhiteTopButton.svg">
+        <div id='left_bar'> 
+            <ul class='bar_content'>
+                <li>
+                    <div class='side_button'>
+                        <img src="images/page_framework/LeftButton.svg">
+                        <p>Back</p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <div id='frame'>
+        <div id='container'>
+            <div id='top_bar'>
+                <img src="images/page_framework/WhiteTopButton.svg">
+            </div>
+
+            <div id='frame'>
 
         <!-- STATUS CODE -->
 
@@ -33,18 +44,17 @@
         <!-- <div id='catch'>catch</div> -->
 		<!-- END STATUS CODE -->
 
-             </div>
+            </div>
 
             <div id='bottom_bar'>
-                <span class='helper'></span> 
                 <img src="images/page_framework/WhiteBottomButton.svg">
             </div>
         </div>
 
         <div id='right_bar'>
-            <ul class='bar_content'>
+            <ul class='bar_content' id='catch'>
                 <li>
-                    <div class='side_button' id='catch'>
+                    <div class='side_button'>
                         <img src="images/page_framework/RightButton.svg">
                         <p>POST</p>
                     </div>                    
@@ -52,8 +62,8 @@
             </ul>
         </div>
 
+    </body>
 
-	</body>
 	
 	<!--Scripts-->
 	<script type='text/javascript' src='js/jquery/jquery.js'></script>
