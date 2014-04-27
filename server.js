@@ -56,25 +56,31 @@ app.get('/messaging', function(request, response) {
 	response.render('messaging.html');
 });
 
-// GET request for pictures TODO take out later
+// GET request for pictures 
 app.get('/photos/photos', function(request, response) {
 	console.log('GET request for photos.html');
 	response.render('photos.html', {page:"photos"});
 });
 
-// GET request for pictures TODO take out later
+// GET request for pictures 
 app.get('/photos/photos_tagged', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos.html', {page:"photos_tagged"});
+	response.render('photos.html', {page:"photos_tagged", id:"undefined"});
 });
 
-// GET request for pictures TODO take out later
+// GET request for albums
+app.get('/photos/albums/:album_id', function(request, response) {
+	console.log('GET request for photos.html');
+	response.render('photos_album.html', {page:"albums", id:request.params.album_id});
+});
+
+// GET request for pictures 
 app.get('/photos/albums', function(request, response) {
 	console.log('GET request for photos.html');
 	response.render('photos.html', {page:"albums"});
 });
 
-// GET request for pictures TODO take out later
+// GET request for pictures 
 app.get('/photos', function(request, response) {
 	console.log('GET request for photos.html');
 	response.render('photos_index.html');
