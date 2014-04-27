@@ -8,7 +8,7 @@ window.onload = function() {
 	*/ 
 
 	//with an id
-	$('#dwell').dwell(1000, true);
+	$('#dwell').dwell(1000, true, 'green');
 	//with an element
 	$('a').dwell(1000, true);
 	//with a class

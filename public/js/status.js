@@ -15,6 +15,7 @@ function start(FB) {
 				console.log('Doing this in status.js, ' + response.name + '.');
 			});
 
+	$(':submit').dwell(1000, true);
 	$('#statusForm').submit(function(e) {
 		e.preventDefault();
 		var body = $('#statusInput').val();
@@ -26,5 +27,6 @@ function start(FB) {
 		    	console.log('Post ID: ' + response.id);
 		  	}
 		});
+		$('#statusForm')[0].reset();
 	})
 }

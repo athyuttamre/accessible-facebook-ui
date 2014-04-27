@@ -7,33 +7,51 @@ It's probably bad if you're looking at this file, so let me know if you're havin
 
 (function($){
 var timeout;
-$.fn.dwell = function(delay, click){
+$.fn.dwell = function(delay, click, new_color){
 	if (typeof delay === "boolean"){
 		click = delay;
 	}
 	if (typeof delay !== "number")
 		delay = 1000;
- 
+	//error check
+	if (new_color === undefined)
+		new_color = '#4860a5';
+	console.log(new_color);
+
+	
+
 	//when we want to act like regular clicks make links respond on dwellclick events
 	if (click)
 		$('a').bind('dwellClick', function(){window.location.href = $(this).attr('href');
 	});
 
 	return this.each(function(){
+		var original_color = $(this).css('background-color');
 		$(this).mouseout(function(e){
 			if (timeout){
+				$target = $(e.target);
 				clearTimeout(timeout);
-			}
+				$target.stop();
+				//return to original color/ style
+			}	
+			$target.css("background-color",original_color);
 		});
 		$(this).mouseover(function(e){
+			$target = $(e.target);
+			$target.css("background-color",original_color);
+			$target.animate({
+			    backgroundColor: new_color
+			  }, delay, function() {
+			 });
+			$target.css("background-color",original_color);
 			timeout = setTimeout(function(){
-				$target = $(e.target);
 				$target.trigger('dwellClick');
 				if (click){
 					$target.trigger('click');
 				}
 			},delay);
 		});
+		$(this).css("background-color",original_color);
 		
 	});
 };
