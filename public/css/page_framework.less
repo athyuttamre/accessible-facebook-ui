@@ -51,13 +51,26 @@ body {
 }
 
 .side_button {
+	cursor: pointer;
+	box-sizing: border-box;
 	width: 100%;
+	padding: 5%;
 	text-align: center;
+	border-top: 2px solid @border_color;
 
 	img {
 		height: 50px;
 		width: 50px;
+		margin: 7% 0%;
 	}
+
+	p {
+		margin: 2% 0%;
+	}
+}
+
+.bar_content > li:last-child > .side_button {
+	border-bottom: 2px solid @border_color;
 }
 
 /** Container **/
@@ -81,6 +94,7 @@ body {
 }
 
 #top_bar, #bottom_bar {
+	cursor: pointer;
 	height: @tb_height;
 	width: @tb_width;
 	position: absolute;
