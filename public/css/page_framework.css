@@ -29,12 +29,23 @@ body {
   list-style: none;
 }
 .side_button {
+  cursor: pointer;
+  box-sizing: border-box;
   width: 100%;
+  padding: 5%;
   text-align: center;
+  border-top: 2px solid #777777;
 }
 .side_button img {
   height: 50px;
   width: 50px;
+  margin: 7% 0%;
+}
+.side_button p {
+  margin: 2% 0%;
+}
+.bar_content > li:last-child > .side_button {
+  border-bottom: 2px solid #777777;
 }
 /** Container **/
 #container {
@@ -55,6 +66,7 @@ body {
 }
 #top_bar,
 #bottom_bar {
+  cursor: pointer;
   height: 10%;
   width: 100%;
   position: absolute;

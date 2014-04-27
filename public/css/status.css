@@ -2,16 +2,24 @@ body{
 	height: 100%;
 	background-color: #e5e5e5;
 }
-#statusForm{
-	/*width: 90%;*/
-	width: 500px;
-	height: 80%;
+#statusInput{
+	width: 90%;
+	/*width: 500px;*/
+	height: 70%;
 	font-size: 20px;
 	position: absolute;
-	text-align: top;
+	/*vertical-align: top;*/
+	line-height: 100%;
 }
 #statusSubmit{
 	display: none;
+}
+::-webkit-input-placeholder {
+	/*vertical-align: top;  */
+}
+input{
+	display: flex;
+	align-items:top;
 }
 #catch{
 	/*border: 2px red solid;*/
