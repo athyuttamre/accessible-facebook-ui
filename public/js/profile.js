@@ -1,4 +1,63 @@
 var user;
+
+$(document).ready(function() {
+	// Binds thumbnail picture image with click event
+	$("#mainPhoto").on("click", ".photos", function(e){
+		console.log("clicked");
+		var data = $(this).attr("data-all").split(",");
+		if(data.length<3){
+			goToPic(data[0].trim(),data[1].trim());
+		}else{
+			goToPic(data[0].trim(),data[1].trim(),data[2].trim());
+		}
+	});
+
+	// Back bar -- window.back for pages, 
+	// 	Goes back to individual picture for individual pictures
+	$("#left_bar").click(function(){
+	});
+
+	// Scrolls down
+	$("#bottom_bar").click(function(){
+		scrollVertical(200);
+	});
+	// Goes to next picture if looking at individual pictures when TOP 
+	//	view bar on right is clicked 
+	$("#right_bar .side_button:first-of-type").click(function(){
+		
+	});
+
+	// Scrolls up when top bar clicked
+	$("#top_bar").click(function(){
+		scrollVertical(-200);
+	});
+
+	// 	TODO This is where you want to add funcionality for commenting 
+	//		and liking things
+	$("#right_bar .side_button:last-of-type").on("click", function(){
+		// alert("LOLOLOOLOL");
+	});
+
+	// Dwell for top bar
+	// $("#top_bar").dwell(1000, true);
+	// // Enables dwell click for dynamically generated html folders
+	// $("#frame").on("mouseenter", ".innerfolder", function(e){
+	// 	$(this).dwell(1000, true);
+	// });
+
+	// // Dwell clicks when user mouses over image thumbnail
+	// $(".inner_folder").on("mouseenter", ".photos", function(e){
+	// 	$(this).dwell(1000,true);
+	// });
+	
+	// // Binds back bar with dwell click
+	// $("#left_bar").dwell(1000, true);
+	// // Dwell for bottom bar
+	// $("#bottom_bar").dwell(1000, true);
+	// // Dwell for next bar
+	// $("#right_bar .side_button:first-of-type").dwell(1000, true);
+});
+
 /*
 * start
 * 
@@ -36,7 +95,14 @@ function start(FB) {
 	}
 }
 
-
+// Scrolls up or down page
+function scrollVertical(num) {
+    var iScroll = $("#frame").scrollTop();
+    iScroll = iScroll + num;
+    $("#frame").animate({
+    	scrollTop: iScroll
+    }, 1000);
+}
 
 function getAbout(id){
 	FB.api("/"+id+"?fields=gender,location,work,about,bio,birthday,education,email,hometown,quotes,relationship_status,religion,significant_other", function(response) {

@@ -112,6 +112,7 @@ function start(FB) {
 	});
 }
 
+// Scrolls up or down page
 function scrollVertical(num) {
     var iScroll = $("#frame").scrollTop();
     iScroll = iScroll + num;
