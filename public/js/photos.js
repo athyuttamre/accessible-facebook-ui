@@ -385,18 +385,19 @@ function goToPic(fold, id, folderID){
 	}
 	$("#mainPhoto").empty();
 	$("#mainPhoto").show();
-	$("#mainPhoto").append("<img src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'>");
+	$("#mainPhoto").append("<img class='main_image' src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'>");
 
 	// Adds comments to picture 
-	var comment = "<div class='comment_container'>";
+	var comment = "<ul class='comment_container'>";
 	if(data.comments!=undefined){
+		console.log(data.comments);
 		for(var x in data.comments.data){
-			comment+="<div class='comment_div'><span class='name'>"+data.comments.data[x].from.name+"</span> <span class='comment'>"+data.comments.data[x].message+"</span></div>";
+			comment+="<li class='comment_div'><span class='name'>"+data.comments.data[x].from.name+"</span> <span class='comment'>"+data.comments.data[x].message+"</span></li>";
 		}
 		if(data.comments.paging.next!=undefined){
 			loadComments("#pictures > .comment_container",data.comments);
 		}
-		comment+="</div>";	
+		comment+="</ul>";	
 		$("#mainPhoto").append(comment);
 	}
 }

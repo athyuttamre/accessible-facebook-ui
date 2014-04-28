@@ -88,6 +88,16 @@ img {
 	width: auto;
 }
 
+.main_image{
+	/*position: relative;*/
+	max-height: 90%;
+	height: auto;
+	width: auto;
+}
+.inner_folder{
+	display: inline;
+}
+
 /*.inner_folder{
 	display: inline-block;
 }
@@ -115,6 +125,20 @@ img {
 	height:15em;
 	width: 15em;
 	padding: 0;
-	margin: 0;
-	
+	margin: 0;	
+}
+
+.comment_div{
+	background-color: #EEEFF4;
+	padding:5px;
+	margin-bottom: 2px;
+}
+
+.name{
+	font-weight: bold;
+	color:#3b5998;
+}
+
+.comment{
+	color:#333;
 }
