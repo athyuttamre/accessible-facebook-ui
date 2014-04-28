@@ -134,7 +134,8 @@ function getPageType(){
 		if(data_lis[0]=="albums"){
 			var prev = album_data[data_lis[2]]["pics"][data_lis[1]].my_previous;
 			if(prev==null){
-				parent.history.back();
+				window.location.reload();
+
 				return false;
 			}else{
 				goToPic(data_lis[0],prev,data_lis[2]);
@@ -142,7 +143,6 @@ function getPageType(){
 		}else{
 			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
 			if(prev==null){
-				// parent.history.back();
 				window.location.reload();
 				return false;
 			}else{
@@ -156,13 +156,20 @@ function getPageType(){
 function showData(name, id) {
 	if(name=="photos"){
 		getPhotos(id, "photos", pic_data.photos, "/photos", "phot");
+		$("#phot").css("color","black");
+		$("#phot").css("background-color","white");
 	}else if(name=="photos_tagged"){
-		getPhotos(id, "photos_tagged", pic_data.photos_tagged, "/photos/uploaded", "photTag");		
+		getPhotos(id, "photos_tagged", pic_data.photos_tagged, "/photos/uploaded", "photTag");	
+		$("#photTag").css("color","black");
+		$("#photTag").css("background-color","white");	
 	}else if(name=="albums"){
 		var pageid = meta("page_id");
-		if(pageid!="undefined"){
+
+		if(pageid!=""){
 			getAlbums(id,"albums", pageid);
 		}else{
+			$("#alb").css("color","black");
+			$("#alb").css("background-color","white");
 			getAlbums(id,"albums");
 		}
 	}
@@ -198,11 +205,11 @@ function renderApp(id) {
 	// 	$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
 	// });
 	console.log('renderApp was called');
-	$("#folders").append("<a href='/photos/photos'><div id='phot' class='innerfolder'>Photos</div></a>");
+	$("#folders").append("<a href='/photos/photos'><button id='phot' class='innerfolder'>Photos</button></a>");
 	// <img src='/images/folder.png'>
-	$("#folders").append("<a  href='/photos/photos_tagged'><div id='photTag' class='innerfolder'>Tagged Photos</div></a>");
+	$("#folders").append("<a  href='/photos/photos_tagged'><button id='photTag' class='innerfolder'>Tagged Photos</button></a>");
 	// <img src='/images/folder.png'>
-	$("#folders").append("<a href='/photos/albums'><div id='alb' class='innerfolder'>Albums</div></a>");
+	$("#folders").append("<a href='/photos/albums'><button id='alb' class='innerfolder'>Albums</button></a>");
 	// <img src='/images/folder.png'>
 }
 
@@ -225,7 +232,7 @@ function showAlbum(name){
 
 	$('#mainPhoto').append(pic_data.albums.loadMore);
 	for(var x in data){
-		$("#mainPhoto").append("<a href='/photos/albums/"+x+"'><div class='innerfolder'>"+data[x].name+"</div></a>");
+		$("#mainPhoto").append("<a href='/photos/albums/"+x+"'><button class='innerfolder'>"+data[x].name+"</button></a>");
 		// <img src='/images/folder.png'>
 	}
 }
@@ -292,7 +299,7 @@ function getAlbums(id,toAppend,albId){
 			$("#alb").hide();
 			checkFull();
 		}
-		if(albId.length>0){
+		if(albId!=undefined&& albId.length>0){
 			showAlbum(toAppend);
 			goToAlbum(albId);
 		}else{

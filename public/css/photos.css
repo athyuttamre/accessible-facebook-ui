@@ -39,19 +39,18 @@ img {
 
 .innerfolder{
 	width: 10em;
-	height: 2em;
+	height: 5em;
 	display: inline-block;
 	text-align: center;
 	border-width:2px;
-	border-color: gray;
-	background-color:LightGray;
+	border-color: LightGray;
+	background-color:#EEEFF4;
 	border-style: solid;
 	font-size: 20px;
-	padding-top: 2em;
-	padding-bottom: 2em;
 	vertical-align: middle;
-	margin-left:0.75em;
-	margin-bottom:0.75em;
+	margin-left:0.70em;
+	margin-bottom:0.70em;
+	color:#3b5998;
 
 }
 
@@ -98,17 +97,6 @@ img {
 	display: inline;
 }
 
-/*.inner_folder{
-	display: inline-block;
-}
-
-.inner_folder *{
-	height:15em;
-	width: 15em;
-	padding: 0;
-	margin: 0;
-}
-*/
 .photos{
 	height:15em;
 	width: 15em;
@@ -120,8 +108,6 @@ img {
 }
 
 .photos *{
-	/*height:100%;*/
-	/*width: auto;*/
 	height:15em;
 	width: 15em;
 	padding: 0;
