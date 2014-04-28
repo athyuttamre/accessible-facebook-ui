@@ -1,15 +1,5 @@
 var user;
 
-// window.onload = function() {
-// 	$('a').dwell(1000, true);
-// 	$('.innerfolder a').dwell(1000, true);
-
-// 	$('a').click(function(){
-// 		alert('dwell clicked');
-// 	});
-	
-// };
-
 $(document).ready(function() {
 	// Binds thumbnail picture image with click event
 	$("#mainPhoto").on("click", ".photos", function(e){
@@ -63,9 +53,6 @@ $(document).ready(function() {
 
 	// Scrolls up when top bar clicked
 	$("#top_bar").click(function(){
-		// alert("hi");
-		// $("#frame").scroll(500);
-		// $("#top_bar").get(0).scrollIntoView();
 		scrollVertical(-200);
 	});
 
@@ -75,24 +62,24 @@ $(document).ready(function() {
 		// alert("LOLOLOOLOL");
 	});
 
-	// // Dwell for top bar
-	// $("#top_bar").dwell(1000, true);
-	// // Enables dwell click for dynamically generated html folders
-	// $("#frame").on("mouseenter", ".innerfolder", function(e){
-	// 	$(this).dwell(1000, true);
-	// });
+	// Dwell for top bar
+	$("#top_bar").dwell(1000, true);
+	// Enables dwell click for dynamically generated html folders
+	$("#frame").on("mouseenter", ".innerfolder", function(e){
+		$(this).dwell(1000, true);
+	});
 
-	// // Dwell clicks when user mouses over image thumbnail
-	// $(".inner_folder").on("mouseenter", ".photos", function(e){
-	// 	$(this).dwell(1000,true);
-	// });
+	// Dwell clicks when user mouses over image thumbnail
+	$(".inner_folder").on("mouseenter", ".photos", function(e){
+		$(this).dwell(1000,true);
+	});
 	
-	// // Binds back bar with dwell click
-	// $("#left_bar").dwell(1000, true);
-	// // Dwell for bottom bar
-	// $("#bottom_bar").dwell(1000, true);
-	// // Dwell for next bar
-	// $("#right_bar .side_button:first-of-type").dwell(1000, true);
+	// Binds back bar with dwell click
+	$("#left_bar").dwell(1000, true);
+	// Dwell for bottom bar
+	$("#bottom_bar").dwell(1000, true);
+	// Dwell for next bar
+	$("#right_bar .side_button:first-of-type").dwell(1000, true);
 });
 
 /*
