@@ -50,24 +50,15 @@ img {
 	padding-top: 2em;
 	padding-bottom: 2em;
 	vertical-align: middle;
-	margin:0.15em;
+	margin-left:0.75em;
+	margin-bottom:0.75em;
+
 }
 
 .innerfolder *{
 	display: block;
-	position: relative;
-	
-	/*text-align: center;*/
-	
+	position: relative;	
 }
-
-/*.innerfolder a{
-	position: relative;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	padding-left: auto;
-	padding-right: auto;
-}*/
 
 .cover{
 	position: relative;
@@ -77,7 +68,6 @@ img {
 	margin-left: auto;
 	width: auto;
 	z-index: -5;
-
 }
 
 #user_info{
@@ -96,4 +86,35 @@ img {
 .user_photo img{
 	height: 10em;
 	width: auto;
+}
+
+/*.inner_folder{
+	display: inline-block;
+}
+
+.inner_folder *{
+	height:15em;
+	width: 15em;
+	padding: 0;
+	margin: 0;
+}
+*/
+.photos{
+	height:15em;
+	width: 15em;
+	padding: 0;
+	margin: 0;
+	margin-left:1em;
+	margin-bottom:1em;
+	overflow: hidden;
+}
+
+.photos *{
+	/*height:100%;*/
+	/*width: auto;*/
+	height:15em;
+	width: 15em;
+	padding: 0;
+	margin: 0;
+	
 }

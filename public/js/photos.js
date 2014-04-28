@@ -11,16 +11,6 @@ var user;
 // };
 
 $(document).ready(function() {
-	// Enables dwell click for dynamically generated html folders
-	$("#frame").on("mouseenter", ".innerfolder", function(e){
-		$(this).dwell(1000, true);
-	});
-
-	// Dwell clicks when user mouses over image thumbnail
-	$(".inner_folder").on("mouseenter", ".photos", function(e){
-		$(this).dwell(1000,true);
-	});
-
 	// Binds thumbnail picture image with click event
 	$("#mainPhoto").on("click", ".photos", function(e){
 		console.log("clicked");
@@ -32,26 +22,17 @@ $(document).ready(function() {
 		}
 	});
 
-
-	// Binds back bar with dwell click
-	$("#left_bar").dwell(1000, true);
-
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
 	$("#left_bar").click(function(){
 		getPageType();
 	});
 
-	// Dwell for bottom bar
-	$("#bottom_bar").dwell(1000, true);
 	// Scrolls down
 	$("#bottom_bar").click(function(){
 		$(".loadMore").click();
-		 $("#frame").scroll(-500);
+		scrollVertical(200);
 	});
-
-	// Dwell for next bar
-	$("#right_bar .side_button:first-of-type").dwell(1000, true);
 	// Goes to next picture if looking at individual pictures when TOP 
 	//	view bar on right is clicked 
 	$("#right_bar .side_button:first-of-type").click(function(){
@@ -80,23 +61,38 @@ $(document).ready(function() {
 		}
 	});
 
-	// Dwell for top bar
-	$("#top_bar").dwell(1000, true);
 	// Scrolls up when top bar clicked
 	$("#top_bar").click(function(){
-		alert("hi");
-		$("#frame").scroll(500);
+		// alert("hi");
+		// $("#frame").scroll(500);
 		// $("#top_bar").get(0).scrollIntoView();
-		// $('html, body').animate({
-		 	// scrollTop: $("#top_bar").offset().top
-		 // }, 2000);
+		scrollVertical(-200);
 	});
 
 	// 	TODO This is where you want to add funcionality for commenting 
 	//		and liking things
 	$("#right_bar .side_button:last-of-type").on("click", function(){
-		alert("LOLOLOOLOL");
+		// alert("LOLOLOOLOL");
 	});
+
+	// // Dwell for top bar
+	// $("#top_bar").dwell(1000, true);
+	// // Enables dwell click for dynamically generated html folders
+	// $("#frame").on("mouseenter", ".innerfolder", function(e){
+	// 	$(this).dwell(1000, true);
+	// });
+
+	// // Dwell clicks when user mouses over image thumbnail
+	// $(".inner_folder").on("mouseenter", ".photos", function(e){
+	// 	$(this).dwell(1000,true);
+	// });
+	
+	// // Binds back bar with dwell click
+	// $("#left_bar").dwell(1000, true);
+	// // Dwell for bottom bar
+	// $("#bottom_bar").dwell(1000, true);
+	// // Dwell for next bar
+	// $("#right_bar .side_button:first-of-type").dwell(1000, true);
 });
 
 /*
@@ -127,6 +123,15 @@ function start(FB) {
 		renderApp(id);
 		showData(name, id);
 	});
+}
+
+function scrollVertical(num) {
+    var iScroll = $("#frame").scrollTop();
+    iScroll = iScroll + num;
+    $("#frame").animate({
+    	scrollTop: iScroll
+    }, 1000);
+
 }
 
 // Gets info on whether there is a single photo being viewed or not
@@ -205,9 +210,6 @@ function renderApp(id) {
 	// 	$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
 	// });
 	console.log('renderApp was called');
-	// checkBars();
-	// $("#pic_container > div:not(#folders)").hide();
-	// $("#folders").empty();
 	$("#folders").append("<a href='/photos/photos'><div id='phot' class='innerfolder'>Photos</div></a>");
 	// <img src='/images/folder.png'>
 	$("#folders").append("<a  href='/photos/photos_tagged'><div id='photTag' class='innerfolder'>Tagged Photos</div></a>");
