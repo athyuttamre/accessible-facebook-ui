@@ -299,8 +299,10 @@ function getAlbums(id,toAppend,albId){
 				pic_data.albums.data[arr[x].id]=arr[x];
 			}
 		}else{
-			$("#alb").hide();
-			checkFull();
+			$("#container_inner").append("<div>This user has no photos in this album.</div>");
+			
+			// $("#alb").hide();
+			// checkFull();
 		}
 		if(albId!=undefined&& albId.length>0){
 			showAlbum(toAppend,id);
