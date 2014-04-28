@@ -8,36 +8,10 @@ body {
    font-weight: 300;
 }
 
-/*#main_container{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
-}*/
-
-.back_button{
-	/*height: 100%;*/
-	width: 5em;
-	background-color: yellow;
-	position: fixed;
-	left:0;
-	top:0;
-	bottom: 5em;
-	border-color: pink;
-	border-width: 2px;
-	border-style: dotted;
-}
-
 #logotype {
 	margin: 0.5em auto;
 	margin-top: 1em;
 	font-size: 3em;
-}
-
-#loggerButton {
-	margin: 0em auto;
-	display: block;
 }
 
 img {
@@ -50,21 +24,76 @@ img {
 	border-radius: 12px;
 }
 
+#test{
+	z-index: 1000000;
+	margin-left: 300px;
+	bottom:0;
+}
+
+.folders{
+	margin-right: auto;
+	margin-left: auto;
+	width: 100%;
+	position: relative;
+}
+
 .innerfolder{
 	width: 10em;
-	height: 8em;
+	height: 2em;
 	display: inline-block;
 	text-align: center;
+	border-width:2px;
+	border-color: gray;
+	background-color:LightGray;
+	border-style: solid;
+	font-size: 20px;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	vertical-align: middle;
+	margin:0.15em;
 }
 
 .innerfolder *{
 	display: block;
 	position: relative;
+	
 	/*text-align: center;*/
 	
 }
 
-.innerfolder img{
-	height: 3em;
-	width: 3em;
+/*.innerfolder a{
+	position: relative;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: auto;
+	padding-right: auto;
+}*/
+
+.cover{
+	position: relative;
+	bottom:0;
+	float: right;
+	margin-right: auto;
+	margin-left: auto;
+	width: auto;
+	z-index: -5;
+
+}
+
+#user_info{
+	display: inline-block;
+}
+
+.username{
+
+}
+
+.user_photo{
+	position: relative;
+	top:0;
+}
+
+.user_photo img{
+	height: 10em;
+	width: auto;
 }

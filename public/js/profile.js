@@ -7,6 +7,8 @@ var user;
 * and functionality should start within this function.
 */
 function start(FB) {
+	// var id = meta("id");
+	var id = "Sydney.Sprinkle"
 	console.log('Welcome to profile.js!');
 	console.log('start has been called with FB object: ' + FB);
 	FB.api("/me", function(response) {
@@ -15,12 +17,12 @@ function start(FB) {
 		console.log('Doing this in profile.js, ' + response.name + '.');
 	});
 
-	FB.api("/me/picture?type=large", function(response) {
+	FB.api("/"+id+"/picture?type=large", function(response) {
 		var url = response.data.url;
 		$("#user_info").prepend("<div class='user_photo'><img src='"+url+"'></div>");
 	});
 
-	FB.api("/me?fields=cover,name_format,first_name,last_name", function(response) {
+	FB.api("/"+id+"?fields=cover,name_format,first_name,last_name", function(response) {
 		var name = response.first_name+" "+response.last_name;
 		if(response.name_format!="{first} {last}"){
 			name = response.last_name+" "+response.first_name;
@@ -30,16 +32,18 @@ function start(FB) {
 	});
 
 	if(meta("type")=="about"){
-		getAbout();
+		getAbout(id);
 	}
 }
 
-function getAbout(){
-	FB.api("/me?fields=gender,location,work", function(response) {
+
+
+function getAbout(id){
+	FB.api("/"+id+"?fields=gender,location,work,about,bio,birthday,education,email,hometown,quotes,relationship_status,religion,significant_other", function(response) {
 		console.log("************");
 		console.log(response);
 		console.log("************");
-		
+
 	});
 }
 
