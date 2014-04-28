@@ -100,7 +100,7 @@ img {
 .photos{
 	height:15em;
 	width: 15em;
-	padding: 0;
+	padding: 2px;
 	margin: 0;
 	margin-left:1em;
 	margin-bottom:1em;

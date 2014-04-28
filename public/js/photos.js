@@ -100,7 +100,10 @@ function start(FB) {
 		// var id = meta("page_id");
 		// var id = "/Sydney.Sprinkle";
 		// var id = "/lunar.eclipse.71";
-		var id =user.id;
+		var id =meta("user_id");
+		if(id==""){
+			id="/me"
+		}
 		// var id = "/beverly.naigles";
 		// var id = "/athyuttamre";
 		// var id = "/arcyqwertyx";
@@ -205,11 +208,11 @@ function renderApp(id) {
 	// 	$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
 	// });
 	console.log('renderApp was called');
-	$("#folders").append("<a href='/photos/photos'><button id='phot' class='innerfolder'>Photos</button></a>");
+	$("#folders").append("<a href='/"+id+"/photos/photos'><button id='phot' class='innerfolder'>Photos</button></a>");
 	// <img src='/images/folder.png'>
-	$("#folders").append("<a  href='/photos/photos_tagged'><button id='photTag' class='innerfolder'>Tagged Photos</button></a>");
+	$("#folders").append("<a  href='/"+id+"/photos/photos_tagged'><button id='photTag' class='innerfolder'>Tagged Photos</button></a>");
 	// <img src='/images/folder.png'>
-	$("#folders").append("<a href='/photos/albums'><button id='alb' class='innerfolder'>Albums</button></a>");
+	$("#folders").append("<a href='/"+id+"/photos/albums'><button id='alb' class='innerfolder'>Albums</button></a>");
 	// <img src='/images/folder.png'>
 }
 
@@ -224,7 +227,7 @@ function checkBars(){
 
 // Displays albums 
 // Executed when "Albums" folder in nav bar is clicked 
-function showAlbum(name){
+function showAlbum(name,id){
 	var next = pic_data.albums.next;
 	var data = pic_data.albums.data;
 	$("#mainPhoto").empty();
@@ -232,7 +235,7 @@ function showAlbum(name){
 
 	$('#mainPhoto').append(pic_data.albums.loadMore);
 	for(var x in data){
-		$("#mainPhoto").append("<a href='/photos/albums/"+x+"'><button class='innerfolder'>"+data[x].name+"</button></a>");
+		$("#mainPhoto").append("<a href='/"+id+"/photos/albums/"+x+"'><button class='innerfolder'>"+data[x].name+"</button></a>");
 		// <img src='/images/folder.png'>
 	}
 }
@@ -300,10 +303,10 @@ function getAlbums(id,toAppend,albId){
 			checkFull();
 		}
 		if(albId!=undefined&& albId.length>0){
-			showAlbum(toAppend);
+			showAlbum(toAppend,id);
 			goToAlbum(albId);
 		}else{
-			showAlbum(toAppend);
+			showAlbum(toAppend,id);
 		}
 	});
 }

@@ -32,16 +32,18 @@ app.get('/newsfeed', function(request, response) {
 	response.render('newsfeed.html');
 });
 
+
+
 // GET request for Profile about page
-app.get('/profile/about', function(request, response) {
+app.get('/:id/profile/about', function(request, response) {
 	console.log('GET request for profile.html');
-	response.render('profile.html', {type:"about"});
+	response.render('profile.html', {type:"about",user_id:request.params.id});
 });
 
-// GET request for Profile
-app.get('/profile', function(request, response) {
+// GET request for other user's Profile
+app.get('/:id/profile', function(request, response) {
 	console.log('GET request for profile.html');
-	response.render('profile.html');
+	response.render('profile.html', {user_id:request.params.id});
 });
 
 // GET request for Search
@@ -69,33 +71,33 @@ app.get('/messaging', function(request, response) {
 });
 
 // GET request for pictures 
-app.get('/photos/photos', function(request, response) {
+app.get('/:id/photos/photos', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos.html', {page:"photos"});
+	response.render('photos.html', {page:"photos",user_id:request.params.id});
 });
 
 // GET request for pictures 
-app.get('/photos/photos_tagged', function(request, response) {
+app.get('/:id/photos/photos_tagged', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos.html', {page:"photos_tagged", id:"undefined"});
+	response.render('photos.html', {page:"photos_tagged", id:"undefined",user_id:request.params.id});
 });
 
 // GET request for albums
-app.get('/photos/albums/:album_id', function(request, response) {
+app.get('/:id/photos/albums/:album_id', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos.html', {page:"albums", id:request.params.album_id});
+	response.render('photos.html', {page:"albums", id:request.params.album_id, user_id:request.params.id});
 });
 
 // GET request for pictures 
-app.get('/photos/albums', function(request, response) {
+app.get('/:id/photos/albums', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos.html', {page:"albums"});
+	response.render('photos.html', {page:"albums", user_id:request.params.id});
 });
 
 // GET request for pictures 
-app.get('/photos', function(request, response) {
+app.get('/:id/photos', function(request, response) {
 	console.log('GET request for photos.html');
-	response.render('photos.html', {page:"home"});
+	response.render('photos.html', {page:"home", user_id:request.params.id});
 });
 
 // GET request for Home Page

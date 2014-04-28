@@ -11,25 +11,16 @@
 }
 
 .cover img{
-	position: absolute;
-	/*top:-15em;*/
-	width: 100%;
-	/*top:-45px;*/
-	clip:rect(0px, 100000px, 260px, 0px);
-
-	/*clip:rect(0em, 1000em, 30em, 0em);*/
+	width: 110%;
 }
 
 
 .cover {
-	top:-2em;
-	position: absolute;
 	width: 100%;
-	height: 20%;
-	max-height: 20%;
-	overflow: none;
-	/*clip:rect(0px, 0px, 10px,0px);*/
-
+	height:12.5em;
+	overflow: hidden;
+	overflow-x:hidden;
+	background-color: LightGray;
 }
 
 #frame{
@@ -44,23 +35,42 @@
 	z-index: 10;
 	position: absolute;
 	top: 0;
-	margin: 7px;
+	margin: 0.5em;
 	border-color:white;
 	border-style: solid;
-	border-width: 5px;
+	border-width: 0.25em;
+
+	overflow: hidden;
+	width: 11em;
+	max-width: 11em;
+	height: 11em;
+	vertical-align: middle;
+	background-color: LightGray;
+}
+
+.user_photo img{
+	height: 100%;
+	margin-right: auto;
+	width: auto;
+	margin-left: auto;
+	display: block;
 }
 
 .username{
-	padding:2px;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+	color:white;
 	z-index: 20;
-	position: absolute;
-	top: 185px;
-	left: 225px;
-	/*right:275px;*/
-	background-color: white;
 	font-weight: bolder;
-	font-size: 30px;
-
+	font-size: 2em;
+	position: relative;
+	top:-1.25em;
+	left:6.5em;
+	width: auto;
+	max-width: 9.1em;
 }
 /*#frame *{
 

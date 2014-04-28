@@ -66,12 +66,21 @@ $(document).ready(function() {
 * and functionality should start within this function.
 */
 function start(FB) {
-	// var id = meta("id");
-	var id = "Sydney.Sprinkle"
+	var id = meta("id");
+	if(id==""){
+		id="me";
+	}
+	// var id = "Sydney.Sprinkle";
+	// var id = "elyse.mcmanus";
+	// var id = "zachariah.u.medeiros";
+	// var id = "meghan.dushko";
+	// var id = "beverly.naigles";
+	// var id = "stanton.tomson";
+
 	console.log('Welcome to profile.js!');
 	console.log('start has been called with FB object: ' + FB);
 	FB.api("/me", function(response) {
-		var id = response.id;
+		// var id = response.id;
 		user = response;
 		console.log('Doing this in profile.js, ' + response.name + '.');
 	});
