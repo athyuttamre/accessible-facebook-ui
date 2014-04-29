@@ -23,9 +23,22 @@ $(document).ready(function() {
 		}
 	});
 
+	// $("#dialog").on("mouseenter", ".trigger-dialog-button", function(){
+	// 	console.log("hahahaha");
+	// });
+
 	$(".form_button").click(function(){
-		var message = $(".form_input").val();
-		console.log(message);
+		var msg = $(".form_input").val();
+		console.log(msg);
+		FB.api("/"+curr_pic+"/comments", "post", {message:msg},  function(response) {
+			console.log(response);
+		});
+		$("#frame:not(#dialog)").show();
+		$(".side_button").show();
+		$("#bottom_bar").show();
+		$("#top_bar").show();
+
+		$("#dialog").dialog("close");
 		return false;
 	});
 
@@ -39,6 +52,15 @@ $(document).ready(function() {
 			goToPic(data[0].trim(),data[1].trim(),data[2].trim());
 		}
 	});
+
+	$("#dialog").on("mouseenter","button", function(e){
+		console.log("hi");
+		// $(this).dwell(1000, true);
+	})
+	// $("#dialog .ui-button[title='close']").on("mouseenter", function(){
+		// console.log("hijasdfasdf");
+		// $(this).dwell(1000,true);
+	// });
 
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
@@ -95,22 +117,37 @@ $(document).ready(function() {
 	});
 
 	$("#right_bar li:nth-of-type(2)").on("click", function(){
-		$("#frame:not(#dialog)").hide();
-		$("#bottom_bar").hide();
 		$("#dialog").dialog({
-			title:"Comment on this picture",
+			title: "Comment on Photo",
+			draggable: true,
+    		resizable: false,
+    		position: ['center', 'center'],
+		    show: 'blind',
+		    hide: 'blind',
 			modal:true,
+			create: function() {
+            $(this).closest('div.ui-dialog').on("mouseenter", ".ui-dialog-titlebar-close", function(e) {
+            	$(this).dwell(1000,true);
+            	e.preventDefault();
+            })},
+			open: function() {
+		        $("#frame:not(#dialog)").hide();
+				$(".side_button").hide();
+				$("#bottom_bar").hide();
+				$("#top_bar").hide();
+		        $(".ui-button-text").text("X");
+		        $(".ui-button-text").addClass("trigger-dialog-button");
+		    },
+		    close: function() {
+		    	$("#frame:not(#dialog)").show();
+				$(".side_button").show();
+				$("#bottom_bar").show();
+				$("#top_bar").show();
+		        // $("body").removeClass('custom-overlay');
+		    }, 
 			width: 600,
 			height:600,
-			resizable:true,
-			buttons:[
-				{text:"shut a your face",
-					"class":"cancelButton",
-					click:function(){
-						$(this).dwell(1000,true);
-					}
-				}
-			]
+			resizable:true
 		});
 	});
 
