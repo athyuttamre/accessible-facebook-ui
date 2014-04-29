@@ -21,6 +21,7 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#right_bar .side_button").hide();
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
 	$("#left_bar").click(function(){

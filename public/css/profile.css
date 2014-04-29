@@ -141,3 +141,14 @@
 	color:#6E747D;
 	font-weight: bold;
 }
+
+/* Feed div containers */
+.post_container{
+	margin-left:1em;
+	margin-right:1em;
+	padding:0.25em;
+}
+
+.post_container *{
+	display: block;
+}
