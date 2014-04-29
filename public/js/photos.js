@@ -82,7 +82,7 @@ function start(FB) {
 	// 	TODO This is where you want to add funcionality for commenting 
 	//		and liking things
 	$("#right_bar .side_button:last-of-type").on("click", function(){
-		alert("LOLOLOOLOL");
+		// alert("LOLOLOOLOL");
 	});
 
 

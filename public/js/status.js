@@ -15,8 +15,8 @@ function start(FB) {
 				console.log('Doing this in status.js, ' + response.name + '.');
 			});
 
-	$('#catch').dwell(1000, true);
-	$('#catch').click(function(){
+	$('#right_bar').dwell(1000, true);
+	$('#right_bar').click(function(){
 		$('#statusForm').submit();
 	})
 	// $(':submit').dwell(1000, true);
