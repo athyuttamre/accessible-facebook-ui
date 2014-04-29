@@ -1,6 +1,8 @@
 var user;
-
+var curr_pic;
 $(document).ready(function() {
+	$("#right_bar li").hide();
+
 	$("#top_bar").hide();
 
 	// Hides bottom nav button if at bottom of page
@@ -19,6 +21,12 @@ $(document).ready(function() {
         }else{
 			$("#bottom_bar").show();
 		}
+	});
+
+	$(".form_button").click(function(){
+		var message = $(".form_input").val();
+		console.log(message);
+		return false;
 	});
 
 	// Binds thumbnail picture image with click event
@@ -45,7 +53,8 @@ $(document).ready(function() {
 	});
 	// Goes to next picture if looking at individual pictures when TOP 
 	//	view bar on right is clicked 
-	$("#right_bar .side_button:first-of-type").click(function(){
+	$("#right_bar li:first-of-type").click(function(){
+		// .side_button:first-of-type
 		if(meta("one_pic")=="true"){
 			var data = $("#mainPhoto img").attr("data-all");
 			var data_lis = data.split(",");
@@ -78,9 +87,31 @@ $(document).ready(function() {
 
 	// 	TODO This is where you want to add funcionality for commenting 
 	//		and liking things
-	$("#right_bar .side_button:last-of-type").on("click", function(){
+	$("#right_bar li:last-of-type").on("click", function(){
 		// alert("LOLOLOOLOL");
+		FB.api("/"+curr_pic+"/likes", "post",  function(response) {
+			console.log(response);
+		});
+	});
 
+	$("#right_bar li:nth-of-type(2)").on("click", function(){
+		$("#frame:not(#dialog)").hide();
+		$("#bottom_bar").hide();
+		$("#dialog").dialog({
+			title:"Comment on this picture",
+			modal:true,
+			width: 600,
+			height:600,
+			resizable:true,
+			buttons:[
+				{text:"shut a your face",
+					"class":"cancelButton",
+					click:function(){
+						$(this).dwell(1000,true);
+					}
+				}
+			]
+		});
 	});
 
 	// Dwell for top bar
@@ -158,6 +189,7 @@ function getPageType(){
 		var data_lis = data.split(",");
 		if(data_lis[0]=="albums"){
 			var prev = album_data[data_lis[2]]["pics"][data_lis[1]].my_previous;
+			curr_pic=prev;
 			if(prev==null){
 				window.location.reload();
 
@@ -167,6 +199,8 @@ function getPageType(){
 			}
 		}else{
 			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
+			curr_pic=prev;
+
 			if(prev==null){
 				window.location.reload();
 				return false;
@@ -405,6 +439,8 @@ function changeMeta(name, toChange){
 
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
+	curr_pic=id;
+	$("#right_bar li").show();
 	changeMeta("one_pic", "true");
 	var data = pic_data[fold]["data"][id];
 	if(folderID!=undefined&&fold=="albums"){
@@ -417,7 +453,6 @@ function goToPic(fold, id, folderID){
 	// Adds comments to picture 
 	var comment = "<ul class='comment_container'>";
 	if(data.comments!=undefined){
-		console.log(data.comments);
 		for(var x in data.comments.data){
 			comment+="<li class='comment_div'><span class='name'>"+data.comments.data[x].from.name+"</span> <span class='comment'>"+data.comments.data[x].message+"</span></li>";
 		}

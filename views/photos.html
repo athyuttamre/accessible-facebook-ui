@@ -12,8 +12,9 @@
         <!--CSS-->
         <link rel="stylesheet" href="/css/main.css" type="text/css"/>
         <link rel="stylesheet" href="/css/page_framework.css" type="text/css"/>
-        <link rel='stylesheet' type='text/css' href='/css/profile.css'>
         <link rel='stylesheet' type='text/css' href='/css/photos.css'>
+        <link rel='stylesheet' type='text/css' href='/css/profile.css'>
+        
         
 
     </head>
@@ -57,16 +58,30 @@
                 <li>
                     <div class='side_button'>
                         <img src="/images/page_framework/RightButton.svg">
-                        <p>View</p>
+                        <p>Next</p>
                     </div>                    
                 </li>
                 <li>
                     <div class='side_button'>
                         <img src="/images/page_framework/RightButton.svg">
-                        <p>View</p>
+                        <p>Comment</p>
                     </div>                    
                 </li>
+                <li>
+                    <div class='side_button'>
+                        <img src="/images/page_framework/RightButton.svg">
+                        <p>Like</p>
+                    </div>                    
+                </li>
+
             </ul>
+        </div>
+        <div id="dialog" title="Dialog Title" style="display:none">
+            <form id="comment_form">
+                <label>Comment on this photo</label>
+                <TEXTAREA class="form_input" type="text"></TEXTAREA>
+                <input class="form_button" type="submit">Submit</input>
+            </form>
         </div>
 
     </body>

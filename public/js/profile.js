@@ -1,8 +1,8 @@
 var user;
-
+var next_feed_url;
 $(document).ready(function() {
 	$("#top_bar").hide();
-
+	next_feed_url=null;
 	// Hides bottom nav button if at bottom of page
 	var container = $('#frame');
 	$("#frame").scroll(function() {
@@ -29,6 +29,9 @@ $(document).ready(function() {
 
 	// Scrolls down
 	$("#bottom_bar").click(function(){
+		if(meta("type")=="feed"){
+			getMoreFeed(next_feed_url);
+		}
 		scrollVertical(200);
 	});
 	// Goes to next picture if looking at individual pictures when TOP 
@@ -102,9 +105,12 @@ function start(FB) {
 	});
 
 	show_user_photos(id);
-	if(meta("type")=="about"){
+	var type = meta("type");
+	if(type=="about"){
 		getAbout(id);
 		$("#about").show();
+	}else if(type=="feed"){
+		get_feed(id);
 	}else{
 		$("#nav_tabs").show();
 	}
@@ -137,6 +143,59 @@ function show_user_photos(id) {
 			$("#user_info").prepend("<div class='cover'><p style='float:right'>This user does not have a cover photo</p></div>");
 		}
 	});
+}
+
+function get_feed(id) {
+	$("#feed").show();
+	FB.api("/"+id+"/feed", function(response) {
+		console.log("feeds ************************");
+		console.log(response);
+		display_feed(response.data);
+		if(response.paging!=undefined&&response.paging.next!=undefined){
+			next_feed_url=response.paging.next;
+		}
+	});
+}
+
+function getMoreFeed(url) {
+	$.get(url, function(response) {
+		display_feed(response.data);
+		if(response.paging!=undefined){
+			next_feed_url=response.paging.next;
+		}else{
+			next_feed_url=null;
+		}
+
+	});
+}
+
+function display_feed (data) {
+	for(var x in data){
+		if(data[x].id=="100001391566662_704740602915652"){
+			console.log("hi");
+			FB.api("/"+data[x].id+"/likes", "post",  function(response) {
+				console.log(response);
+			});
+			// $.post("https://graph.facebook.com/"+data[x].id+"/comments", function(response){
+			// 	console.log(response);
+			// });
+		}
+		if(data[x].type!="link"){
+			var str = "<div class='post_container'>"
+			str+= "<span class='from_post'>Posted by "+data[x].from.name+"</span>";
+			if(data[x].type=="photo"){
+				str+="<img src='"+data[x].picture+"'>"
+			}
+			if(data[x].story!=undefined){
+				str+="<p>"+data[x].story+"</p><hr>";
+			}
+			if(data[x].message!=undefined){
+				str+="<p>"+data[x].message+"</p><hr>";
+			}
+			str+="</div>"
+			$("#feed").append(str);
+		}
+	}
 }
 
 function getAbout(id){

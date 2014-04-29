@@ -32,6 +32,11 @@ app.get('/newsfeed', function(request, response) {
 	response.render('newsfeed.html');
 });
 
+// GET request for Profile about page
+app.get('/:id/profile/feed', function(request, response) {
+	console.log('GET request for profile.html');
+	response.render('profile.html', {type:"feed",user_id:request.params.id});
+});
 
 
 // GET request for Profile about page
