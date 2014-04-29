@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 	$("#right_bar li:nth-of-type(2)").on("click", function(){
 		$("#dialog").dialog({
-			title: "Comment on Photo",
+			title: "COMMENT",
 			draggable: true,
     		resizable: false,
     		position: ['center', 'center'],
