@@ -131,6 +131,7 @@ function start(FB) {
 		// var id = "/zachariah.u.medeiros";
 		// var id = "/ham.hamington.5";
 		// alert(id);
+		show_user_photos(id);
 		renderApp(id);
 		showData(name, id);
 	});
@@ -199,6 +200,26 @@ function showData(name, id) {
 	}
 }
 
+function show_user_photos(id) {
+	FB.api("/"+id+"/picture?type=large", function(response) {
+		var url = response.data.url;
+		$("#user_info").prepend("<div class='user_photo'><img src='"+url+"'></div>");
+	});
+
+	FB.api("/"+id+"?fields=cover,name_format,first_name,last_name", function(response) {
+		var name = response.first_name+" "+response.last_name;
+		if(response.name_format!="{first} {last}"){
+			name = response.last_name+" "+response.first_name;
+		}
+		$("#user_info").prepend("<div class='username'>"+name+"</div>");
+		if(response.cover!=undefined){
+			$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
+		}else{
+			$("#user_info").prepend("<div class='cover'><p style='float:right'>This user does not have a cover photo</p></div>");
+		}
+	});
+}
+
 // Gets meta data by name from html page
 function meta(name) {
     var tag = document.querySelector('meta[name=' + name + ']');
@@ -216,25 +237,10 @@ var album_data = {};
 // Loads the preliminary info on the page when user first enters
 // Function that shows folders at top bar
 function renderApp(id) {
-	// FB.api("/"+id+"/picture?type=large", function(response) {
-	// 	var url = response.data.url;
-	// 	$("#user_info").prepend("<div class='user_photo'><img src='"+url+"'></div>");
-	// });
-	// FB.api("/"+id+"?fields=cover,name_format,first_name,last_name", function(response) {
-	// 	var name = response.first_name+" "+response.last_name;
-	// 	if(response.name_format!="{first} {last}"){
-	// 		name = response.last_name+" "+response.first_name;
-	// 	}
-	// 	$("#user_info").prepend("<div class='username'>"+name+"</div>");
-	// 	$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
-	// });
 	console.log('renderApp was called');
 	$("#folders").append("<a href='/"+id+"/photos/photos'><button id='phot' class='innerfolder'>Photos</button></a>");
-	// <img src='/images/folder.png'>
 	$("#folders").append("<a  href='/"+id+"/photos/photos_tagged'><button id='photTag' class='innerfolder'>Tagged Photos</button></a>");
-	// <img src='/images/folder.png'>
 	$("#folders").append("<a href='/"+id+"/photos/albums'><button id='alb' class='innerfolder'>Albums</button></a>");
-	// <img src='/images/folder.png'>
 }
 
 // Checks to see if nav bars should be displayed or not

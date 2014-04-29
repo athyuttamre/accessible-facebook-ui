@@ -59,40 +59,18 @@ img {
 	position: relative;	
 }
 
-.cover{
-	position: relative;
-	bottom:0;
-	float: right;
-	margin-right: auto;
-	margin-left: auto;
-	width: auto;
-	z-index: -5;
-}
-
 #user_info{
 	display: inline-block;
 }
 
-.username{
-
-}
-
-.user_photo{
-	position: relative;
-	top:0;
-}
-
-.user_photo img{
-	height: 10em;
-	width: auto;
-}
-
 .main_image{
-	/*position: relative;*/
-	max-height: 90%;
+	/*max-height: 20em;*/
+	max-width: 90%;
 	height: auto;
 	width: auto;
+	margin: 2em;
 }
+
 .inner_folder{
 	display: inline;
 }
@@ -117,7 +95,10 @@ img {
 .comment_div{
 	background-color: #EEEFF4;
 	padding:5px;
-	margin-bottom: 2px;
+	/*margin-bottom: 2px;*/
+	margin:0.25em;
+	max-width: 90%;
+	position: relative;
 }
 
 .name{

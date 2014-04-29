@@ -60,6 +60,9 @@ $(document).ready(function() {
 		$(this).dwell(1000,true);
 	});
 	
+	// $(".side_button_nav").on("mouseenter", "description_link", function(e){
+	// 	// $(this).find("a").dwell(1000, true);
+	// });
 	// Binds back bar with dwell click
 	$("#left_bar").dwell(1000, true);
 	// Dwell for bottom bar
@@ -95,10 +98,28 @@ function start(FB) {
 		console.log('Doing this in profile.js, ' + response.name + '.');
 		if(id!="me"&&id!=user.id){
 			$("#status_div").hide();
-			// $("#nav_tabs ul").prepend("<li><div class='side_button_nav'><div class='description'>Post Status</div><div class='description_link'><a href='/status'><img src='/images/page_framework/RightButton.svg'></a></div></div></li>")
 		}
 	});
 
+	show_user_photos(id);
+	if(meta("type")=="about"){
+		getAbout(id);
+		$("#about").show();
+	}else{
+		$("#nav_tabs").show();
+	}
+}
+
+// Scrolls up or down page
+function scrollVertical(num) {
+    var iScroll = $("#frame").scrollTop();
+    iScroll = iScroll + num;
+    $("#frame").animate({
+    	scrollTop: iScroll
+    }, 1000);
+}
+
+function show_user_photos(id) {
 	FB.api("/"+id+"/picture?type=large", function(response) {
 		var url = response.data.url;
 		$("#user_info").prepend("<div class='user_photo'><img src='"+url+"'></div>");
@@ -116,22 +137,6 @@ function start(FB) {
 			$("#user_info").prepend("<div class='cover'><p style='float:right'>This user does not have a cover photo</p></div>");
 		}
 	});
-
-	if(meta("type")=="about"){
-		getAbout(id);
-		$("#about").show();
-	}else{
-		$("#nav_tabs").show();
-	}
-}
-
-// Scrolls up or down page
-function scrollVertical(num) {
-    var iScroll = $("#frame").scrollTop();
-    iScroll = iScroll + num;
-    $("#frame").animate({
-    	scrollTop: iScroll
-    }, 1000);
 }
 
 function getAbout(id){

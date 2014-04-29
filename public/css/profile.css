@@ -107,7 +107,7 @@
 	float:right;
 	padding-right: 1em;
 	height: 3em;
-	padding-top: 1.5em;
+	/*padding-top: 1.5em;*/
 	padding-bottom: 1.5em;
 }
 
@@ -116,6 +116,9 @@
 	height: 100%;
 	width: auto;
 	float: right;
+}
+.description_link a{
+	padding:1.5em;
 }
 
 /* CSS for user information */
