@@ -1,20 +1,9 @@
-#user_info{
-
-}
-
-#main_content{
-
-}
-
-#user_name{
-	
-}
-
+/* CSS for cover photo image */
 .cover img{
 	width: 110%;
 }
 
-
+/* CSS for cover photo container */
 .cover {
 	width: 100%;
 	height:12.5em;
@@ -24,13 +13,11 @@
 }
 
 #frame{
-	/*border-width: 2px;
-	border-color: red;
-	border-style: dotted;*/
 	padding: 0;
 	margin: 0;
 }
 
+/* CSS for user container */
 .user_photo{
 	z-index: 10;
 	position: absolute;
@@ -48,6 +35,7 @@
 	background-color: LightGray;
 }
 
+/* CSS for user photo */
 .user_photo img{
 	height: 100%;
 	margin-right: auto;
@@ -56,6 +44,7 @@
 	display: block;
 }
 
+/* CSS for username layout */
 .username{
 	text-shadow:
     -1px -1px 0 #000,
@@ -73,7 +62,7 @@
 	max-width: 9.1em;
 }
 
-
+/* CSS for status home page navigation buttons */
 #nav_tabs li{
 	display: block;
 	position: relative;
@@ -90,11 +79,6 @@
 
 .side_button_nav{
 	display: inline-block;
-
-	/*border-width: 2px;
-	border-color: green;
-	border-style: dotted;
-	*/
 	position: relative;
 	height: 100%;
 	width: 100%;
@@ -104,11 +88,8 @@
 	display: inline-block;
 }
 
+	/* CSS for Status home page nav button text */
 .description{
-	/*border-width: 2px;
-	border-color: orange;
-	border-style: dotted;*/
-
 	position: relative;	
 	width: 60%;
 	float: left;
@@ -117,27 +98,17 @@
 	line-height: 3em;
 	font-size: 2em;
 	padding-left: 1em;
-
-
 }
 
+	/* CSS for Status home page nav button image */
 .description_link{
-	/*border-width: 2px;
-	border-color: purple;
-	border-style: dotted;*/
-
 	position: relative;
 	width: 20%;
 	float:right;
-
-
-	/*height: 2em;*/
 	padding-right: 1em;
 	height: 3em;
 	padding-top: 1.5em;
 	padding-bottom: 1.5em;
-	/*height: 2em;*/
-
 }
 
 .description_link *{
@@ -145,4 +116,25 @@
 	height: 100%;
 	width: auto;
 	float: right;
+}
+
+/* CSS for user information */
+#about{
+	background-color: #DEDEDE;
+	padding:0.5em;
+	vertical-align: middle;
+	font-size: 2.5em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.info_container{
+	display: inline-block;
+	margin:0.5em;
+	font-size: 0.5em;
+}
+
+.info_topic{
+	color:#6E747D;
+	font-weight: bold;
 }

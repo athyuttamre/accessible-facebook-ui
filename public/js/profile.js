@@ -2,32 +2,29 @@ var user;
 
 $(document).ready(function() {
 	$("#top_bar").hide();
-	
+
+	// Hides bottom nav button if at bottom of page
+	var container = $('#frame');
 	$("#frame").scroll(function() {
 		if($("#frame").scrollTop()==0){
 			$("#top_bar").hide();
-			// console.log("scroll0");
 		}else{
 			$("#top_bar").show();
-
 		}
-	});
-
-
-	// Binds thumbnail picture image with click event
-	$("#mainPhoto").on("click", ".photos", function(e){
-		console.log("clicked");
-		var data = $(this).attr("data-all").split(",");
-		if(data.length<3){
-			goToPic(data[0].trim(),data[1].trim());
-		}else{
-			goToPic(data[0].trim(),data[1].trim(),data[2].trim());
+        var height = container.height();
+        var scrollHeight = container[0].scrollHeight;
+        var st = container.scrollTop();
+        if(st >= scrollHeight - height){
+			$("#bottom_bar").hide();
+        }else{
+			$("#bottom_bar").show();
 		}
 	});
 
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
 	$("#left_bar").click(function(){
+		parent.history.back();
 	});
 
 	// Scrolls down
@@ -52,23 +49,23 @@ $(document).ready(function() {
 	});
 
 	// Dwell for top bar
-	// $("#top_bar").dwell(1000, true);
-	// // Enables dwell click for dynamically generated html folders
-	// $("#frame").on("mouseenter", ".innerfolder", function(e){
-	// 	$(this).dwell(1000, true);
-	// });
+	$("#top_bar").dwell(1000, true);
+	// Enables dwell click for dynamically generated html folders
+	$("#frame").on("mouseenter", ".innerfolder", function(e){
+		$(this).dwell(1000, true);
+	});
 
-	// // Dwell clicks when user mouses over image thumbnail
-	// $(".inner_folder").on("mouseenter", ".photos", function(e){
-	// 	$(this).dwell(1000,true);
-	// });
+	// Dwell clicks when user mouses over image thumbnail
+	$(".inner_folder").on("mouseenter", ".photos", function(e){
+		$(this).dwell(1000,true);
+	});
 	
-	// // Binds back bar with dwell click
-	// $("#left_bar").dwell(1000, true);
-	// // Dwell for bottom bar
-	// $("#bottom_bar").dwell(1000, true);
-	// // Dwell for next bar
-	// $("#right_bar .side_button:first-of-type").dwell(1000, true);
+	// Binds back bar with dwell click
+	$("#left_bar").dwell(1000, true);
+	// Dwell for bottom bar
+	$("#bottom_bar").dwell(1000, true);
+	// Dwell for next bar
+	$("#right_bar .side_button:first-of-type").dwell(1000, true);
 });
 
 /*
@@ -83,7 +80,7 @@ function start(FB) {
 	if(id==""){
 		id="me";
 	}
-	var id = "Sydney.Sprinkle";
+	// var id = "Sydney.Sprinkle";
 	// var id = "elyse.mcmanus";
 	// var id = "zachariah.u.medeiros";
 	// var id = "meghan.dushko";
@@ -97,7 +94,6 @@ function start(FB) {
 		user = response;
 		console.log('Doing this in profile.js, ' + response.name + '.');
 		if(id!="me"&&id!=user.id){
-			console.log(id=="me");
 			$("#status_div").hide();
 			// $("#nav_tabs ul").prepend("<li><div class='side_button_nav'><div class='description'>Post Status</div><div class='description_link'><a href='/status'><img src='/images/page_framework/RightButton.svg'></a></div></div></li>")
 		}
@@ -114,11 +110,16 @@ function start(FB) {
 			name = response.last_name+" "+response.first_name;
 		}
 		$("#user_info").prepend("<div class='username'>"+name+"</div>");
-		$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
+		if(response.cover!=undefined){
+			$("#user_info").prepend("<div class='cover'><img src='"+response.cover.source+"'></div>");
+		}else{
+			$("#user_info").prepend("<div class='cover'><p style='float:right'>This user does not have a cover photo</p></div>");
+		}
 	});
 
 	if(meta("type")=="about"){
 		getAbout(id);
+		$("#about").show();
 	}else{
 		$("#nav_tabs").show();
 	}
@@ -139,7 +140,7 @@ function getAbout(id){
 	FB.api("/"+id+"?fields=gender,location,work,about,bio,birthday,education,email,hometown,quotes,relationship_status,religion,significant_other", function(response) {
 		// Shows gender info
 		if(response.gender!=undefined){
-			$("#about").append("<div class='info_container'><span class='info_topic'>Gender</span> <span class='info_data'>"+response.gender+"</span></div>");
+			$("#basic").append("<div class='info_container'><span class='info_topic'>Gender</span> <span class='info_data'>"+response.gender+"</span></div>");
 		}
 
 		// Shows birthday info
@@ -149,18 +150,18 @@ function getAbout(id){
 			if(bday_arr.length>=3){
 				bday+=", "+bday_arr[2];
 			}
-			$("#about").append("<div class='info_container'><span class='info_topic'>Birthday </span><span class='info_data'>"+bday+"</span></div>");
+			$("#basic").append("<div class='info_container'><span class='info_topic'>Birthday </span><span class='info_data'>"+bday+"</span></div>");
 		}
 
 		// Shows location info
 		if(response.location!=undefined){
-			$("#about").append("<div class='info_container'><span class='info_topic'>Location </span><span class='info_data'>"+response.location.name+"</span></div>");
+			$("#basic").append("<div class='info_container'><span class='info_topic'>Location </span><span class='info_data'>"+response.location.name+"</span></div>");
 		}
 
 		// Shows relationship_status info
 		if(response.relationship_status!=undefined){
 			if(response.significant_other!=undefined){
-				$("#about").append("<div class='info_container'><span class='info_topic'>Relationship Status </span><span class='info_data'>"+response.relationship_status+" with "+response.significant_other.name+"</span></div>");
+				$("#basic").append("<div class='info_container'><span class='info_topic'>Relationship Status </span><span class='info_data'>"+response.relationship_status+" with "+response.significant_other.name+"</span></div>");
 
 			}else{
 				$("#about").append("<div class='info_container'><span class='info_topic'>Relationship Status </span><span class='info_data'>"+response.relationship_status+"</span></div>");
@@ -170,7 +171,7 @@ function getAbout(id){
 
 		// Shows work info
 		if(response.work!=undefined){
-			var str = "<div class='info_container'>Work<br> ";
+			var str = "<div class='info_container'>Work<hr> ";
 			for(var x in response.work){
 				var startDate = "";//;
 				if(response.work[x].start_date!=undefined){
@@ -187,13 +188,13 @@ function getAbout(id){
 				str+="<span class='info_topic'>"+response.work[x].employer.name+"</span><span class='info_data'> "+startDate+"</span><br>";
 			}
 			str+="</div>";
-			$("#about").append(str);
+			$("#work").append(str);
 
 		}
 
 		// Shows education info
 		if(response.education!=undefined){
-			var str = "<div class='info_container'>Education<br> ";
+			var str = "<div class='info_container'>Education<hr> ";
 			for(var x in response.education){
 				var schoolType = "";
 				if(response.education[x].type!=undefined){
@@ -205,7 +206,7 @@ function getAbout(id){
 				}
 				var major = "";
 				if(response.education[x].concentration!=undefined){
-					major="~ Major ";
+					major=" ~ Major ";
 					for(var y in response.education[x].concentration){
 						major+=" ~ "+response.education[x].concentration[y].name;
 					}
@@ -213,11 +214,21 @@ function getAbout(id){
 				str+="<span class='info_topic'>"+response.education[x].school.name+"</span><span class='info_data'>"+schoolType+major+year+"</span><br>";
 			}
 			str+="</div>";
-			$("#about").append(str);
+			$("#education").append(str);
 		}
 
 		if(response.quotes!=undefined){
-			$("#about").append("<div class='info_container'><span class='info_topic'>Quotes </span><span class='info_data'>"+response.quotes+"</span></div>");
+			console.log();
+			var arr = response.quotes.split("\n");
+			var str = "<div class='info_container'>Quotes<hr> "
+			for(var x in arr){
+				if(arr[x]!=""){
+					str+="<span class='info_data'>"+arr[x]+"</span><br>"
+				}
+			}
+			str+="</div>";
+			$("#quotes").append(str);
+			// $("#quotes").append("<div class='info_container'>Quotes<br> <span class='info_data'>"+response.quotes+"</span></div>");
 
 		}
 
@@ -241,8 +252,11 @@ function getMonth(mon,format){
 		"11":["November","Nov"],
 		"12":["December","Dec"]
 	}
-
-	return months[mon][format];
+	if(months[mon]!=undefined){
+		return months[mon][format];
+	}else{
+		return "";
+	}
 }
 
 // Gets meta data by name from html page

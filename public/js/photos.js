@@ -1,6 +1,26 @@
 var user;
 
 $(document).ready(function() {
+	$("#top_bar").hide();
+
+	// Hides bottom nav button if at bottom of page
+	$("#frame").scroll(function() {
+		if($("#frame").scrollTop()==0){
+			$("#top_bar").hide();
+		}else{
+			$("#top_bar").show();
+		}
+		var container = $('#frame');
+        var height = container.height();
+        var scrollHeight = container[0].scrollHeight;
+        var st = container.scrollTop();
+        if(st >= scrollHeight - height){
+			$("#bottom_bar").hide();
+        }else{
+			$("#bottom_bar").show();
+		}
+	});
+
 	// Binds thumbnail picture image with click event
 	$("#mainPhoto").on("click", ".photos", function(e){
 		console.log("clicked");
