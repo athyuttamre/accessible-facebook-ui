@@ -80,6 +80,7 @@ $(document).ready(function() {
 	//		and liking things
 	$("#right_bar .side_button:last-of-type").on("click", function(){
 		// alert("LOLOLOOLOL");
+
 	});
 
 	// Dwell for top bar
