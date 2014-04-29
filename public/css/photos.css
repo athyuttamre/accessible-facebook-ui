@@ -8,36 +8,10 @@ body {
    font-weight: 300;
 }
 
-/*#main_container{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
-}*/
-
-.back_button{
-	/*height: 100%;*/
-	width: 5em;
-	background-color: yellow;
-	position: fixed;
-	left:0;
-	top:0;
-	bottom: 5em;
-	border-color: pink;
-	border-width: 2px;
-	border-style: dotted;
-}
-
 #logotype {
 	margin: 0.5em auto;
 	margin-top: 1em;
 	font-size: 3em;
-}
-
-#loggerButton {
-	margin: 0em auto;
-	display: block;
 }
 
 img {
@@ -50,21 +24,107 @@ img {
 	border-radius: 12px;
 }
 
+#test{
+	z-index: 1000000;
+	margin-left: 300px;
+	bottom:0;
+}
+
+.folders{
+	margin-right: auto;
+	margin-left: auto;
+	width: 100%;
+	position: relative;
+}
+
 .innerfolder{
 	width: 10em;
-	height: 8em;
+	height: 5em;
 	display: inline-block;
 	text-align: center;
+	border-width:2px;
+	border-color: LightGray;
+	background-color:#EEEFF4;
+	border-style: solid;
+	font-size: 20px;
+	vertical-align: middle;
+	margin-left:0.70em;
+	margin-bottom:0.70em;
+	color:#3b5998;
+
 }
 
 .innerfolder *{
 	display: block;
-	position: relative;
-	/*text-align: center;*/
-	
+	position: relative;	
 }
 
-.innerfolder img{
-	height: 3em;
-	width: 3em;
+.cover{
+	position: relative;
+	bottom:0;
+	float: right;
+	margin-right: auto;
+	margin-left: auto;
+	width: auto;
+	z-index: -5;
+}
+
+#user_info{
+	display: inline-block;
+}
+
+.username{
+
+}
+
+.user_photo{
+	position: relative;
+	top:0;
+}
+
+.user_photo img{
+	height: 10em;
+	width: auto;
+}
+
+.main_image{
+	/*position: relative;*/
+	max-height: 90%;
+	height: auto;
+	width: auto;
+}
+.inner_folder{
+	display: inline;
+}
+
+.photos{
+	height:15em;
+	width: 15em;
+	padding: 2px;
+	margin: 0;
+	margin-left:1em;
+	margin-bottom:1em;
+	overflow: hidden;
+}
+
+.photos *{
+	height:15em;
+	width: 15em;
+	padding: 0;
+	margin: 0;	
+}
+
+.comment_div{
+	background-color: #EEEFF4;
+	padding:5px;
+	margin-bottom: 2px;
+}
+
+.name{
+	font-weight: bold;
+	color:#3b5998;
+}
+
+.comment{
+	color:#333;
 }

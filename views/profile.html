@@ -1,22 +1,108 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	    <title>Profile | Accessible Facebook UI</title>
-	    <!--Meta Tags-->
-	    <!--CSS-->
-	    <link rel='stylesheet' type='text/css' href='css/main.css'/>
-	</head>
-	
-	<body>
-		<div id='fb-root'></div>
-		<header>
-			<h1>Profile</h1>
-		</header>
-	</body>
-	
-	<!--Scripts-->
-	<script type='text/javascript' src='js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='js/profile.js'></script>
-	<script type='text/javascript' src='js/login.js'></script>
-    <script type='text/javascript' src='js/main.js'></script>
+    <head>
+        <meta name="type" content="{{type}}">
+        <meta name="user_id" content="{{user_id}}">
+
+        <title>Page Framework | Accessible Facebook UI</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/page_framework.css" type="text/css"/>
+        <link rel='stylesheet' type='text/css' href='/css/profile.css'/>
+    </head>
+    <body>
+        <div id='fb-root'></div>
+        <div id='left_bar'> 
+            <ul class='bar_content'>
+                <li>
+                    <div class='side_button'>
+                        <img src="/images/page_framework/LeftButton.svg">
+                        <p>Back</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id='container'>
+            <div id='top_bar'>
+                <img src="/images/page_framework/WhiteTopButton.svg">
+            </div>
+
+            <div id='bottom_bar'>
+                <img src="/images/page_framework/WhiteBottomButton.svg">
+            </div>
+
+            <div id='frame'>
+                <div id="main_container">
+                	<div id="user_info">
+                        <div id="nav_tabs" style="display:none">
+                            <ul>
+                                <li>
+                                    <div class='side_button_nav'>
+                                        <div class='description'>About</div>
+                                        <div class='description_link'>
+                                            <a href="/{{user_id}}/profile/about">
+                                                <img src="/images/page_framework/RightButton.svg">
+                                            </a>
+                                        </div>
+
+                                    </div> 
+                                </li>
+                                <li id="status_div">
+                                    <div class='side_button_nav'>
+                                        <div class='description'>Post Status</div>
+                                        <div class='description_link'>
+                                            <a href="/status">
+                                                <img src="/images/page_framework/RightButton.svg">
+                                            </a>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class='side_button_nav'>
+                                        <div class='description'>Photos</div>
+                                        <div class='description_link'>
+                                            <a href="/{{user_id}}/photos">
+                                                <img src="/images/page_framework/RightButton.svg">
+                                            </a>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="about"></div>
+                	</div>
+                    <div id="main_content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id='right_bar'>
+            <ul class='bar_content'>
+                <li>
+                    <div class='side_button'>
+                        <img src="/images/page_framework/RightButton.svg">
+                        <p>View</p>
+                    </div>                    
+                </li>
+                <li>
+                    <div class='side_button'>
+                        <img src="/images/page_framework/RightButton.svg">
+                        <p>View</p>
+                    </div>                    
+                </li>
+            </ul>
+        </div>
+
+    </body>
+    <!--Scripts-->
+    <script type='text/javascript' src='/js/jquery/jquery.js'></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!-- include this file, it's got the code that does dwell click  -->
+    <script type="text/javascript" src="/js/dwell_gist.js"></script> 
+    <script type='text/javascript' src='/js/profile.js'></script>
+    <script type='text/javascript' src='/js/login.js'></script>
+    <script type='text/javascript' src='/js/main.js'></script>
 </html>

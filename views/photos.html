@@ -1,17 +1,18 @@
 <!-- NOTE: NOT TO BE LINKED TO, this will be used to augment existing .html files -->
-
+<!DOCTYPE html>
 <html>
     <head>
         <title>Photos | Accessible Facebook UI</title>
         <!--Meta Tags-->
         <meta name="page" content="{{page}}">
         <meta name="page_id" content="{{id}}">
+        <meta name="user_id" content="{{user_id}}">
         <meta name="one_pic" content="false">
 
         <!--CSS-->
-        <link rel="stylesheet" href="../css/main.css" type="text/css"/>
-        <link rel="stylesheet" href="../css/page_framework.css" type="text/css"/>
-        <link rel='stylesheet' type='text/css' href='../css/photos.css'>
+        <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/page_framework.css" type="text/css"/>
+        <link rel='stylesheet' type='text/css' href='/css/photos.css'>
     </head>
 
     <body>
@@ -19,7 +20,7 @@
             <ul class='bar_content'>
                 <li>
                     <div class='side_button'>
-                        <img src="../images/page_framework/LeftButton.svg">
+                        <img src="/images/page_framework/LeftButton.svg">
                         <p>Back</p>
                     </div>
                 </li>
@@ -28,14 +29,16 @@
 
         <div id='container'>
             <div id='top_bar'>
-                <img src="../images/page_framework/WhiteTopButton.svg">
+                <img src="/images/page_framework/WhiteTopButton.svg">
             </div>
 
             <div id='frame'>
                 <div id="main_container">
+                    <div id="user_info"></div>
                     <div id='container_inner'>
                         <div id='logotype'>SimplePost Pictures</div>
                         <div class="folders" id="folders"></div>
+                        <hr>
                         <div id="pic_container">
                             <div class="inner_folder" id="mainPhoto"></div>
                         </div>
@@ -43,21 +46,20 @@
                 </div>
             </div>
             <div id='bottom_bar'>
-                <img src="../images/page_framework/WhiteBottomButton.svg">
+                <img src="/images/page_framework/WhiteBottomButton.svg">
             </div>
         </div>
-
         <div id='right_bar'>
             <ul class='bar_content'>
                 <li>
                     <div class='side_button'>
-                        <img src="../images/page_framework/RightButton.svg">
+                        <img src="/images/page_framework/RightButton.svg">
                         <p>View</p>
                     </div>                    
                 </li>
                 <li>
                     <div class='side_button'>
-                        <img src="../images/page_framework/RightButton.svg">
+                        <img src="/images/page_framework/RightButton.svg">
                         <p>View</p>
                     </div>                    
                 </li>
@@ -66,8 +68,15 @@
 
     </body>
      <!--Scripts-->
-    <script type='text/javascript' src='../js/jquery/jquery.js'></script>
-    <script type='text/javascript' src='../js/photos.js'></script>
-    <script type='text/javascript' src='../js/login.js'></script>
-    <script type='text/javascript' src='../js/main.js'></script>
+    <script type='text/javascript' src='/js/jquery/jquery.js'></script>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!-- include this file, it's got the code that does dwell click  -->
+    <script type="text/javascript" src="/js/dwell_gist.js"></script> 
+
+    <script type='text/javascript' src='/js/photos.js'></script>
+
+    <script type='text/javascript' src='/js/login.js'></script>
+    <script type='text/javascript' src='/js/main.js'></script>
 </html>
