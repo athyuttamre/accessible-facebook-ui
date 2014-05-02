@@ -1,7 +1,7 @@
 /*
 This sets up the dwell click, there are a couple different methods of calling dwell click and there
 is some sugar in here to support those.  The dwell_script.js has details of how to make the calls. 
-It's probably bad if you're looking at this file, so let me know if you're having a hard time.
+It's probably bad if you're looking at this file, so let Abby know if you're having a hard time.
 */
 
 

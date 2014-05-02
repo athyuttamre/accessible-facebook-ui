@@ -5,28 +5,69 @@
 	    <!--Meta Tags-->
 	    <!--CSS-->
 	    <link rel='stylesheet' type='text/css' href='css/main.css'/>
+	    <link rel='stylesheet' type='text/css' href='css/page_framework.css'/>
 	</head>
 	
 	<body>
 		<div id='fb-root'></div>
-		<header>
-			<h1>Newsfeed</h1>
-		</header>
+		<div id='left_bar'> 
+            <ul class='bar_content'>
+                <li>
+                    <div class='side_button'>
+                        <img src="images/page_framework/LeftButton.svg">
+                        <p>Back</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-		<div id='newsfeed'>
-			<div id='feedItem'>
-				<div class='from'></div>
-				<div class='story'></div>
-				<div class='description'></div>
-				<div class='message'></div>
-				<div class='image'></div>
+        <div id='container'>
+            <div id='top_bar' class='previous'>
+                <img src="images/page_framework/WhiteTopButton.svg">
+            </div>
+
+            <div id='bottom_bar' class='next'>
+                <img src="images/page_framework/WhiteBottomButton.svg">
+            </div>
+
+            <div id='frame'>
+				<header>
+					<h1>Newsfeed</h1>
+				</header>
+
+				<div id='newsfeed'>
+					<div id='feedItem'>
+						<div id='from'>
+							<div id='from_photo'/></div>
+							<div id='from_name'/>
+						</div>
+						<div id='story'></div>
+						<div id='description'></div>
+						<div id='message'></div>
+						<div id='image'></div>
+					</div>
+
+					<button id='refresh'>Refresh</button>
+				</div>
 			</div>
+        </div>
 
-			<button id='previous'>Previous</button>
-			<button id='next'>Next</button>
-			<br/>
-			<button id='refresh'>Refresh</button>
-		</div>
+        <div id='right_bar'>
+            <ul class='bar_content'>
+                <li>
+                    <div id='like' class='side_button'>
+                        <img src="images/page_framework/RightButton.svg">
+                        <p>Like</p>
+                    </div>                    
+                </li>
+                <li>
+                    <div id='comment' class='side_button'>
+                        <img src="images/page_framework/RightButton.svg">
+                        <p>Comment</p>
+                    </div>                    
+                </li>
+            </ul>
+        </div>
 	</body>
 	
 	<!--Scripts-->
