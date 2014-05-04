@@ -105,6 +105,12 @@ app.get('/:id/photos', function(request, response) {
 	response.render('photos.html', {page:"home", user_id:request.params.id});
 });
 
+// GET request for keyboard
+app.get('/keyboard', function(request, response) {
+	console.log('GET request for keyboard.html');
+	response.render('keyboard.html');
+});
+
 // GET request for Home Page
 app.get('/', function(request, response) {
 	console.log('GET request for index.html');
