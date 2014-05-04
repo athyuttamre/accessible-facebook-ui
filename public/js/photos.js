@@ -1,5 +1,6 @@
 var user;
 var curr_pic;
+var first_photo=null;
 $(document).ready(function() {
 	$("#right_bar li").hide();
 
@@ -44,7 +45,6 @@ $(document).ready(function() {
 
 	// Binds thumbnail picture image with click event
 	$("#mainPhoto").on("click", ".photos", function(e){
-		console.log("clicked");
 		var data = $(this).attr("data-all").split(",");
 		if(data.length<3){
 			goToPic(data[0].trim(),data[1].trim());
@@ -71,12 +71,11 @@ $(document).ready(function() {
 	// Scrolls down
 	$("#bottom_bar").click(function(){
 		$(".loadMore").click();
-		scrollVertical(200);
+		scrollVertical(300);
 	});
 	// Goes to next picture if looking at individual pictures when TOP 
 	//	view bar on right is clicked 
 	$("#right_bar li:first-of-type").click(function(){
-		// .side_button:first-of-type
 		if(meta("one_pic")=="true"){
 			var data = $("#mainPhoto img").attr("data-all");
 			var data_lis = data.split(",");
@@ -104,7 +103,7 @@ $(document).ready(function() {
 
 	// Scrolls up when top bar clicked
 	$("#top_bar").click(function(){
-		scrollVertical(-200);
+		scrollVertical(-300);
 	});
 
 	// 	TODO This is where you want to add funcionality for commenting 
@@ -126,13 +125,15 @@ $(document).ready(function() {
 		    hide: 'blind',
 			modal:true,
 			create: function() {
-            $(this).closest('div.ui-dialog').on("mouseenter", ".ui-dialog-titlebar-close", function(e) {
+				$(this).closest('div.ui-dialog').on("mouseenter", ".ui-dialog-titlebar-close", function(e) {
             	$(this).dwell(1000,true);
             	e.preventDefault();
             })},
 			open: function() {
+				$("#comment_dialog").empty();
+				$("#pic_container .comment_container").clone().appendTo("#comment_dialog");
 		        $("#frame:not(#dialog)").hide();
-				$(".side_button").hide();
+				// $(".side_button").hide();
 				$("#bottom_bar").hide();
 				$("#top_bar").hide();
 		        $(".ui-button-text").text("X");
@@ -140,14 +141,14 @@ $(document).ready(function() {
 		    },
 		    close: function() {
 		    	$("#frame:not(#dialog)").show();
-				$(".side_button").show();
+				// $(".side_button").show();
 				$("#bottom_bar").show();
 				$("#top_bar").show();
 		        // $("body").removeClass('custom-overlay');
 		    }, 
 			width: 600,
 			height:600,
-			resizable:true
+		 	minHeight: 'auto'
 		});
 	});
 
@@ -217,16 +218,26 @@ function scrollVertical(num) {
 
 // Gets info on whether there is a single photo being viewed or not
 function getPageType(){
-	if(meta("one_pic")=="false"){
+	if($("#dialog").is(":visible")){
+		console.log("is true? ");
+		$(".ui-dialog-titlebar-close").click();
+	}else if(meta("one_pic")=="false"&&first_photo==null){
+		console.log("is false??? one_pic");
 		parent.history.back();
 		return false; 
 	}else{
-		console.log(meta("one_pic"));
+		// console.log(meta("one_pic"));
 		var data = $("#mainPhoto img").attr("data-all");
 		var data_lis = data.split(",");
 		if(data_lis[0]=="albums"){
 			var prev = album_data[data_lis[2]]["pics"][data_lis[1]].my_previous;
 			curr_pic=prev;
+			if(data_lis[1]==first_photo){
+				changeMeta("one_pic", "false");
+				first_photo=null;
+				window.location.reload();
+				return false;
+			}
 			if(prev==null){
 				window.location.reload();
 
@@ -237,6 +248,12 @@ function getPageType(){
 		}else{
 			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
 			curr_pic=prev;
+			if(data_lis[1]==first_photo){
+				changeMeta("one_pic", "false");
+				first_photo=null;
+				window.location.reload();
+				return false;
+			}
 
 			if(prev==null){
 				window.location.reload();
@@ -476,9 +493,18 @@ function changeMeta(name, toChange){
 
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
+	$("#frame").animate({
+    	scrollTop: 350
+    }, 1000);
+	if(first_photo==null&&meta("one_pic")=="false"){
+		first_photo=id;
+		changeMeta("one_pic", "true");
+
+	}else if(first_photo==id){
+		changeMeta("one_pic","false");
+	}
 	curr_pic=id;
 	$("#right_bar li").show();
-	changeMeta("one_pic", "true");
 	var data = pic_data[fold]["data"][id];
 	if(folderID!=undefined&&fold=="albums"){
 		data = album_data[folderID].pics[id];
@@ -498,6 +524,8 @@ function goToPic(fold, id, folderID){
 		}
 		comment+="</ul>";	
 		$("#mainPhoto").append(comment);
+	}else{
+		$("#pictures > .comment_container").append("<li style='margin-left:1em'>There are no comments on this photo</li>");
 	}
 }
 
@@ -555,7 +583,7 @@ function loadComments(toAppend, data){
 	$.get(data.paging.next,function (response){
 		for(var pic in response.data){
 			data.data.push(response.data[pic]);
-			$("#mainPhoto").append("<div class='comment_div'><span class='name'>"+response.data[pic].from.name+"</span> <span class='comment'>"+response.data[pic].message+"</span></div>");
+			$(toAppend).append("<div class='comment_div'><span class='name'>"+response.data[pic].from.name+"</span> <span class='comment'>"+response.data[pic].message+"</span></div>");
 		}
 		data.paging.next=response.paging.next;
 		if(response.paging.next!=undefined){

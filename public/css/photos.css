@@ -8,14 +8,14 @@ body {
    font-weight: 300;
 }
 
+li {
+	list-style-type: none;
+}
+
 #logotype {
 	margin: 0.5em auto;
 	margin-top: 1em;
 	font-size: 3em;
-}
-
-img {
-	margin: 1em auto;
 }
 
 #statusUpdate {
@@ -65,8 +65,8 @@ img {
 }
 
 .main_image{
-	max-width: 90%;
-	height: auto;
+	max-width: auto;
+	max-height: 80%;
 	width: auto;
 	margin: 2em;
 }
@@ -116,11 +116,13 @@ img {
 	border-color:LightGray;
 	border-style: solid;
 	margin:1em;
-	min-height: 10em;
+	/*min-height: 10em;
 	min-width: 10em;
 	max-width: 100%;
 	height:30em;
-	width: 40em;
+	width: 40em;*/
+	height: 20em;
+	width: 20em;
 	border-radius: 10px;
 	z-index: 1000000;
 }
@@ -132,7 +134,7 @@ img {
 .no-close, .ui-dialog-titlebar-close {
   height: 2em;
   width: 2em;
-  background-color: #EB0509;
+  background-color: #7483B3;
 
   /*background-color: red;*/
   float:right;
@@ -155,7 +157,7 @@ img {
     -1px 1px 0 gray,
     1px 1px 0 gray; 
 	color:white;
-	background-color: #87B0D4;
+	background-color: #586387;
 
 	/*background-color: orange;*/
 
@@ -168,10 +170,10 @@ img {
 
 .form_input{
 	margin:1em;
-	height:25em;
-	max-height: 25em;
-	width:42em;
-	max-width: 42em;
+	height:10em;
+	max-height: 15em;
+	width:20em;
+	max-width: 25em;
 	overflow-y: scroll;
 	overflow-x: none;
 }
@@ -195,7 +197,169 @@ img {
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaaaaa url(http://code.jquery.com/ui/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
-	opacity: .3;
+	/*background: #aaaaaa url(http://code.jquery.com/ui/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;*/
+	background-color: black;
+	opacity: .5;
 	filter: Alpha(Opacity=90);
+	vertical-align: middle;
+	width: 90%;
+	margin-left: 10%;
+	/*margin-right: 10%;*/
+
+}
+
+/******************************added *********************/
+/* CSS for cover photo image */
+.cover img{
+	width: 110%;
+}
+
+/* CSS for cover photo container */
+.cover {
+	width: 100%;
+	height:12.5em;
+	overflow: hidden;
+	overflow-x:hidden;
+	background-color: LightGray;
+}
+
+#frame{
+	padding: 0;
+	margin: 0;
+}
+
+/* CSS for user container */
+.user_photo{
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	margin: 0.5em;
+	border-color:white;
+	border-style: solid;
+	border-width: 0.25em;
+
+	overflow: hidden;
+	width: 11em;
+	max-width: 11em;
+	height: 11em;
+	vertical-align: middle;
+	background-color: LightGray;
+}
+
+/* CSS for user photo */
+.user_photo img{
+	height: 100%;
+	margin-right: auto;
+	width: auto;
+	margin-left: auto;
+	display: block;
+}
+
+/* CSS for username layout */
+.username{
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+	color:white;
+	z-index: 20;
+	font-weight: bolder;
+	font-size: 2em;
+	position: relative;
+	top:-1.25em;
+	left:6.5em;
+	width: auto;
+	max-width: 9.1em;
+}
+
+/* CSS for status home page navigation buttons */
+#nav_tabs li{
+	display: block;
+	position: relative;
+	margin-bottom: 1em;
+
+	margin-left: 1em;
+
+	background-color: #EEEFF4;
+	border-radius: 15px;
+	height:6em;
+	width: 90%;
+
+}
+
+.side_button_nav{
+	display: inline-block;
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.side_button_nav *{
+	display: inline-block;
+}
+
+	/* CSS for Status home page nav button text */
+.description{
+	position: relative;	
+	width: 60%;
+	float: left;
+
+	height: 3em;
+	line-height: 3em;
+	font-size: 2em;
+	padding-left: 1em;
+}
+
+	/* CSS for Status home page nav button image */
+.description_link{
+	position: relative;
+	width: 20%;
+	float:right;
+	padding-right: 1em;
+	height: 3em;
+	/*padding-top: 1.5em;*/
+	padding-bottom: 1.5em;
+}
+
+.description_link *{
+	position: relative;
+	height: 100%;
+	width: auto;
+	float: right;
+}
+.description_link a{
+	padding:1.5em;
+}
+
+/* CSS for user information */
+#about{
+	background-color: #DEDEDE;
+	padding:0.5em;
+	vertical-align: middle;
+	font-size: 2.5em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.info_container{
+	display: inline-block;
+	margin:0.5em;
+	font-size: 0.5em;
+}
+
+.info_topic{
+	color:#6E747D;
+	font-weight: bold;
+}
+
+/* Feed div containers */
+.post_container{
+	margin-left:1em;
+	margin-right:1em;
+	padding:0.25em;
+}
+
+.post_container *{
+	display: block;
 }

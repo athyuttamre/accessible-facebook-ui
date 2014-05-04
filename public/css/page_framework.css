@@ -82,6 +82,12 @@ body {
   height: 50px;
   width: 50px;
 }
+.RightButton {
+  position: absolute;
+}
+.LeftButton {
+  position: absolute;
+}
 #bottom_bar {
   bottom: 0;
 }

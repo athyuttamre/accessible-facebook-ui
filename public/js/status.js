@@ -19,7 +19,9 @@ function start(FB) {
 	$('#right_bar').click(function(){
 		$('#statusForm').submit();
 	})
+	// $('#right_bar').image_dwell(1000, true, '.RightButton', '.WhiteRightButton');
 	// $(':submit').dwell(1000, true);
+	// fade_arrows('#right_bar', '.RightButton', '.WhiteRightButton');
 	$('#statusForm').submit(function(e) {
 		e.preventDefault();
 		var body = $('#statusInput').val();
@@ -33,4 +35,17 @@ function start(FB) {
 		});
 		$('#statusForm')[0].reset();
 	})
+}
+
+function fade_arrows(cont, img1, img2){
+	// $(img2).css('display', 'none');
+	$(cont).mouseout(function(e){
+			// alert('mouseout');
+			// $(img1).
+		});
+	$(cont).mouseenter(function(e){
+			alert('mousein');
+			$(img2).fadeIn();
+		});	
+
 }
