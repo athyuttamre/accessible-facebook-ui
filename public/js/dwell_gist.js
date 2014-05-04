@@ -7,7 +7,7 @@ It's probably bad if you're looking at this file, so let Abby know if you're hav
 
 (function($){
 var timeout;
-$.fn.dwell = function(delay, click, new_color){
+$.fn.dwell = function(delay, click, new_color, new_color_2){
 	if (typeof delay === "boolean"){
 		click = delay;
 	}
@@ -16,8 +16,10 @@ $.fn.dwell = function(delay, click, new_color){
 	//error check
 	if (new_color === undefined)
 		new_color = '#4860a5';
+	if(new_color_2 === undefined)
+		new_color_2 = 'white';
 	// console.log(new_color);
-
+	console.log(this.attr('id'));
 	
 
 	//when we want to act like regular clicks make links respond on dwellclick events
@@ -26,28 +28,42 @@ $.fn.dwell = function(delay, click, new_color){
 	});
 
 	return this.each(function(){
+		console.log('this '+this);
 		var original_color = $(this).css('background-color');
+		var original_color_2 = $(this).css('color');
 		$(this).mouseout(function(e){
+			$(this).stop();
 			if (timeout){
 				$target = $(e.target);
 				clearTimeout(timeout);
 				$(this).stop();
-				//return to original color/ style
+				$(this).css("background-color",original_color);
+				$(this).css('color', original_color_2);
 			}	
 			$(this).css("background-color",original_color);
+			$(this).css('color', original_color_2);
 		});
 		$(this).mouseover(function(e){
 			$target = $(e.target);
-			$target.css("background-color",original_color);
-			$(this).animate({
-			    backgroundColor: new_color
-			  }, delay, function() {
-			 });
 			$(this).css("background-color",original_color);
+
+				$(this).animate({
+				    backgroundColor: new_color
+				  }, delay, function() {
+				 });
+				$(this).animate({
+				    color: new_color_2
+				  }, delay, function() {
+				 });			
+				$(this).css("background-color",original_color);
+
+
+
 			timeout = setTimeout(function(){
 				$target.trigger('dwellClick');
 				if (click){
 					$target.trigger('click');
+					$(this).css("background-color",original_color);
 				}
 			},delay);
 		});
