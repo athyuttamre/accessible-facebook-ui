@@ -156,6 +156,7 @@ $(document).ready(function() {
 	$("#top_bar").dwell(1000, true);
 	// Enables dwell click for dynamically generated html folders
 	$("#frame").on("mouseenter", ".innerfolder", function(e){
+		console.log("entered");
 		$(this).dwell(1000, true);
 	});
 
@@ -326,9 +327,12 @@ var album_data = {};
 // Function that shows folders at top bar
 function renderApp(id) {
 	console.log('renderApp was called');
-	$("#folders").append("<a href='/"+id+"/photos/photos'><button id='phot' class='innerfolder'>Photos</button></a>");
-	$("#folders").append("<a  href='/"+id+"/photos/photos_tagged'><button id='photTag' class='innerfolder'>Tagged Photos</button></a>");
-	$("#folders").append("<a href='/"+id+"/photos/albums'><button id='alb' class='innerfolder'>Albums</button></a>");
+	$("#folders").append("<button id='phot' class='innerfolder'><a href='/"+id+"/photos/photos'>Photos</a></button>");
+	$("#folders").append("<button id='photTag' class='innerfolder'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></button>");
+	$("#folders").append("<button id='alb' class='innerfolder'><a href='/"+id+"/photos/albums'>Albums</a></button>");
+	// $("#folders").append("<a href='/"+id+"/photos/photos'><button id='phot' class='innerfolder'>Photos</button></a>");
+	// $("#folders").append("<a  href='/"+id+"/photos/photos_tagged'><button id='photTag' class='innerfolder'>Tagged Photos</button></a>");
+	// $("#folders").append("<a href='/"+id+"/photos/albums'><button id='alb' class='innerfolder'>Albums</button></a>");
 }
 
 // Checks to see if nav bars should be displayed or not

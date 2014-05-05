@@ -57,6 +57,7 @@ li {
 .innerfolder *{
 	display: block;
 	position: relative;	
+	text-decoration: none;
 }
 
 #user_info{
