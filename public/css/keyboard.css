@@ -1,7 +1,7 @@
 #keyboard_positioner {
 	position: absolute;
 	left: 50%;
-	bottom: 0;
+	bottom: -250px;
 }
 
 #keyboard_container {
