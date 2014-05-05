@@ -2,6 +2,16 @@ var user;
 var curr_pic;
 var first_photo=null;
 $(document).ready(function() {
+
+	// alert('ok, but Im not crazy');
+
+	// alert('maybe Im not even getting here...');
+	$("#alb").mouseenter(function(){
+		alert('hi');
+	})
+
+
+
 	$("#right_bar li").hide();
 
 	$("#top_bar").hide();
@@ -171,6 +181,7 @@ $(document).ready(function() {
 	$("#bottom_bar").dwell(1000, true);
 	// Dwell for next bar
 	$("#right_bar .side_button:first-of-type").dwell(1000, true);
+
 });
 
 /*
@@ -205,6 +216,14 @@ function start(FB) {
 		renderApp(id);
 		showData(name, id);
 	});
+
+	$("#alb").dwell();
+		// 	$("#alb").mouseenter(function(){
+		// 	  alert('for the love of god why');
+		// 	});
+		// $('#alb').click(function(){
+		// 	alert('why does everything suck');
+		// })
 }
 
 // Scrolls up or down page

@@ -15,9 +15,18 @@ function start(FB) {
 				console.log('Doing this in status.js, ' + response.name + '.');
 			});
 
+	$('textarea, input').dwell(1000, true, 'white', 'black');
+	// $('textarea, input').click(function(e){
+	// 	$('textarea, input').focus();
+	// });
 	$('#right_bar').dwell(1000, true);
 	$('#right_bar').click(function(){
 		$('#statusForm').submit();
+	})
+	$('#left_bar').dwell(1000, true);
+	$('#left_bar').click(function(){
+		parent.history.back();
+		// alert('clicked');
 	})
 	// $('#right_bar').image_dwell(1000, true, '.RightButton', '.WhiteRightButton');
 	// $(':submit').dwell(1000, true);
