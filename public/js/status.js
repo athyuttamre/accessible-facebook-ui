@@ -16,19 +16,28 @@ function start(FB) {
 			});
 
 	$('textarea, input').dwell(1000, true, 'white', 'black');
-	$('#frame').dwell(1000, true, $('#frame').css('background-color'));
-	$('#frame').click(function(){
-		//if ($('#keyboard_container') > 0
-		$('textarea').blur();
-		console.log('left');
-	})
+
+	// $('#frame').dwell(1000, true, $('#frame').css('background-color'));
+	// $('#frame').click(function(){
+	// 	$('textarea').blur();
+	// 	console.log('left');
+	// })
+
+	// $('#frame').mouseout(function(){
+		
+	// 	$('textarea').blur();
+	// 	console.log('left');
+	// })
+
+
+
 	$('#right_bar').mouseenter(function(){
 		$('textarea').blur();
 		console.log('lol');
 	})
-	// $('textarea, input').click(function(e){
-	// 	$('textarea, input').focus();
-	// });
+	$('textarea, input').click(function(e){
+		$('textarea, input').focus();
+	});
 	$('#right_bar').dwell(1000, true);
 	$('#right_bar').click(function(){
 		$('#statusForm').submit();

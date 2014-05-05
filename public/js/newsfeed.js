@@ -18,6 +18,10 @@ var currentItemID = 0;
 function start(FB) {
 	console.log('Welcome to newsfeed.js!');
 	console.log('start has been called with FB object: ' + FB);
+	// var w = (window.innerWidth * .6).toString();
+	// var h = (window.innerHeight * .6).toString();
+
+
 
 	$('#left_bar').dwell(5000, true);
 		$('#left_bar').click(function(){
@@ -126,13 +130,35 @@ function start(FB) {
 			picture = picture.substring(0, picture.length - 5) + "n.jpg";
 		}
 
-		console.log(picture);
+		console.log('PICTURE '+picture);
 
 		$("#from").html(from.name);
 		$("#story").html(story);
 		$("#description").html(description);
 		$("#message").html(message);
-		$("#image").html("<img src='" + picture + "'>");
+		$("#image").html("<img id='inner_img' src='" + picture + "'>");
+
+
+
+		//dynamically formats image
+		var w = '600px';
+		var h = '480px';
+		// var w = (window.innerWidth * .6).toString()+'px';
+		// var h = (window.innerHeight * .6).toString()+'px';
+		// var w2 = (window.innerWidth * .4).toString()+'px';
+		// var h2 = (window.innerHeight * .4).toString()+'px';
+
+		$('#from').css('height', h);
+		$('#image > img').css('max-height', h);
+		$('#from').css('width', w);
+		$('#image > img').css('max-width', w);
+		console.log('heigt')
+
+		// if(picture){
+		// 	$('#image > img').css('min-height', h2);
+		// 	$('#image > img').css('min-width', w2);
+		// }
+		
 	}
 
 	$('#like').click(function(e) {

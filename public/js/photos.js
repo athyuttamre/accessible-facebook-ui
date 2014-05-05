@@ -3,6 +3,7 @@ var curr_pic;
 var first_photo=null;
 var pause = false;
 $(document).ready(function() {
+
 	// Hides right side bar nav buttons
 	$("#right_bar li").hide();
 
@@ -36,12 +37,19 @@ $(document).ready(function() {
 		// Appends new right side bar content for submitting form
 		$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
 		// Appends form in new div
+<<<<<<< HEAD
+		$("#frame").append('<div id="dialog" title="Dialog Title"><form id="comment_form"><TEXTAREA class="form_input" placeholder="Comment on this photo!" type="text" style="font-size:25px"></TEXTAREA><input class="form_button" type="submit"></input></form></div>');
+		//need to re-load keyboard, or something
+		$.getScript( "../../js/keyboard.js", function() {
+				  console.log( "Load was performed." );
+=======
 		// $("#dialog").show();
 		$("#comment_form").show();
 
 		//ADDED THIS BIT RIGHT HERE!!!!!
 		$.getScript( "/js/keyboard.js", function() {
 			console.log( "Load was performed." );
+>>>>>>> FETCH_HEAD
 		});
 	});
 
