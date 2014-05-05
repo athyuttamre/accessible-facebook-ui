@@ -33,7 +33,7 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 		var original_color = $(this).css('background-color');
 		var original_color_2 = $(this).css('color');
 
-		$(this).mouseleave(function(e){
+		$(this).mouseout(function(e){
 			// console.log('mouseout registered');
 			$(this).stop();
 			if (timeout){
@@ -51,20 +51,23 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 		// 	alert('for the love of god why');
 		// });
 
-		$(this).mouseenter(function(e){
+		$(this).mouseover(function(e){
 			// console.log('mouseover registered');
 			$target = $(e.target);
 			$(this).css("background-color",original_color);
-
+				// console.log('start');
 				$(this).animate({
+					// console.log('animating thing');
 				    backgroundColor: new_color
 				  }, delay, function() {
 				 });
+				// console.log('stop');
 				$(this).animate({
 				    color: new_color_2
 				  }, delay, function() {
-				 });			
-				$(this).css("background-color",original_color);
+				 });
+				 // console.log('and stop again');			
+				// $(this).css("background-color",original_color);
 
 
 				// console.log('made it here');
@@ -73,9 +76,9 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 				$target.trigger('dwellClick');
 				if (click){
 					$target.trigger('click');
-					if(! $target.is(':focus')){
-						$target.trigger('focus');
-					}
+					// if(! $target.is(':focus')){
+					// 	$target.trigger('focus');
+					// }
 					$(this).css("background-color",original_color);
 				}
 			},delay);

@@ -3,9 +3,9 @@ var FB;
 $('document').ready(function() {
 	queueAdd(getFB);
 	// alert('here');
-	$('button').dwell(1000, true);
-	$('a').dwell(1000, true);
-	$(':submit').dwell(1000, true);
+	// $('button').dwell(1000, true);
+	// $('a').dwell(1000, true);
+	// $(':submit').dwell(1000, true);
 });
 
 function getFB() {
