@@ -15,6 +15,10 @@ function start(FB) {
 				console.log('Doing this in status.js, ' + response.name + '.');
 			});
 
+	$('textarea, input').dwell(1000, true, 'white', 'black');
+	// $('textarea, input').click(function(e){
+	// 	$('textarea, input').focus();
+	// });
 	$('#right_bar').dwell(1000, true);
 	$('#right_bar').click(function(){
 		$('#statusForm').submit();
