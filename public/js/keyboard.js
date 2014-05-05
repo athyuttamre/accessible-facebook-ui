@@ -11,10 +11,10 @@ $(document).ready(function() {
 
 	// Add keyboard when input or textarea's areas in focus
 	$('input, textarea').focus(function() {
-		$('#keyboard_container').show();
 		var id = $(this).attr('id');
 		focusedBoxID = id;
 		$('body').prepend(keyboardHTML);
+		$('#keyboard_positioner').animate({bottom: '0px'}, 400);
 		$('#keyboard li').dwell(1000, true);
 		initializeKeyboard(id);
 	});
@@ -22,8 +22,10 @@ $(document).ready(function() {
 	// Remove keyboard when focused input or textarea loses focus
 	$('input, textarea').focusout(function() {
 		if($(this).attr('id') == focusedBoxID) {
-			$('#keyboard_container').remove();
-			focusedBoxID = '';
+			$('#keyboard_positioner').animate({bottom: '-250px'}, 400, function() {
+				$('#keyboard_positioner').remove();
+				focusedBoxID = '';
+			});
 		}
 	});
 
