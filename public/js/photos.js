@@ -83,7 +83,6 @@ $(document).ready(function() {
 				// Goes to "Albums" pic
 				goToPic(data[0].trim(),data[1].trim(),data[2].trim());
 			}
-			// goToFrame();
 		}
 	});
 
@@ -144,7 +143,6 @@ $(document).ready(function() {
 					
 				}
 			}
-			// goToFrame();
 		}
 	});
 
@@ -322,7 +320,6 @@ function getPageType(){
 				goToPic(data_lis[0],prev,data_lis[1]);
 			}
 		}
-		// goToFrame();
 	}
 }
 
@@ -537,16 +534,6 @@ function changeMeta(name, toChange){
 	$("meta[name="+name+"]").attr("content", toChange);
 }
 
-function goToFrame () {
-	// location.href="#holderdiv";
-	// console.log("hi");
-	// $("#frame").stop().animate({
-	// $(document).stop().animate({
-	// 	queue:false,
- //    	scrollTop: 200
- //    }, 1000);
-}
-
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
 	$("#frame").animate({
@@ -582,8 +569,6 @@ function goToPic(fold, id, folderID){
 		$("#mainPhoto").append(comment);
 		if(data.comments.paging.next!=undefined){
 			loadComments(".comment_container",data.comments);
-		}else{
-			goToFrame();
 		}
 	}else{
 		$("#pictures > .comment_container").append("<li style='margin-left:1em'>There are no comments on this photo</li>");
@@ -648,8 +633,6 @@ function loadComments(toAppend, data){
 		data.paging.next=response.paging.next;
 		if(response.paging.next!=undefined){
 			loadComments(toAppend,data);
-		}else{
-			goToFrame();
 		}
 	},"json");
 }
