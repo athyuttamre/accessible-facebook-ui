@@ -83,13 +83,13 @@ window.onload = function() {
                         goto('me/photos');
                     } else if (e.id == 11) {
                         console.log('logout was clicked');
-                        logout();
+                        performLogout();
                     } else {
                         console.log('unknown ID clicked');
                     }
             }, 1000);
             e.animate({
-                fill: '#038',
+                fill: '#038'
             }, 1000);
         })
     })

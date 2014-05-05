@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/css/main.css" type="text/css"/>
         <link rel="stylesheet" href="/css/page_framework.css" type="text/css"/>
         <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
+        <link rel='stylesheet' type='text/css' href='/css/keyboard.css'>
         <link rel='stylesheet' type='text/css' href='/css/photos.css'>
         
         
@@ -25,7 +26,19 @@
                 <li>
                     <div class='side_button'>
                         <img src="/images/page_framework/LeftButton.svg">
+                        <p>Home</p>
+                    </div>
+                </li>
+                <li>
+                    <div class='side_button'>
+                        <img src="/images/page_framework/LeftButton.svg">
                         <p>Back</p>
+                    </div>
+                </li>
+                <li style='display:none'>
+                    <div class='side_button'>
+                        <img src="/images/page_framework/LeftButton.svg">
+                        <p>Pause Main Content</p>
                     </div>
                 </li>
             </ul>
@@ -39,8 +52,8 @@
             <div id='frame'>
                 <div id="main_container">
                     <div id="user_info"></div>
+                    <a id="holderdiv"></a>
                     <div id='container_inner'>
-                        <!-- <div id='logotype'>SimplePost Pictures</div> -->
                         <div class="folders" id="folders"></div>
                         <hr>
                         <div id="pic_container">
@@ -48,6 +61,17 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div id="dialog" title="Comment form" style="display:none"> -->
+                    <!-- <form id="comment_form">
+                        <TEXTAREA id="form_input" placeholder="Comment on this photo!" type="text" style="font-size:25px">
+                        </TEXTAREA>
+                        <input id="form_button" type="submit"></input>
+                    </form> -->
+                <!-- </div> -->
+                <form id='comment_form' style="display:none">
+                    <textarea id='form_input' type='text' name='status' autocomplete='off' placeholder="Leave a comment!"></textarea>
+                    <input id='form_button' type='submit'>
+                </form>
             </div>
             <div id='bottom_bar'>
                 <img src="/images/page_framework/WhiteBottomButton.svg">
@@ -75,14 +99,7 @@
                 </li>
             </ul>
         </div>
-        <div id="dialog" title="Dialog Title" style="display:none">
-            <div id="comment_dialog"></div>
-            <form id="comment_form">
-                <TEXTAREA class="form_input" type="text" style="font-size:25px"></TEXTAREA>
-                <input class="form_button" type="submit"></input>
-            </form>
-        </div>
-
+        
 
     </body>
      <!--Scripts-->
@@ -92,6 +109,7 @@
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!-- include this file, it's got the code that does dwell click  -->
     <script type="text/javascript" src="/js/dwell_gist.js"></script> 
+    <!-- // <script type='text/javascript' src='/js/keyboard.js'></script> -->
 
     <script type='text/javascript' src='/js/photos.js'></script>
 

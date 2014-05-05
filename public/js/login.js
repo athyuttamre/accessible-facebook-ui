@@ -101,11 +101,11 @@ function checkLogin(callback, params) {
 	});
 }
 
-function logout() {
+function performLogout() {
 	FB.logout(function(response) {
 			console.log('User logged out.');
 			redirect('login');
-		})
+		});
 }
 
 // Goto

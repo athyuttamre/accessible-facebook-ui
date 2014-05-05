@@ -3,29 +3,17 @@ var next_feed_url;
 $(document).ready(function() {
 	$("#top_bar").hide();
 	next_feed_url=null;
-	// Hides bottom nav button if at bottom of page
-	var container = $('#frame');
-	$("#frame").scroll(function() {
-		if($("#frame").scrollTop()==0){
-			$("#top_bar").hide();
-		}else{
-			$("#top_bar").show();
-		}
-        var height = container.height();
-        var scrollHeight = container[0].scrollHeight;
-        var st = container.scrollTop();
-        if(st >= scrollHeight - height){
-			$("#bottom_bar").hide();
-        }else{
-			$("#bottom_bar").show();
-		}
-	});
 
 	$("#right_bar .side_button").hide();
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
-	$("#left_bar").click(function(){
+	$("#left_bar li:last-of-type").click(function(){
 		parent.history.back();
+	});
+
+	// Home button 
+	$("#left_bar li:first-of-type").click(function(){
+		window.location.href="/";
 	});
 
 	// Scrolls down
@@ -35,40 +23,21 @@ $(document).ready(function() {
 		}
 		scrollVertical(200);
 	});
-	// Goes to next picture if looking at individual pictures when TOP 
-	//	view bar on right is clicked 
-	$("#right_bar .side_button:first-of-type").click(function(){
-		
-	});
 
 	// Scrolls up when top bar clicked
 	$("#top_bar").click(function(){
 		scrollVertical(-200);
 	});
 
-	// 	TODO This is where you want to add funcionality for commenting 
-	//		and liking things
-	$("#right_bar .side_button:last-of-type").on("click", function(){
-		// alert("LOLOLOOLOL");
-	});
-
 	// Dwell for top bar
 	$("#top_bar").dwell(1000, true);
-	// Enables dwell click for dynamically generated html folders
-	$("#frame").on("mouseenter", ".innerfolder", function(e){
-		$(this).dwell(1000, true);
-	});
-
-	// Dwell clicks when user mouses over image thumbnail
-	$(".inner_folder").on("mouseenter", ".photos", function(e){
-		$(this).dwell(1000,true);
-	});
 	
-	// $(".side_button_nav").on("mouseenter", "description_link", function(e){
-	// 	// $(this).find("a").dwell(1000, true);
-	// });
+	// Dwell for links on home page
+	$(".side_button_nav").on("mouseenter", ".description_link", function(e){
+		$(this).find("a").dwell(1000, true);
+	});
 	// Binds back bar with dwell click
-	$("#left_bar").dwell(1000, true);
+	$("#left_bar li").dwell(1000, true);
 	// Dwell for bottom bar
 	$("#bottom_bar").dwell(1000, true);
 	// Dwell for next bar
@@ -87,13 +56,6 @@ function start(FB) {
 	if(id==""){
 		id="me";
 	}
-	// var id = "Sydney.Sprinkle";
-	// var id = "elyse.mcmanus";
-	// var id = "zachariah.u.medeiros";
-	// var id = "meghan.dushko";
-	// var id = "beverly.naigles";
-	// var id = "stanton.tomson";
-
 	console.log('Welcome to profile.js!');
 	console.log('start has been called with FB object: ' + FB);
 	FB.api("/me", function(response) {
@@ -126,6 +88,7 @@ function scrollVertical(num) {
     }, 1000);
 }
 
+// Displays user photo
 function show_user_photos(id) {
 	FB.api("/"+id+"/picture?type=large", function(response) {
 		var url = response.data.url;
@@ -146,6 +109,7 @@ function show_user_photos(id) {
 	});
 }
 
+// Gets user profile feed
 function get_feed(id) {
 	$("#feed").show();
 	FB.api("/"+id+"/feed", function(response) {
@@ -158,6 +122,7 @@ function get_feed(id) {
 	});
 }
 
+// Gets more posts from user feed
 function getMoreFeed(url) {
 	$.get(url, function(response) {
 		display_feed(response.data);
@@ -170,17 +135,9 @@ function getMoreFeed(url) {
 	});
 }
 
+// Shows user feed 
 function display_feed (data) {
 	for(var x in data){
-		if(data[x].id=="100001391566662_704740602915652"){
-			console.log("hi");
-			FB.api("/"+data[x].id+"/likes", "post",  function(response) {
-				console.log(response);
-			});
-			// $.post("https://graph.facebook.com/"+data[x].id+"/comments", function(response){
-			// 	console.log(response);
-			// });
-		}
 		if(data[x].type!="link"){
 			var str = "<div class='post_container'>"
 			str+= "<span class='from_post'>Posted by "+data[x].from.name+"</span>";
@@ -199,6 +156,7 @@ function display_feed (data) {
 	}
 }
 
+// Shows about information for user
 function getAbout(id){
 	$("#nav_tabs").hide();
 	$("#about").show();
@@ -246,15 +204,11 @@ function getAbout(id){
 				if(response.work[x].end_date!=undefined){
 					var arr=response.work[x].end_date.split("-");
 					startDate+=" to "+getMonth(arr[1],0)+" "+arr[0];
-
-
 				}
-
 				str+="<span class='info_topic'>"+response.work[x].employer.name+"</span><span class='info_data'> "+startDate+"</span><br>";
 			}
 			str+="</div>";
 			$("#work").append(str);
-
 		}
 
 		// Shows education info
@@ -282,6 +236,7 @@ function getAbout(id){
 			$("#education").append(str);
 		}
 
+		// Shows quote info
 		if(response.quotes!=undefined){
 			console.log();
 			var arr = response.quotes.split("\n");
@@ -293,10 +248,7 @@ function getAbout(id){
 			}
 			str+="</div>";
 			$("#quotes").append(str);
-			// $("#quotes").append("<div class='info_container'>Quotes<br> <span class='info_data'>"+response.quotes+"</span></div>");
-
 		}
-
 	});
 }
 

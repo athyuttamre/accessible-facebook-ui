@@ -33,7 +33,7 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 		var original_color = $(this).css('background-color');
 		var original_color_2 = $(this).css('color');
 
-		$(this).mouseleave(function(e){
+		$(this).mouseout(function(e){
 			// console.log('mouseout registered');
 			$(this).stop();
 			if (timeout){
@@ -51,19 +51,20 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 		// 	alert('for the love of god why');
 		// });
 
-		$(this).mouseenter(function(e){
+		$(this).mouseover(function(e){
 			// console.log('mouseover registered');
 			$target = $(e.target);
 			$(this).css("background-color",original_color);
 
 				$(this).animate({
-				    backgroundColor: new_color
-				  }, delay, function() {
-				 });
-				$(this).animate({
+				    backgroundColor: new_color,
 				    color: new_color_2
 				  }, delay, function() {
-				 });			
+				 });
+				// $(this).animate({
+				//     color: new_color_2
+				//   }, delay, function() {
+				//  });			
 				$(this).css("background-color",original_color);
 
 
