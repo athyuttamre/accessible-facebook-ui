@@ -141,10 +141,10 @@ function start(FB) {
 
 
 		//dynamically formats image
-		var w = '600px';
-		var h = '480px';
-		// var w = (window.innerWidth * .6).toString()+'px';
-		// var h = (window.innerHeight * .6).toString()+'px';
+		// var w = '600px';
+		// var h = '480px';
+		var w = (window.innerWidth * .6).toString()+'px';
+		var h = (window.innerHeight * .6).toString()+'px';
 		// var w2 = (window.innerWidth * .4).toString()+'px';
 		// var h2 = (window.innerHeight * .4).toString()+'px';
 

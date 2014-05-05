@@ -16,9 +16,9 @@ body, html{
 	margin: 5%;
 }
 #from{
-
-	 margin: 0 auto;
-	 overflow: hidden;
+	/*background-color: #e5e5e5;*/
+	margin: 0 auto;
+	overflow: hidden;
 }
 #image img {
  height:auto;
@@ -57,12 +57,16 @@ body, html{
 #message{
 	clear: both;
 	margin: 5px;
+	background-color: #e5e5e5;
 }
 /*#image img{
 	height: 400px;
 	margin: 10px;
 	border: 2px red solid;
 }*/
+#image{
+	background-color: #e5e5e5;
+}
 #story{
 	clear: both;
 	color: gray;
@@ -71,4 +75,5 @@ body, html{
 }
 #description{
 	margin: 5px;
+	background-color: #e5e5e5;
 }

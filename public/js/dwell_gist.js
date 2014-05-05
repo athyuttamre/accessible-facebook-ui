@@ -57,13 +57,14 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 			$(this).css("background-color",original_color);
 
 				$(this).animate({
-				    backgroundColor: new_color
-				  }, delay, function() {
-				 });
-				$(this).animate({
+				    backgroundColor: new_color,
 				    color: new_color_2
 				  }, delay, function() {
-				 });			
+				 });
+				// $(this).animate({
+				//     color: new_color_2
+				//   }, delay, function() {
+				//  });			
 				$(this).css("background-color",original_color);
 
 
