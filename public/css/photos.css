@@ -39,7 +39,7 @@ li {
 
 .innerfolder{
 	width: 10em;
-	height: 5em;
+	height: 3em;
 	display: inline-block;
 	text-align: center;
 	border-width:2px;
@@ -51,7 +51,8 @@ li {
 	margin-left:0.70em;
 	margin-bottom:0.70em;
 	color:#3b5998;
-
+	padding-top:2em;
+	/*padding-bottom:1em;*/
 }
 
 .innerfolder *{
@@ -170,22 +171,20 @@ li {
 }
 
 .form_input{
-	margin:1em;
-	height:10em;
-	max-height: 15em;
-	width:20em;
-	max-width: 25em;
-	overflow-y: scroll;
-	overflow-x: none;
+	width: 98%;
+	height: 70%;
+	font-size: 20px;
+	position: absolute;
+	line-height: 100%;
 }
 
 .form_button{
-	height:2em;
-	width: 5em;
-	color:#333333;
-	font-size: 2em;
-	position: relative;
-	right:-12em;
+	display: none;
+}
+
+input{
+	display: flex;
+	align-items:top;
 }
 
 .ui-widget-overlay {
