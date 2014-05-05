@@ -20,7 +20,7 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 	if(new_color_2 === undefined)
 		new_color_2 = 'white';
 	// console.log(new_color);
-	console.log(this.attr('id'));
+	// console.log(this.attr('id'));
 	
 
 	//when we want to act like regular clicks make links respond on dwellclick events
@@ -29,12 +29,12 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 	});
 
 	return this.each(function(){
-		console.log('got in here');
+		// console.log('got in here');
 		var original_color = $(this).css('background-color');
 		var original_color_2 = $(this).css('color');
 
 		$(this).mouseleave(function(e){
-			console.log('mouseout registered');
+			// console.log('mouseout registered');
 			$(this).stop();
 			if (timeout){
 				$target = $(e.target);
@@ -46,13 +46,13 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 			$(this).css("background-color",original_color);
 			$(this).css('color', original_color_2);
 		});
-		console.log('trying to mousever with '+ $(this).attr('id'));
+		// console.log('trying to mousever with '+ $(this).attr('id'));
 		// $('#alb').mouseover(function(){
 		// 	alert('for the love of god why');
 		// });
 
 		$(this).mouseenter(function(e){
-			console.log('mouseover registered');
+			// console.log('mouseover registered');
 			$target = $(e.target);
 			$(this).css("background-color",original_color);
 
@@ -67,9 +67,9 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 				$(this).css("background-color",original_color);
 
 
-				console.log('made it here');
+				// console.log('made it here');
 			timeout = setTimeout(function(){
-				console.log('starting timer');
+				// console.log('starting timer');
 				$target.trigger('dwellClick');
 				if (click){
 					$target.trigger('click');

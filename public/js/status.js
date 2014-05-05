@@ -23,6 +23,11 @@ function start(FB) {
 	$('#right_bar').click(function(){
 		$('#statusForm').submit();
 	})
+	$('#left_bar').dwell(1000, true);
+	$('#left_bar').click(function(){
+		parent.history.back();
+		// alert('clicked');
+	})
 	// $('#right_bar').image_dwell(1000, true, '.RightButton', '.WhiteRightButton');
 	// $(':submit').dwell(1000, true);
 	// fade_arrows('#right_bar', '.RightButton', '.WhiteRightButton');

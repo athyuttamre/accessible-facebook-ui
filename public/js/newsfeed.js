@@ -18,6 +18,21 @@ var currentItemID = 0;
 function start(FB) {
 	console.log('Welcome to newsfeed.js!');
 	console.log('start has been called with FB object: ' + FB);
+
+	$('#left_bar').dwell(1000, true);
+		$('#left_bar').click(function(){
+		parent.history.back();
+		// alert('clicked');
+	})
+	$('.side_button').dwell(1000, true);
+		$('#left_bar').click(function(){
+		parent.history.back();
+		// alert('clicked');
+	})		
+
+
+
+
 	FB.api('/me', function(response) {
 				user = response;
 				console.log('Doing this in newsfeed.js, ' + response.name + '.');
@@ -129,6 +144,7 @@ function start(FB) {
 		})
 	});
 
+	$('.next').dwell(1000, true);
 	$('.next').click(function(e) {
 		e.preventDefault();
 		currentItemIndex = (currentItemIndex + 1) % 25;
@@ -141,6 +157,7 @@ function start(FB) {
 		}
 	});
 
+	$('.previous').dwell(1000, true);
 	$('.previous').click(function(e) {
 		e.preventDefault();
 		currentItemIndex = (currentItemIndex - 1);
@@ -152,6 +169,7 @@ function start(FB) {
 		}
 	});
 
+	$('#refresh').dwell(1000, true);
 	$('#refresh').click(function(e) {
 		e.preventDefault();
 		currentItemIndex = 0;
