@@ -117,6 +117,12 @@ app.get('/keyboard', function(request, response) {
 	response.render('keyboard.html');
 });
 
+// GET request for thankyou
+app.get('/thankyou', function(request, response) {
+	console.log('GET request for thankyou.html');
+	response.render('thankyou.html');
+});
+
 // GET request for Home Page
 app.get('/', function(request, response) {
 	console.log('GET request for index.html');
