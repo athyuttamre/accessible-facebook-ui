@@ -26,7 +26,7 @@ window.onload = function() {
     var status = paper.text(sixthLeft, centerY, "Status");
     var profile = paper.text(sixthRight, centerY, "Profile");
     var photos = paper.text(quarterLeft, y2, "Photos");
-    var logout = paper.text(quarterRight, y2, "Logout")
+    var logout = paper.text(quarterRight, y2, "Logout");
     //set label styles
     var labelSet = paper.set();
     labelSet.push(newsfeed, messaging, status, profile, photos, logout);
@@ -87,7 +87,7 @@ window.onload = function() {
                     } else {
                         console.log('unknown ID clicked');
                     }
-            },1000);
+            }, 1000);
             e.animate({
                 fill: '#038',
             }, 1000);
@@ -108,7 +108,7 @@ window.onload = function() {
     )
 
     //define guide circle
-    var circle = paper.circle(centerX, centerY, paper.width*0.2, paper.height*0.2);
+    var circle = paper.circle(centerX, centerY, paper.width*0.2);
     circle.attr(
         {
             fill: '#fff',
@@ -116,4 +116,15 @@ window.onload = function() {
             'stroke-width': .5
         }
     );
+
+    //defuine icon width/height
+    console.log(circle.height);
+    var iconWH = paper.width*0.06;
+    //add icons
+    var newsfeedIcon = paper.image("../../images/indexImages/newsfeedIcon.png", centerX-paper.width*0.11, centerY-paper.width*0.16, iconWH, iconWH);
+    var messagingIcon = paper.image("../../images/indexImages/messagingIcon.png", centerX+paper.width*0.05, centerY-paper.width*0.155, iconWH, iconWH);
+    var statusIcon = paper.image("../../images/indexImages/statusIcon.png", centerX-paper.width*0.17, centerY-paper.width*0.03, iconWH, iconWH);
+    var profileIcon = paper.image("../../images/indexImages/profileIcon.png", centerX+paper.width*0.11, centerY-paper.width*0.03, iconWH, iconWH);
+    var photosIcon = paper.image("../../images/indexImages/photosIcon.png", centerX-paper.width*0.11, centerY+paper.width*0.09, iconWH, iconWH);
+    var logoutIcon = paper.image("../../images/indexImages/logoutIcon.png", centerX+paper.width*0.05, centerY+paper.width*0.09, iconWH, iconWH);
 }
