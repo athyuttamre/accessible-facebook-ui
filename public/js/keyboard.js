@@ -15,15 +15,19 @@ $(document).ready(function() {
 		var id = $(this).attr('id');
 		focusedBoxID = id;
 		$('body').prepend(keyboardHTML);
-		$('#keyboard li').dwell(1000, true);
-		initializeKeyboard(id);
+		$('#keyboard_positioner').animate({bottom: '0px'}, 400, function() {
+			$('#keyboard li').dwell(1000, true);
+			initializeKeyboard(id);
+		});
 	});
 
 	// Remove keyboard when focused input or textarea loses focus
 	$('input, textarea').focusout(function() {
 		if($(this).attr('id') == focusedBoxID) {
-			$('#keyboard_container').remove();
-			focusedBoxID = '';
+			$('#keyboard_positioner').animate({bottom: '-250px'}, 400, function() {
+				$('#keyboard_container').remove();
+				focusedBoxID = '';
+			});
 		}
 	});
 
