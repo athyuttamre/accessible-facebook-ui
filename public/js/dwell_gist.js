@@ -21,6 +21,7 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 		new_color_2 = 'white';
 	// console.log(new_color);
 	// console.log(this.attr('id'));
+	console.log('got in here');
 	
 
 	//when we want to act like regular clicks make links respond on dwellclick events
@@ -29,7 +30,7 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 	});
 
 	return this.each(function(){
-		// console.log('got in here');
+		
 		var original_color = $(this).css('background-color');
 		var original_color_2 = $(this).css('color');
 
@@ -76,9 +77,9 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 				$target.trigger('dwellClick');
 				if (click){
 					$target.trigger('click');
-					// if(! $target.is(':focus')){
-					// 	$target.trigger('focus');
-					// }
+					if(! $target.is(':focus')){
+						$target.trigger('focus');
+					}
 					$(this).css("background-color",original_color);
 				}
 			},delay);

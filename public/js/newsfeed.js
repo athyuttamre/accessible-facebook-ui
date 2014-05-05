@@ -19,7 +19,7 @@ function start(FB) {
 	console.log('Welcome to newsfeed.js!');
 	console.log('start has been called with FB object: ' + FB);
 
-	$('#left_bar').dwell(1000, true);
+	$('#left_bar').dwell(5000, true);
 		$('#left_bar').click(function(){
 		parent.history.back();
 		// alert('clicked');

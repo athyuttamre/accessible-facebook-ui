@@ -1,0 +1,48 @@
+header{
+	display: none;
+	/*float: left;*/
+}
+body{
+	color: black;
+}
+#from{
+	height: 100%;
+}
+#newsfeed{
+	margin-top: 8%;
+	height: 100%;
+}
+#from div{
+	width: 70%;
+	margin: 20px;
+}
+#from_photo img{
+	height: 80px;
+	float: left;
+	margin: 8px;
+	float: left;
+}
+#from_name{
+	color: #4860a5;
+	font-weight: bold;
+	float: left;
+	margin-top: 80px;
+	margin-left: 20px;
+}
+#refresh{
+	display: none;
+}
+#message{
+	clear: both;
+	margin: 20px;
+}
+#image img{
+	height: 400px;
+	margin: 10px;
+	/*border: 2px red solid;*/
+}
+#story{
+	clear: both;
+	color: gray;
+	font-size: 14px;
+}
