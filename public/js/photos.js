@@ -3,7 +3,6 @@ var curr_pic;
 var first_photo=null;
 var pause = false;
 $(document).ready(function() {
-
 	// Hides right side bar nav buttons
 	$("#right_bar li").hide();
 
@@ -37,19 +36,12 @@ $(document).ready(function() {
 		// Appends new right side bar content for submitting form
 		$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
 		// Appends form in new div
-<<<<<<< HEAD
-		$("#frame").append('<div id="dialog" title="Dialog Title"><form id="comment_form"><TEXTAREA class="form_input" placeholder="Comment on this photo!" type="text" style="font-size:25px"></TEXTAREA><input class="form_button" type="submit"></input></form></div>');
-		//need to re-load keyboard, or something
-		$.getScript( "../../js/keyboard.js", function() {
-				  console.log( "Load was performed." );
-=======
 		// $("#dialog").show();
 		$("#comment_form").show();
 
 		//ADDED THIS BIT RIGHT HERE!!!!!
 		$.getScript( "/js/keyboard.js", function() {
 			console.log( "Load was performed." );
->>>>>>> FETCH_HEAD
 		});
 	});
 
@@ -96,15 +88,6 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".folders").on("click", ".innerfolder", function(e){
-		console.log("hahah here ");
-		if(!pause){
-			var data = $(this).attr("data-all");
-			console.log("DATA DDD "+data);
-			window.location.href=data;
-		}
-	});
-
 	// Home button
 	$("#left_bar li:first-of-type").click(function(){
 		window.location.href="/";
@@ -116,15 +99,15 @@ $(document).ready(function() {
 		getPageType();
 	});
 
-	$("#left_bar li:last-of-type").click(function(){
-		pause = !pause;
-		console.log("PAUSED CHANGED "+pause);
-		if(pause){
-			$("#left_bar li:last-of-type p").text("Unpause Main Content");
-		}else{
-			$("#left_bar li:last-of-type p").text("Pause Main Content");
-		}
-	});
+	// $("#left_bar li:last-of-type").click(function(){
+	// 	pause = !pause;
+	// 	console.log("PAUSED CHANGED "+pause);
+	// 	if(pause){
+	// 		$("#left_bar li:last-of-type p").text("Unpause Main Content");
+	// 	}else{
+	// 		$("#left_bar li:last-of-type p").text("Pause Main Content");
+	// 	}
+	// });
 
 	// Scrolls down
 	$("#bottom_bar").click(function(){
@@ -176,9 +159,7 @@ $(document).ready(function() {
 	$('textarea, input').dwell(1000, true, 'white', 'black');
 	$('#frame').dwell(1000, true, $('#frame').css('background-color'));
 	$('#frame').click(function(){
-		//if ($('#keyboard_container') > 0
 		$('textarea').blur();
-		console.log('left');
 	})
 	$('#right_bar').mouseenter(function(){
 		$('textarea').blur();
@@ -218,7 +199,17 @@ $(document).ready(function() {
 	// Enables dwell click for dynamically generated html folders
 	$("#main_container").on("mouseenter", ".innerfolder", function(e){
 		if(!pause){
+			console.log("it's here 2 ");
 			$(this).dwell(1000, true);
+		}
+	});
+
+	$(".folders").on("click", ".innerfolder", function(e){
+		console.log("hahah here ");
+		if(!pause){
+			var data = $(this).attr("data-all");
+			console.log("DATA DDD "+data);
+			window.location.href=data;
 		}
 	});
 
@@ -497,18 +488,6 @@ function getAlbums(id,toAppend,albId){
 			showAlbum(toAppend,id);
 		}
 	});
-}
-
-// Checks if a given folder is empty (of the 3 at top of page)
-// If empty, it takes it out, and if all of them are empty 
-//	 (the user had no pictures) displays a message saying the user has no photos
-function checkFull(){
-	var full = $("#phot").is(":visible");
-	var full2 = $("#photTag").is(":visible");
-	var full3 = $("#alb").is(":visible");
-	if(!full&&!full2&&!full3){
-		$("#container_inner").append("<div>This user has no photos in this album</div>");
-	}
 }
 
 // Displays pictures from a specific album 
