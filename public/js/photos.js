@@ -1,6 +1,7 @@
 var user;
 var curr_pic;
 var first_photo=null;
+var pause = false;
 $(document).ready(function() {
 	// Hides right side bar nav buttons
 	$("#right_bar li").hide();
@@ -60,25 +61,36 @@ $(document).ready(function() {
 
 	// Binds thumbnail picture image with click event
 	$("#mainPhoto").on("click", ".photos", function(e){
-		var data = $(this).attr("data-all").split(",");
-		if(data.length<3){
-			// Goes to "Photo" / "Tagged Photos" pic
-			goToPic(data[0].trim(),data[1].trim());
-		}else{
-			// Goes to "Albums" pic
-			goToPic(data[0].trim(),data[1].trim(),data[2].trim());
+		if(!pause){
+			var data = $(this).attr("data-all").split(",");
+			if(data.length<3){
+				// Goes to "Photo" / "Tagged Photos" pic
+				goToPic(data[0].trim(),data[1].trim());
+			}else{
+				// Goes to "Albums" pic
+				goToPic(data[0].trim(),data[1].trim(),data[2].trim());
+			}
 		}
 	});
 
-	// Binds click of div to click of link inside for folder links
-	$("#frame").on("click", ".innerfolder", function(e){
-		window.location.href=$(this).find("a:first").attr("href");
+	// Home button
+	$("#left_bar li:first-of-type").click(function(){
+		window.location.href="/";
 	});
 
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
-	$("#left_bar").click(function(){
+	$("#left_bar li:nth-of-type(2)").click(function(){
 		getPageType();
+	});
+
+	$("#left_bar li:last-of-type").click(function(){
+		pause = !pause;
+		if(pause){
+			$("#left_bar li:last-of-type p").text("Unpause Main Content");
+		}else{
+			$("#left_bar li:last-of-type p").text("Pause Main Content");
+		}
 	});
 
 	// Scrolls down
@@ -141,6 +153,28 @@ $(document).ready(function() {
 	// ***************KEYBOARD END
 	// Keyboard dwelling
 	// 	This is where you like things
+	// $("#frame").on("mouseenter", ".innerfolder", function(e) {
+	// 	console.log("click adfdsf");
+	// 	if(!pause){
+	// 		console.log("paused");
+	// 		$(this).dwell(1000, true);
+	// 	}else{
+	// 		return false;
+	// 	}
+	// });
+
+	$("#frame").on("click", ".innerfolder", function(e) {
+		e.preventDefault();
+		console.log("click adfdsf");
+		if(!pause){
+			console.log("paused");
+			$(this).dwell(1000, true);
+		}else{
+			return false;
+		}
+	});
+	
+
 	$("#right_bar li:last-of-type").on("click", function(){
 		FB.api("/"+curr_pic+"/likes", "post",  function(response) {
 		});
@@ -153,14 +187,18 @@ $(document).ready(function() {
 	$("#top_bar").dwell(1000, true);
 	// Enables dwell click for dynamically generated html folders
 	$("#frame").on("mouseenter", ".innerfolder", function(e){
-		$(this).dwell(1000, true);
+		if(!pause){
+			$(this).dwell(1000, true);
+		}
 	});
 	// Dwell clicks when user mouses over image thumbnail
 	$(".inner_folder").on("mouseenter", ".photos", function(e){
-		$(this).dwell(1000,true);
+		if(!pause){
+			$(this).dwell(1000, true);
+		}
 	});
 	// Binds back bar with dwell click
-	$("#left_bar").dwell(1000, true);
+	$("#left_bar li").dwell(1000, true);
 	// Dwell for bottom bar
 	$("#bottom_bar").dwell(1000, true);
 	// Dwell for next bar
@@ -482,6 +520,7 @@ function changeMeta(name, toChange){
 
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
+	$("#left_bar li:last-of-type").hide();
 	$("#frame").animate({
     	scrollTop: 350
     }, 1000);
