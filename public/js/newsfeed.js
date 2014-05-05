@@ -23,7 +23,7 @@ function start(FB) {
 
 
 
-	$('#left_bar').dwell(5000, true);
+	$('#left_bar').dwell(1000, true);
 		$('#left_bar').click(function(){
 		parent.history.back();
 		// alert('clicked');
@@ -144,15 +144,15 @@ function start(FB) {
 		// var w = '600px';
 		// var h = '480px';
 		var w = (window.innerWidth * .6).toString()+'px';
-		var h = (window.innerHeight * .6).toString()+'px';
+		var h = (window.innerHeight * .4).toString()+'px';
 		// var w2 = (window.innerWidth * .4).toString()+'px';
-		// var h2 = (window.innerHeight * .4).toString()+'px';
+		var h2 = (window.innerHeight * .6).toString()+'px';
 
-		$('#from').css('height', h);
+		$('#from').css('height', h2);
 		$('#image > img').css('max-height', h);
 		$('#from').css('width', w);
 		$('#image > img').css('max-width', w);
-		console.log('heigt')
+		console.log('heigt: '+h);
 
 		// if(picture){
 		// 	$('#image > img').css('min-height', h2);
