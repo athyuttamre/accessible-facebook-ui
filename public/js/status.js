@@ -43,12 +43,18 @@ function start(FB) {
 		$('#statusForm').submit();
 	})
 
-	$('#left_bar').dwell(1000, true);
-	$('#left_bar').click(function(){
+	$('#left_bar li').dwell(1000, true);
+
+	// Goes back
+	$('#left_bar li:last-of-type').click(function(){
 		parent.history.back();
 
 		// alert('clicked');
-	})
+	});
+	// Goes home
+	$('#left_bar li:first-of-type').click(function(){
+		window.location.href="/";
+	});
 	// $('#right_bar').image_dwell(1000, true, '.RightButton', '.WhiteRightButton');
 	// $(':submit').dwell(1000, true);
 	// fade_arrows('#right_bar', '.RightButton', '.WhiteRightButton');

@@ -417,7 +417,9 @@ function showAlbum(name,id){
 
 	$('#mainPhoto').append(pic_data.albums.loadMore);
 	for(var x in data){
-		$("#mainPhoto").append("<button class='innerfolder' data-all='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</button>");
+		$("#mainPhoto").append("<button class='innerfolder'><a href='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</a></button>");
+
+		// $("#mainPhoto").append("<button class='innerfolder' data-all='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</button>");
 	}
 }
 
