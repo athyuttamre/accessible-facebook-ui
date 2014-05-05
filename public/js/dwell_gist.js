@@ -21,7 +21,6 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 		new_color_2 = 'white';
 	// console.log(new_color);
 	// console.log(this.attr('id'));
-	console.log('got in here');
 	
 
 	//when we want to act like regular clicks make links respond on dwellclick events
@@ -30,7 +29,7 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 	});
 
 	return this.each(function(){
-		
+		// console.log('got in here');
 		var original_color = $(this).css('background-color');
 		var original_color_2 = $(this).css('color');
 
@@ -56,19 +55,16 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 			// console.log('mouseover registered');
 			$target = $(e.target);
 			$(this).css("background-color",original_color);
-				// console.log('start');
+
 				$(this).animate({
-					// console.log('animating thing');
 				    backgroundColor: new_color
 				  }, delay, function() {
 				 });
-				// console.log('stop');
 				$(this).animate({
 				    color: new_color_2
 				  }, delay, function() {
-				 });
-				 // console.log('and stop again');			
-				// $(this).css("background-color",original_color);
+				 });			
+				$(this).css("background-color",original_color);
 
 
 				// console.log('made it here');
