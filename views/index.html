@@ -1,38 +1,22 @@
-<!DOCTYPE html>
 <html>
-	<head>
-	    <title>Accessible Facebook UI</title>
-	    <!--Meta Tags-->
-	    <!--CSS-->
-	    <link rel='stylesheet' type='text/css' href='css/main.css'/>
-	</head>
-	
-	<body>
+    <head>
+        <title>Main menu</title>
+        
+        <link rel="stylesheet" href="css/index.css" type="text/css"></link>
+    </head>
+    <body>
 		<div id='fb-root'></div>
-		<header>
-			<h1>Accessible Facebook UI</h1>
-		</header>
-
-		<p id='welcomeMessage'></p>
-
-		<!--Navigation-->
-		<nav>
-			<ul id='mainLinks'>
-				<li><a href='messaging' id='messaging'>Messaging</a></li>
-				<li><a href='status' id='status'>Status</a></li>
-				<li><a href='newsfeed' id='newsfeed'>Newsfeed</a></li>
-				<li><a href='/me/profile' id='profile'>Profile</a></li>
-				<li><a href='notifications' id='notifications'>Notifications</a></li>
-				<li><a href='/me/photos' id='photos'>Photos</a></li>
-			</ul>
-		</nav>
-
-		<button id='logoutButton'>Logout</button>
-	</body>
-
+        <div id="canvasContainer">
+            <div id="circle"></div>
+        </div>
+    </body>
+    
 	<!--Scripts-->
 	<script type='text/javascript' src='js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='js/index.js'></script>
+	<script type='text/javascript' src='js/notifications.js'></script>
 	<script type='text/javascript' src='js/login.js'></script>
     <script type='text/javascript' src='js/main.js'></script>
+
+    <script type="text/javascript" src="js/index/raphael.js"></script>
+    <script type="text/javascript" src="js/index/indexLayout.js"></script>
 </html>

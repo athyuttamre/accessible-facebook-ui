@@ -16,8 +16,8 @@ function start(FB) {
 			    $('#welcomeMessage').text('Welcome, ' + user.name);
 			});
 
-	$('#logoutButton').click(function(e) {
+	/*$('#logoutButton').click(function(e) {
 		e.preventDefault();
 		logout();
-	})
+	})*/
 }
