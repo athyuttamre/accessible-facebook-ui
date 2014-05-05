@@ -64,7 +64,7 @@ $(document).ready(function() {
 			console.log(response);
 		});
 		$("#main_container").show();
-		// $("#dialog").hide();
+		$("#keyboard_container").remove();
 		$("#comment_form").hide();
 
 		$("#tmp_button").remove();
@@ -88,6 +88,15 @@ $(document).ready(function() {
 		}
 	});
 
+	$(".folders").on("click", ".innerfolder", function(e){
+		console.log("hahah here ");
+		if(!pause){
+			var data = $(this).attr("data-all");
+			console.log("DATA DDD "+data);
+			window.location.href=data;
+		}
+	});
+
 	// Home button
 	$("#left_bar li:first-of-type").click(function(){
 		window.location.href="/";
@@ -101,6 +110,7 @@ $(document).ready(function() {
 
 	$("#left_bar li:last-of-type").click(function(){
 		pause = !pause;
+		console.log("PAUSED CHANGED "+pause);
 		if(pause){
 			$("#left_bar li:last-of-type p").text("Unpause Main Content");
 		}else{
@@ -169,26 +179,22 @@ $(document).ready(function() {
 	// ***************KEYBOARD END
 	// Keyboard dwelling
 	//	This is where you like things
-	$("#frame").on("mouseenter", ".innerfolder", function(e) {
-		console.log("click adfdsf");
-		if(!pause){
-			console.log("paused");
-			$(this).dwell(1000, true);
-		}else{
-			return false;
-		}
-	});
+	// $("#frame").on("mouseenter", ".innerfolder", function(e) {
+	// 	console.log("click adfdsf");
+	// 	if(pause){
+	// 		return false;
+	// 	}
+	// 	$(this).dwell(1000, true);
+	// });
 
-	$("#frame").on("click", ".innerfolder", function(e) {
-		e.preventDefault();
-		console.log("click adfdsf");
-		if(!pause){
-			console.log("not paused");
-			return true;
-			// $(this).dwell(1000, true);
-		}
-		return false;
-	});
+	// $("#frame").on("click", ".innerfolder", function(e) {
+	// 	e.preventDefault();
+	// 	console.log("click adfdsf");
+	// 	if(pause){
+	// 		return false;
+	// 	}
+	// 	// $(this).dwell(1000, true);
+	// });
 	
 
 	$("#right_bar li:last-of-type").on("click", function(){
@@ -202,17 +208,20 @@ $(document).ready(function() {
 	// Dwell for top bar
 	$("#top_bar").dwell(1000, true);
 	// Enables dwell click for dynamically generated html folders
-	$("#frame").on("mouseenter", ".innerfolder", function(e){
+	$("#main_container").on("mouseenter", ".innerfolder", function(e){
 		if(!pause){
 			$(this).dwell(1000, true);
 		}
 	});
+
 	// Dwell clicks when user mouses over image thumbnail
-	$(".inner_folder").on("mouseenter", ".photos", function(e){
+	$("#mainPhoto").on("mouseenter", ".photos", function(e){
 		if(!pause){
 			$(this).dwell(1000, true);
 		}
 	});
+
+	
 	// Binds back bar with dwell click
 	$("#left_bar li").dwell(1000, true);
 	// Dwell for bottom bar
@@ -265,6 +274,7 @@ function getPageType(){
 	// if($("#dialog").is(":visible")){
 	if($("#comment_form").is(":visible")){
 		$("#main_container").show();
+		$("#keyboard_container").remove();
 		$("#comment_form").hide();
 		$("#tmp_button").remove();
 		$("#right_bar li").show();
@@ -381,9 +391,12 @@ var album_data = {};
 // Function that shows folders at top bar
 function renderApp(id) {
 	console.log('renderApp was called');
-	$("#folders").append("<div id='phot' class='innerfolder'><a href='/"+id+"/photos/photos'>Photos</a></div>");
-	$("#folders").append("<div id='photTag' class='innerfolder'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
-	$("#folders").append("<div id='alb' class='innerfolder'><a href='/"+id+"/photos/albums'>Albums</a></div>");
+	$("#folders").append("<button id='phot' class='innerfolder' data-all='/"+id+"/photos/photos'>Photos</button>");
+	$("#folders").append("<button id='photTag' class='innerfolder' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</button>");
+	$("#folders").append("<button id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</button>");
+	// $("#folders").append("<div id='phot' class='innerfolder'><a href='/"+id+"/photos/photos'>Photos</a></div>");
+	// $("#folders").append("<div id='photTag' class='innerfolder'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
+	// $("#folders").append("<div id='alb' class='innerfolder'><a href='/"+id+"/photos/albums'>Albums</a></div>");
 }
 
 // Checks to see if nav bars should be displayed or not
@@ -405,7 +418,7 @@ function showAlbum(name,id){
 
 	$('#mainPhoto').append(pic_data.albums.loadMore);
 	for(var x in data){
-		$("#mainPhoto").append("<div class='innerfolder'><a href='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</a></div>");
+		$("#mainPhoto").append("<button class='innerfolder' data-all='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</button>");
 	}
 }
 
@@ -572,7 +585,7 @@ function goToPic(fold, id, folderID){
 	var comment = "<ul class='comment_container'>";
 	if(data.comments!=undefined){
 		for(var x in data.comments.data){
-			comment+="<li class='comment_div'><span class='name'>"+data.comments.data[x].from.name+"</span> <span class='comment'>"+data.comments.data[x].message+"</span></li>";
+			comment+="<li class='comment_div'><span class='name'> "+data.comments.data[x].from.name+"</span>"+data.comments.data[x].message+"</li>";
 		}
 		comment+="</ul>";	
 		$("#mainPhoto").append(comment);
@@ -637,7 +650,7 @@ function loadComments(toAppend, data){
 	$.get(data.paging.next,function (response){
 		for(var pic in response.data){
 			data.data.push(response.data[pic]);
-			$(toAppend).append("<div class='comment_div'><span class='name'>"+response.data[pic].from.name+"</span> <span class='comment'>"+response.data[pic].message+"</span></div>");
+			$(toAppend).append("<div class='comment_div'><span class='name'> "+response.data[pic].from.name+"</span> "+response.data[pic].message+"</div>");
 		}
 		data.paging.next=response.paging.next;
 		if(response.paging.next!=undefined){
