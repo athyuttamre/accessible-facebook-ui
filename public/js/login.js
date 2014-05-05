@@ -101,13 +101,31 @@ function checkLogin(callback, params) {
 	});
 }
 
-function logout() {
+function performLogout() {
 	FB.logout(function(response) {
 			console.log('User logged out.');
 			redirect('login');
-		})
+		});
 }
 
+// Goto
+//
+// Takes user to specified page, keeping previous page in
+// session history; similar to user clicking link
+function goto(page) {
+	if(page === 'index') {
+		// When goto command is issued for 'index', we goto to root
+		page = ''; 
+	}
+	var gotoURL = 'http://' + window.location.hostname + ':' + location.port + '/' + page;
+	console.log('Redirecting to ' + gotoURL);
+	window.location.href = gotoURL;
+}
+
+// Redirect
+//
+// Takes user to specified page, NOT keeping previous page
+// in session history; similar to HTTP redirect
 function redirect(page) {
 	if(page === 'index') {
 		// When redirect command is issued for 'index', we redirect to root

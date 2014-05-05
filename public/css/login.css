@@ -2,10 +2,12 @@ h1{
 	color:#4860a5;
 	text-align: center;
 	font-size: 55px;
+	margin-top: 1em;
 }
 #line{
-	width: 70%;
+	width: 50%;
 	margin: auto;
+	margin-top: 2%;
 	border-top: 1px #cccccc solid;
 }
 #tag{

@@ -105,6 +105,24 @@ app.get('/:id/photos', function(request, response) {
 	response.render('photos.html', {page:"home", user_id:request.params.id});
 });
 
+// GET request for keyboard_demo
+app.get('/keyboard_demo', function(request, response) {
+	console.log('GET request for keyboard_demo.html');
+	response.render('keyboard_demo.html');
+});
+
+// GET request for keyboard
+app.get('/keyboard', function(request, response) {
+	console.log('GET request for keyboard.html');
+	response.render('keyboard.html');
+});
+
+// GET request for thankyou
+app.get('/thankyou', function(request, response) {
+	console.log('GET request for thankyou.html');
+	response.render('thankyou.html');
+});
+
 // GET request for Home Page
 app.get('/', function(request, response) {
 	console.log('GET request for index.html');

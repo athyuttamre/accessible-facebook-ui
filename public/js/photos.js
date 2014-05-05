@@ -2,6 +2,16 @@ var user;
 var curr_pic;
 var first_photo=null;
 $(document).ready(function() {
+
+	// alert('ok, but Im not crazy');
+
+	// alert('maybe Im not even getting here...');
+	$("#alb").mouseenter(function(){
+		alert('hi');
+	})
+
+
+
 	$("#right_bar li").hide();
 
 	$("#top_bar").hide();
@@ -155,15 +165,16 @@ $(document).ready(function() {
 	// Dwell for top bar
 	$("#top_bar").dwell(1000, true);
 	// Enables dwell click for dynamically generated html folders
+	$('#phot').dwell(1000, true);
 	$("#frame").on("mouseenter", ".innerfolder", function(e){
 		console.log("entered");
 		$(this).dwell(1000, true);
 	});
 
 	// Dwell clicks when user mouses over image thumbnail
-	$(".inner_folder").on("mouseenter", ".photos", function(e){
-		$(this).dwell(1000,true);
-	});
+	// $(".inner_folder").on("mouseenter", ".photos", function(e){
+	// 	$(this).dwell(1000,true);
+	// });
 	
 	// Binds back bar with dwell click
 	$("#left_bar").dwell(1000, true);
@@ -171,6 +182,7 @@ $(document).ready(function() {
 	$("#bottom_bar").dwell(1000, true);
 	// Dwell for next bar
 	$("#right_bar .side_button:first-of-type").dwell(1000, true);
+
 });
 
 /*
@@ -205,6 +217,14 @@ function start(FB) {
 		renderApp(id);
 		showData(name, id);
 	});
+
+	$("#alb").dwell();
+		// 	$("#alb").mouseenter(function(){
+		// 	  alert('for the love of god why');
+		// 	});
+		// $('#alb').click(function(){
+		// 	alert('why does everything suck');
+		// })
 }
 
 // Scrolls up or down page
