@@ -66,19 +66,19 @@ window.onload = function() {
                 console.log('dwell activated');
                     if (e.id == 6) {
                         console.log('newsfeed was clicked');
-                        redirect('newsfeed');
+                        goto('newsfeed');
                     } else if (e.id == 7) {
                         console.log('messaging was clicked');
-                        redirect('messaging');
+                        goto('messaging');
                     } else if (e.id == 8) {
                         console.log('status was clicked');
-                        redirect('status');
+                        goto('status');
                     } else if (e.id == 9) {
                         console.log('profile was clicked');
-                        redirect('profile');
+                        goto('profile');
                     } else if (e.id == 10) {
                         console.log('photos was clicked');
-                        redirect('photos');
+                        goto('photos');
                     } else if (e.id == 11) {
                         console.log('logout was clicked');
                         logout();
