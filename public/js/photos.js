@@ -36,27 +36,39 @@ $(document).ready(function() {
 		// Appends new right side bar content for submitting form
 		$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
 		// Appends form in new div
-		$("#frame").append('<div id="dialog" title="Dialog Title"><form id="comment_form"><TEXTAREA class="form_input" placeholder="Comment on this photo!" type="text" style="font-size:25px"></TEXTAREA><input class="form_button" type="submit"></input></form></div>');
+		// $("#dialog").show();
+		$("#comment_form").show();
+
+		//ADDED THIS BIT RIGHT HERE!!!!!
+		$.getScript( "/js/keyboard.js", function() {
+			console.log( "Load was performed." );
+		});
 	});
 
 	// Binds "submit" button on right bar to submitting comment form
 	$("#right_bar").on("click","#tmp_button",function(e){
-		$(".form_button").click();
+		// $("#form_button").click();
+		$("#form_button").click();
+
 	});
 
 	// Submits comments on a picture and returns page back to 
 	//	previous state
-	$("#frame").on("click",".form_button",function(){
-		var msg = $(".form_input").val();
-		// FB call to api to submit comment
-		FB.api("/"+curr_pic+"/comments", "post", {message:msg},  function(response) {
+	// $("#frame").on("click","#form_button",function(){
+
+	$('#comment_form').submit(function(e) {
+		e.preventDefault();
+		var body = $('#form_input').val();
+		$('#comment_form textarea').html('');
+		FB.api("/"+curr_pic+"/comments", "post", {message:body},  function(response) {
 			console.log(response);
 		});
-		$("#dialog").remove();
 		$("#main_container").show();
+		// $("#dialog").hide();
+		$("#comment_form").hide();
+
 		$("#tmp_button").remove();
 		$("#right_bar li").show();
-		return false;
 	});
 
 	// Binds thumbnail picture image with click event
@@ -66,9 +78,11 @@ $(document).ready(function() {
 			if(data.length<3){
 				// Goes to "Photo" / "Tagged Photos" pic
 				goToPic(data[0].trim(),data[1].trim());
+				goToFrame();
 			}else{
 				// Goes to "Albums" pic
 				goToPic(data[0].trim(),data[1].trim(),data[2].trim());
+				goToFrame();
 			}
 		}
 	});
@@ -116,6 +130,7 @@ $(document).ready(function() {
 					$(".loadMore").click();
 				}else{
 					goToPic(data_lis[0],next,data_lis[2]);
+					goToFrame();
 				}
 			}else{
 				var next = pic_data[data_lis[0]]["data"][data_lis[1]].my_next;
@@ -126,6 +141,7 @@ $(document).ready(function() {
 					$(".loadMore").click();
 				}else{
 					goToPic(data_lis[0],next,data_lis[1]);
+					goToFrame();
 				}
 			}
 		}
@@ -138,33 +154,21 @@ $(document).ready(function() {
 
 	// *DWELL*
 	// ***************KEYBOARD START
-	// $('textarea, input').dwell(1000, true, 'white', 'black');
-	// $('#frame').dwell(1000, true, $('#frame').css('background-color'));
-	// $('#frame').click(function(){
-	// 	//if ($('#keyboard_container') > 0
-	// 	// $('#keyboard_container').show();
-	// 	$('textarea').blur();
-	// 	console.log('left');
-	// })
-	// $('.form_button').mouseenter(function(){
-	// 	$('textarea').blur();
-	// 	console.log('lol');
-	// });
+	$('textarea, input').dwell(1000, true, 'white', 'black');
+	$('#frame').dwell(1000, true, $('#frame').css('background-color'));
+	$('#frame').click(function(){
+		//if ($('#keyboard_container') > 0
+		$('textarea').blur();
+		console.log('left');
+	})
+	$('#right_bar').mouseenter(function(){
+		$('textarea').blur();
+		console.log('lol');
+	});
 	// ***************KEYBOARD END
 	// Keyboard dwelling
-	// 	This is where you like things
-	// $("#frame").on("mouseenter", ".innerfolder", function(e) {
-	// 	console.log("click adfdsf");
-	// 	if(!pause){
-	// 		console.log("paused");
-	// 		$(this).dwell(1000, true);
-	// 	}else{
-	// 		return false;
-	// 	}
-	// });
-
-	$("#frame").on("click", ".innerfolder", function(e) {
-		e.preventDefault();
+	//	This is where you like things
+	$("#frame").on("mouseenter", ".innerfolder", function(e) {
 		console.log("click adfdsf");
 		if(!pause){
 			console.log("paused");
@@ -172,6 +176,17 @@ $(document).ready(function() {
 		}else{
 			return false;
 		}
+	});
+
+	$("#frame").on("click", ".innerfolder", function(e) {
+		e.preventDefault();
+		console.log("click adfdsf");
+		if(!pause){
+			console.log("not paused");
+			return true;
+			// $(this).dwell(1000, true);
+		}
+		return false;
 	});
 	
 
@@ -246,9 +261,10 @@ function scrollVertical(num) {
 // Gets info on whether there is a single photo being viewed or not
 function getPageType(){
 	// If comment box is visible
-	if($("#dialog").is(":visible")){
-		$("#dialog").remove();
+	// if($("#dialog").is(":visible")){
+	if($("#comment_form").is(":visible")){
 		$("#main_container").show();
+		$("#comment_form").hide();
 		$("#tmp_button").remove();
 		$("#right_bar li").show();
 	// If only one picture is not being displayed
@@ -276,6 +292,7 @@ function getPageType(){
 			}else{
 				// Goes to previous picture otherwise
 				goToPic(data_lis[0],prev,data_lis[2]);
+				goToFrame();
 			}
 		}else{
 			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
@@ -295,6 +312,7 @@ function getPageType(){
 			}else{
 				// Goes to previous picture otherwise
 				goToPic(data_lis[0],prev,data_lis[1]);
+				goToFrame();
 			}
 		}
 	}
@@ -518,13 +536,21 @@ function changeMeta(name, toChange){
 	$("meta[name="+name+"]").attr("content", toChange);
 }
 
+function goToFrame () {
+	console.log("hi");
+	$("#frame").stop().animate({
+		queue:false,
+    	scrollTop: 500
+    }, 1000);
+}
+
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
+	scrollVertical(500);
+
 	$("#left_bar li:last-of-type").hide();
-	$("#frame").animate({
-    	scrollTop: 350
-    }, 1000);
-	if(first_photo==null&&meta("one_pic")=="false"){
+	
+   if(first_photo==null&&meta("one_pic")=="false"){
 		first_photo=id;
 		changeMeta("one_pic", "true");
 
