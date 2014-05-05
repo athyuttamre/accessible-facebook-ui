@@ -64,6 +64,8 @@ window.onload = function() {
             console.log(e);
             timeout = setTimeout(function(){
                 console.log('dwell activated');
+        
+                    //e.css('cursor','pointer');
                     if (e.id == 6) {
                         console.log('newsfeed was clicked');
                         goto('newsfeed');
@@ -75,10 +77,10 @@ window.onload = function() {
                         goto('status');
                     } else if (e.id == 9) {
                         console.log('profile was clicked');
-                        goto('profile');
+                        goto('me/profile');
                     } else if (e.id == 10) {
                         console.log('photos was clicked');
-                        goto('photos');
+                        goto('me/photos');
                     } else if (e.id == 11) {
                         console.log('logout was clicked');
                         logout();
@@ -87,7 +89,6 @@ window.onload = function() {
                     }
             },1000);
             e.animate({
-                //fill: '#25a',
                 fill: '#038',
             }, 1000);
         })
