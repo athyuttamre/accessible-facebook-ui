@@ -60,6 +60,7 @@ $(document).ready(function() {
 	});
 
 	// Binds thumbnail picture image with click event
+	$('#mainPhoto').dwell(1000, true, 'white', 'white');
 	$("#mainPhoto").on("click", ".photos", function(e){
 		if(!pause){
 			var data = $(this).attr("data-all").split(",");
