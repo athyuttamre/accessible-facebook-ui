@@ -79,12 +79,11 @@ $(document).ready(function() {
 			if(data.length<3){
 				// Goes to "Photo" / "Tagged Photos" pic
 				goToPic(data[0].trim(),data[1].trim());
-				goToFrame();
 			}else{
 				// Goes to "Albums" pic
 				goToPic(data[0].trim(),data[1].trim(),data[2].trim());
-				goToFrame();
 			}
+			// goToFrame();
 		}
 	});
 
@@ -132,7 +131,6 @@ $(document).ready(function() {
 					$(".loadMore").click();
 				}else{
 					goToPic(data_lis[0],next,data_lis[2]);
-					goToFrame();
 				}
 			}else{
 				var next = pic_data[data_lis[0]]["data"][data_lis[1]].my_next;
@@ -143,9 +141,10 @@ $(document).ready(function() {
 					$(".loadMore").click();
 				}else{
 					goToPic(data_lis[0],next,data_lis[1]);
-					goToFrame();
+					
 				}
 			}
+			// goToFrame();
 		}
 	});
 
@@ -157,10 +156,10 @@ $(document).ready(function() {
 	// *DWELL*
 	// ***************KEYBOARD START
 	$('textarea, input').dwell(1000, true, 'white', 'black');
-	$('#frame').dwell(1000, true, $('#frame').css('background-color'));
-	$('#frame').click(function(){
-		$('textarea').blur();
-	})
+	// $('#frame').dwell(1000, true, $('#frame').css('background-color'));
+	// $('#frame').click(function(){
+		// $('textarea').blur();
+	// })
 	$('#right_bar').mouseenter(function(){
 		$('textarea').blur();
 		console.log('lol');
@@ -302,7 +301,6 @@ function getPageType(){
 			}else{
 				// Goes to previous picture otherwise
 				goToPic(data_lis[0],prev,data_lis[2]);
-				goToFrame();
 			}
 		}else{
 			var prev = pic_data[data_lis[0]]["data"][data_lis[1]].my_previous;
@@ -322,9 +320,9 @@ function getPageType(){
 			}else{
 				// Goes to previous picture otherwise
 				goToPic(data_lis[0],prev,data_lis[1]);
-				goToFrame();
 			}
 		}
+		// goToFrame();
 	}
 }
 
@@ -540,16 +538,20 @@ function changeMeta(name, toChange){
 }
 
 function goToFrame () {
-	console.log("hi");
-	$("#frame").stop().animate({
-		queue:false,
-    	scrollTop: 500
-    }, 1000);
+	// location.href="#holderdiv";
+	// console.log("hi");
+	// $("#frame").stop().animate({
+	// $(document).stop().animate({
+	// 	queue:false,
+ //    	scrollTop: 200
+ //    }, 1000);
 }
 
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
-	scrollVertical(500);
+	$("#frame").animate({
+    	scrollTop: 500
+    }, 1000);
 
 	$("#left_bar li:last-of-type").hide();
 	
@@ -580,6 +582,8 @@ function goToPic(fold, id, folderID){
 		$("#mainPhoto").append(comment);
 		if(data.comments.paging.next!=undefined){
 			loadComments(".comment_container",data.comments);
+		}else{
+			goToFrame();
 		}
 	}else{
 		$("#pictures > .comment_container").append("<li style='margin-left:1em'>There are no comments on this photo</li>");
@@ -644,6 +648,8 @@ function loadComments(toAppend, data){
 		data.paging.next=response.paging.next;
 		if(response.paging.next!=undefined){
 			loadComments(toAppend,data);
+		}else{
+			goToFrame();
 		}
 	},"json");
 }
