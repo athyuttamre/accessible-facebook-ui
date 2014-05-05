@@ -29,9 +29,9 @@ $(document).ready(function() {
 	// Shows comment form for pictures
 	$("#right_bar li:nth-of-type(2)").on("click", function(){
 		// Hides everything in the frame
-		$("#frame *").hide();
+		$("#main_container:not(#keyboard_container)").hide();
 		// Hides all right side bar content (like, comment, next functionality)
-		$("#right_bar li").hide();
+		$("#right_bar li:not(#keyboard_container)").hide();
 		// Appends new right side bar content for submitting form
 		$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
 		// Appends form in new div
@@ -52,7 +52,7 @@ $(document).ready(function() {
 			console.log(response);
 		});
 		$("#dialog").remove();
-		$("#frame *").show();
+		$("#main_container").show();
 		$("#tmp_button").remove();
 		$("#right_bar li").show();
 		return false;
@@ -125,6 +125,21 @@ $(document).ready(function() {
 	});
 
 	// *DWELL*
+	// ***************KEYBOARD START
+	// $('textarea, input').dwell(1000, true, 'white', 'black');
+	// $('#frame').dwell(1000, true, $('#frame').css('background-color'));
+	// $('#frame').click(function(){
+	// 	//if ($('#keyboard_container') > 0
+	// 	// $('#keyboard_container').show();
+	// 	$('textarea').blur();
+	// 	console.log('left');
+	// })
+	// $('.form_button').mouseenter(function(){
+	// 	$('textarea').blur();
+	// 	console.log('lol');
+	// });
+	// ***************KEYBOARD END
+	// Keyboard dwelling
 	// 	This is where you like things
 	$("#right_bar li:last-of-type").on("click", function(){
 		FB.api("/"+curr_pic+"/likes", "post",  function(response) {
@@ -132,7 +147,6 @@ $(document).ready(function() {
 	});
 	// Dwell for comment submit button 
 	$("#right_bar").on("mouseenter", "#tmp_button", function(){
-		console.log("dwelling ");
 		$(this).dwell(1000,true);
 	});
 	// Dwell for top bar
@@ -196,7 +210,7 @@ function getPageType(){
 	// If comment box is visible
 	if($("#dialog").is(":visible")){
 		$("#dialog").remove();
-		$("#frame *").show();
+		$("#main_container").show();
 		$("#tmp_button").remove();
 		$("#right_bar li").show();
 	// If only one picture is not being displayed
