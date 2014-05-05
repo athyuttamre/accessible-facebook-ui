@@ -201,14 +201,21 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".folders").on("click", ".innerfolder", function(e){
-		console.log("hahah here ");
+	$(".folders").on("mouseenter", ".innerfolder", function(e){
 		if(!pause){
-			var data = $(this).attr("data-all");
-			console.log("DATA DDD "+data);
-			window.location.href=data;
+			console.log("it's here 2 ");
+			$(this).dwell(1000, true);
 		}
 	});
+
+	// $(".folders").on("click", ".innerfolder", function(e){
+	// 	console.log("hahah here ");
+	// 	if(!pause){
+	// 		// var data = $(this).attr("data-all");
+	// 		// console.log("DATA DDD "+data);
+	// 		// window.location.href=data;
+	// 	}
+	// });
 
 	// Dwell clicks when user mouses over image thumbnail
 	$("#mainPhoto").on("mouseenter", ".photos", function(e){
@@ -385,12 +392,18 @@ var album_data = {};
 // Function that shows folders at top bar
 function renderApp(id) {
 	console.log('renderApp was called');
-	$("#folders").append("<button id='phot' class='innerfolder' data-all='/"+id+"/photos/photos'>Photos</button>");
-	$("#folders").append("<button id='photTag' class='innerfolder' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</button>");
-	$("#folders").append("<button id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</button>");
-	// $("#folders").append("<div id='phot' class='innerfolder'><a href='/"+id+"/photos/photos'>Photos</a></div>");
-	// $("#folders").append("<div id='photTag' class='innerfolder'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
-	// $("#folders").append("<div id='alb' class='innerfolder'><a href='/"+id+"/photos/albums'>Albums</a></div>");
+	// $("#folders").append("<a id='phot' class='innerfolder' data-all='/"+id+"/photos/photos'>Photos</a>");
+	// $("#folders").append("<a id='photTag' class='innerfolder' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</a>");
+	// $("#folders").append("<a id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</a>");
+
+	// $("#folders").append("<button id='phot' class='innerfolder' data-all='/"+id+"/photos/photos'>Photos</button>");
+	// $("#folders").append("<button id='photTag' class='innerfolder' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</button>");
+	// $("#folders").append("<button id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</button>");
+	
+
+	$("#folders").append("<div id='phot' class='innerfolder'><a href='/"+id+"/photos/photos'>Photos</a></div>");
+	$("#folders").append("<div id='photTag' class='innerfolder'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
+	$("#folders").append("<div id='alb' class='innerfolder'><a href='/"+id+"/photos/albums'>Albums</a></div>");
 }
 
 // Checks to see if nav bars should be displayed or not
