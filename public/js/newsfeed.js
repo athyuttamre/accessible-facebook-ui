@@ -24,11 +24,16 @@ function start(FB) {
 		parent.history.back();
 		// alert('clicked');
 	})
-	$('.side_button').dwell(1000, true);
+	$('#like').dwell(1000, true);
 		$('#left_bar').click(function(){
 		parent.history.back();
 		// alert('clicked');
 	})		
+	$('#comment').dwell(1000, true);
+		$('#left_bar').click(function(){
+		parent.history.back();
+		// alert('clicked');
+	})	
 
 
 

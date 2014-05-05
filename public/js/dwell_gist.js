@@ -73,7 +73,9 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 				$target.trigger('dwellClick');
 				if (click){
 					$target.trigger('click');
-					$target.trigger('focus');
+					if(! $target.is(':focus')){
+						$target.trigger('focus');
+					}
 					$(this).css("background-color",original_color);
 				}
 			},delay);
