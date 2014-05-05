@@ -23,18 +23,23 @@ function start(FB) {
 
 
 
-	$('#left_bar').dwell(1000, true);
-		$('#left_bar').click(function(){
+	$('#left_bar li:last-of-type').dwell(1000, true);
+		$('#left_bar li:last-of-type').click(function(){
 		parent.history.back();
 		// alert('clicked');
-	})
+	});
+	$('#left_bar li:first-of-type').dwell(1000, true);
+		$('#left_bar li:first-of-type').click(function(){
+		window.location.href="/";
+		// alert('clicked');
+	});
 	$('#like').dwell(1000, true);
 		$('#left_bar').click(function(){
 		parent.history.back();
 		// alert('clicked');
 	})		
 	$('#comment').dwell(1000, true);
-		$('#left_bar').click(function(){
+		$('#left_bar li:last-of-type').click(function(){
 		parent.history.back();
 		// alert('clicked');
 	})	
