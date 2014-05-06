@@ -2,7 +2,9 @@ var user;
 var curr_pic;
 var first_photo=null;
 var pause = false;
-$(document).ready(function() {
+// $(document).ready(function() {
+$(window).load(function() {
+
 	// Hides right side bar nav buttons
 	$("#right_bar li").hide();
 
@@ -29,27 +31,32 @@ $(document).ready(function() {
 
 	// Shows comment form for pictures
 	$("#right_bar li:nth-of-type(2)").on("click", function(){
-		// Hides everything in the frame
-		$("#main_container:not(#keyboard_container)").hide();
-		// Hides all right side bar content (like, comment, next functionality)
-		$("#right_bar li:not(#keyboard_container)").hide();
-		// Appends new right side bar content for submitting form
-		$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
-		// Appends form in new div
-		// $("#dialog").show();
-		$("#comment_form").show();
+		if(!shouldPause("bar")){
+			// Hides pause button so form won't submit weirdly
+			$("#left_bar li:last-of-type p").text("Pause Main Content");
+			$("#left_bar li:last-of-type").hide();
+			// Hides everything in the frame
+			$("#main_container:not(#keyboard_container)").hide();
+			// Hides all right side bar content (like, comment, next functionality)
+			$("#right_bar li:not(#keyboard_container)").hide();
+			// Appends new right side bar content for submitting form
+			$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
+			// Appends form in new div
+			// $("#dialog").show();
+			$("#comment_form").show();
 
-		//ADDED THIS BIT RIGHT HERE!!!!!
-		$.getScript( "/js/keyboard.js", function() {
-			console.log( "Load was performed." );
-		});
+			//ADDED THIS BIT RIGHT HERE!!!!!
+			$.getScript( "/js/keyboard.js", function() {
+				console.log( "Load was performed." );
+			});
+		}
 	});
 
 	// Binds "submit" button on right bar to submitting comment form
 	$("#right_bar").on("click","#tmp_button",function(e){
-		// $("#form_button").click();
-		$("#form_button").click();
-
+		if(!shouldPause("main")){
+			$("#form_button").click();
+		}
 	});
 
 	// Submits comments on a picture and returns page back to 
@@ -61,20 +68,20 @@ $(document).ready(function() {
 		var body = $('#form_input').val();
 		$('#comment_form textarea').html('');
 		FB.api("/"+curr_pic+"/comments", "post", {message:body},  function(response) {
-			console.log(response);
 		});
 		$("#main_container").show();
 		$("#keyboard_container").remove();
 		$("#comment_form").hide();
-
+		$("#left_bar li:last-of-type").show();
 		$("#tmp_button").remove();
+		$("#bottom_bar").show();
 		$("#right_bar li").show();
 	});
 
 	// Binds thumbnail picture image with click event
 	$('#mainPhoto').dwell(1000, true, 'white', 'white');
 	$("#mainPhoto").on("click", ".photos", function(e){
-		if(!pause){
+		if(!shouldPause("main")){
 			var data = $(this).attr("data-all").split(",");
 			if(data.length<3){
 				// Goes to "Photo" / "Tagged Photos" pic
@@ -88,59 +95,63 @@ $(document).ready(function() {
 
 	// Home button
 	$("#left_bar li:first-of-type").click(function(){
-		window.location.href="/";
+		if(!shouldPause("bar")){
+			window.location.href="/";
+		}
 	});
 
 	// Back bar -- window.back for pages, 
 	// 	Goes back to individual picture for individual pictures
 	$("#left_bar li:nth-of-type(2)").click(function(){
-		getPageType();
+		if(!shouldPause("bar")){
+			getPageType();
+		}
 	});
 
-	// $("#left_bar li:last-of-type").click(function(){
-	// 	pause = !pause;
-	// 	console.log("PAUSED CHANGED "+pause);
-	// 	if(pause){
-	// 		$("#left_bar li:last-of-type p").text("Unpause Main Content");
-	// 	}else{
-	// 		$("#left_bar li:last-of-type p").text("Pause Main Content");
-	// 	}
-	// });
+	$("#left_bar li:last-of-type").click(function(){
+		var nextMsg = getNextPause();
+		pause = nextMsg.search("Main")<0;
+		$("#left_bar li:last-of-type p").text(nextMsg);
+	});
 
 	// Scrolls down
 	$("#bottom_bar").click(function(){
-		$(".loadMore").click();
-		scrollVertical(300);
+		if(!shouldPause("bar")){
+			$(".loadMore").click();
+			scrollVertical(300);
+		}
 	});
 
 	// Goes to next picture if looking at individual pictures when TOP 
 	//	nav bar on right is clicked (the one that sayd "next")
 	$("#right_bar li:first-of-type").click(function(){
 		// If one picture is being displayed, as opposed to an album
-		if(meta("one_pic")=="true"){
-			var data = $("#mainPhoto img").attr("data-all");
-			var data_lis = data.split(",");
-			// Get next picture in the list
-			if(data_lis[0]=="albums"){
-				var next = album_data[data_lis[2]]["pics"][data_lis[1]].my_next;
-				if(next==null){
-					// Loads more photos if there are any
-					//	"next" is null if there are more pics to be loaded
-					$("#mainPhoto").append(album_data[data_lis[2]].button);
-					$(".loadMore").click();
+		if(!shouldPause("bar")){
+			if(meta("one_pic")=="true"){
+				var data = $("#mainPhoto img").attr("data-all");
+				var data_lis = data.split(",");
+				// Get next picture in the list
+				if(data_lis[0]=="albums"){
+					var next = album_data[data_lis[2]]["pics"][data_lis[1]].my_next;
+					if(next==null){
+						// Loads more photos if there are any
+						//	"next" is null if there are more pics to be loaded
+						$("#mainPhoto").append(album_data[data_lis[2]].button);
+						$(".loadMore").click();
+					}else{
+						goToPic(data_lis[0],next,data_lis[2]);
+					}
 				}else{
-					goToPic(data_lis[0],next,data_lis[2]);
-				}
-			}else{
-				var next = pic_data[data_lis[0]]["data"][data_lis[1]].my_next;
-				if(next==null){
-					// Loads more photos if there are any
-					//	"next" is null if there are more pics to be loaded
-					$("#mainPhoto").append(pic_data[data_lis[0]].loadMore);
-					$(".loadMore").click();
-				}else{
-					goToPic(data_lis[0],next,data_lis[1]);
-					
+					var next = pic_data[data_lis[0]]["data"][data_lis[1]].my_next;
+					if(next==null){
+						// Loads more photos if there are any
+						//	"next" is null if there are more pics to be loaded
+						$("#mainPhoto").append(pic_data[data_lis[0]].loadMore);
+						$(".loadMore").click();
+					}else{
+						goToPic(data_lis[0],next,data_lis[1]);
+						
+					}
 				}
 			}
 		}
@@ -148,7 +159,9 @@ $(document).ready(function() {
 
 	// Scrolls up when top bar clicked
 	$("#top_bar").click(function(){
-		scrollVertical(-300);
+		if(!shouldPause("bar")){
+			scrollVertical(-300);
+		}
 	});
 
 	// *DWELL*
@@ -159,51 +172,37 @@ $(document).ready(function() {
 		// $('textarea').blur();
 	// })
 	$('#right_bar').mouseenter(function(){
-		$('textarea').blur();
-		console.log('lol');
+		if(!shouldPause("main")){
+			$('textarea').blur();
+		}
 	});
-	// ***************KEYBOARD END
-	// Keyboard dwelling
-	//	This is where you like things
-	// $("#frame").on("mouseenter", ".innerfolder", function(e) {
-	// 	console.log("click adfdsf");
-	// 	if(pause){
-	// 		return false;
-	// 	}
-	// 	$(this).dwell(1000, true);
-	// });
-
-	// $("#frame").on("click", ".innerfolder", function(e) {
-	// 	e.preventDefault();
-	// 	console.log("click adfdsf");
-	// 	if(pause){
-	// 		return false;
-	// 	}
-	// 	// $(this).dwell(1000, true);
-	// });
 	
 
 	$("#right_bar li:last-of-type").on("click", function(){
-		FB.api("/"+curr_pic+"/likes", "post",  function(response) {
-		});
+		if(!shouldPause("bar")){
+			FB.api("/"+curr_pic+"/likes", "post",  function(response) {
+			});
+		}
 	});
 	// Dwell for comment submit button 
 	$("#right_bar").on("mouseenter", "#tmp_button", function(){
-		$(this).dwell(1000,true);
+		if(!shouldPause("bar")){
+			$(this).dwell(1000,true);
+		}
 	});
 	// Dwell for top bar
 	$("#top_bar").dwell(1000, true);
 	// Enables dwell click for dynamically generated html folders
 	$("#main_container").on("mouseenter", ".innerfolder", function(e){
+		// if(!shouldPause("main")){
 		if(!pause){
-			console.log("it's here 2 ");
+			console.log(pause);
 			$(this).dwell(1000, true);
 		}
 	});
 
 	$(".folders").on("mouseenter", ".innerfolder", function(e){
-		if(!pause){
-			console.log("it's here 2 ");
+		if(!shouldPause("main")){
 			$(this).dwell(1000, true);
 		}
 	});
@@ -219,7 +218,7 @@ $(document).ready(function() {
 
 	// Dwell clicks when user mouses over image thumbnail
 	$("#mainPhoto").on("mouseenter", ".photos", function(e){
-		if(!pause){
+		if(!shouldPause("main")){
 			$(this).dwell(1000, true);
 		}
 	});
@@ -261,6 +260,40 @@ function start(FB) {
 	});
 }
 
+// Gets next message to display on pause button
+function getNextPause(){
+	var currName = $("#left_bar li:last-of-type p").text();
+	if(currName=="Pause Main Content"){
+		return "Pause All Content";
+	}else if(currName=="Pause All Content"){
+		return "Unpause All Content";
+	}else{
+		return "Pause Main Content";
+	}
+}
+
+// Determines which clickable content should be paused when called
+function shouldPause(item){
+	var currName = $("#left_bar li:last-of-type p").text();
+	// "Unpause" is shown if everything is paused 
+	if(currName.search("Unpause")>=0){
+		console.log("returned true");
+		return true;
+		// "Pause all" is shown if only main content is paused
+	}else if(currName.search("Pause All")>=0){
+		if(item=="main"){
+			console.log("returned true");
+			return true;
+		}else{
+			console.log("returned false");
+			return false;
+		}
+	}
+	// "Pause main" is shown if nothing is paused 
+	console.log("returned false");	
+	return false;
+}
+
 // Scrolls up or down page
 function scrollVertical(num) {
     var iScroll = $("#frame").scrollTop();
@@ -274,11 +307,13 @@ function scrollVertical(num) {
 // Gets info on whether there is a single photo being viewed or not
 function getPageType(){
 	// If comment box is visible
-	// if($("#dialog").is(":visible")){
 	if($("#comment_form").is(":visible")){
 		$("#main_container").show();
+		// $("#left_bar li:last-of-type").text("Pause Main Content");
+		$("#left_bar li:last-of-type").show();
 		$("#keyboard_container").remove();
 		$("#comment_form").hide();
+		$("#bottom_bar").show();
 		$("#tmp_button").remove();
 		$("#right_bar li").show();
 	// If only one picture is not being displayed
@@ -550,12 +585,10 @@ function changeMeta(name, toChange){
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
 	$("#frame").animate({
-    	scrollTop: 500
+    	scrollTop: 350
     }, 1000);
 
-	$("#left_bar li:last-of-type").hide();
-	
-   if(first_photo==null&&meta("one_pic")=="false"){
+	if(first_photo==null&&meta("one_pic")=="false"){
 		first_photo=id;
 		changeMeta("one_pic", "true");
 
@@ -576,7 +609,7 @@ function goToPic(fold, id, folderID){
 	var comment = "<ul class='comment_container'>";
 	if(data.comments!=undefined){
 		for(var x in data.comments.data){
-			comment+="<li class='comment_div'><span class='name'> "+data.comments.data[x].from.name+"</span>"+data.comments.data[x].message+"</li>";
+			comment+="<li class='comment_div'><span class='name'> "+data.comments.data[x].from.name+"</span> "+data.comments.data[x].message+"</li>";
 		}
 		comment+="</ul>";	
 		$("#mainPhoto").append(comment);
