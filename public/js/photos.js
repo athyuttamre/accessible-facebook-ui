@@ -42,10 +42,9 @@ $(window).load(function() {
 			// Appends new right side bar content for submitting form
 			$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
 			// Appends form in new div
-			// $("#dialog").show();
 			$("#comment_form").show();
 
-			//ADDED THIS BIT RIGHT HERE!!!!!
+			//Add keyboard
 			$.getScript( "/js/keyboard.js", function() {
 				console.log( "Load was performed." );
 			});
@@ -54,7 +53,6 @@ $(window).load(function() {
 
 	// Binds "submit" button on right bar to submitting comment form
 	$("#right_bar").on("click","#tmp_button",function(e){
-		
 		e.stopPropagation();
 		if(!shouldPause("main")){
 			$("#form_button").click();
@@ -63,10 +61,7 @@ $(window).load(function() {
 
 	// Submits comments on a picture and returns page back to 
 	//	previous state
-	// $("#frame").on("click","#form_button",function(){
-
 	$('#comment_form').submit(function(e) {
-		
 		e.stopPropagation();
 		e.preventDefault();
 		var body = $('#form_input').val();
@@ -84,7 +79,6 @@ $(window).load(function() {
 
 	// Binds thumbnail picture image with click event
 	$("#mainPhoto").on("click", ".photos", function(e){
-		
 		e.stopPropagation();
 		if(!shouldPause("main")){
 			var data = $(this).attr("data-all").split(",");
@@ -196,7 +190,6 @@ $(window).load(function() {
 	
 	// Dwell clicks when user mouses over image thumbnail
 	$("#mainPhoto").on("mouseenter", ".photos", function(e){
-		
 		e.stopPropagation();
 		if(shouldPause("main")){
 			return false;
@@ -213,39 +206,12 @@ $(window).load(function() {
 		$(this).dwell(1000, true);
 	});
 
-	// $(".folders").on("mouseenter", "#phot", function(e){
-	// 	
-	// 	e.stopPropagation();
-	// 	if(shouldPause("main")){
-	// 		return;
-	// 	}
-	// 	$(this).dwell(1000, true);
-	// })
-	// $(".folders").on("mouseenter", "#photTag", function(e){
-	// 	
-	// 	e.stopPropagation();
-	// 	if(shouldPause("main")){
-	// 		return;
-	// 	}
-	// 	$(this).dwell(1000, true);
-	// });
-	// $(".folders").on("mouseenter", "#alb", function(e){
-	// 	
-	// 	e.stopPropagation();
-	// 	if(shouldPause("main")){
-	// 		return;
-	// 	}
-	// 	$(this).dwell(1000, true);
-	// });
-
 	// Enables dwell click for dynamically generated html folders
 	$("#main_container").on("mouseenter", ".innerfolder", function(e){
-		
 		e.stopPropagation();
 		if(pause){
 			return;
 		}
-		console.log(pause);
 		$(this).dwell(1000, true);
 	});
 	
@@ -304,20 +270,16 @@ function shouldPause(item){
 	var currName = $("#left_bar li:last-of-type p").text();
 	// "Unpause" is shown if everything is paused 
 	if(currName.search("Unpause")>=0){
-		console.log("returned true");
 		return true;
 		// "Pause all" is shown if only main content is paused
 	}else if(currName.search("Pause All")>=0){
 		if(item=="main"){
-			console.log("returned true");
 			return true;
 		}else{
-			console.log("returned false");
 			return false;
 		}
 	}
 	// "Pause main" is shown if nothing is paused 
-	console.log("returned false");	
 	return false;
 }
 
@@ -336,7 +298,6 @@ function getPageType(){
 	// If comment box is visible
 	if($("#comment_form").is(":visible")){
 		$("#main_container").show();
-		// $("#left_bar li:last-of-type").text("Pause Main Content");
 		$("#left_bar li:last-of-type").show();
 		$("#keyboard_container").remove();
 		$("#comment_form").hide();
@@ -616,13 +577,12 @@ function goToPic(fold, id, folderID){
 	if(folderID!=undefined&&fold=="albums"){
 		data = album_data[folderID].pics[id];
 	}
-	console.log(data);
 	var main_likes = data.likes.data.length;
 	var main_likes_data="";
 	if(main_likes==1){
-		main_likes_data="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+main_likes+" person likes this</div>";
+		main_likes_data="<div class='like_container'><img src='/images/LikeButton.svg'> "+main_likes+" person likes this</div>";
 	}else if(main_likes>0){
-		main_likes_data="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+main_likes+" people like this</div>";
+		main_likes_data="<div class='like_container'><img src='/images/LikeButton.svg'> "+main_likes+" people like this</div>";
 	}
 
 	$("#mainPhoto").empty();
@@ -635,7 +595,7 @@ function goToPic(fold, id, folderID){
 		for(var x in data.comments.data){
 			var likes = ""; 
 			if(data.comments.data[x].like_count>0){
-				likes="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+data.comments.data[x].like_count+"</div>";
+				likes="<div class='like_container'><img src='/images/LikeButton.svg'> "+data.comments.data[x].like_count+"</div>";
 			}
 			comment+="<li class='comment_div'><span class='name'> "+data.comments.data[x].from.name+"</span> "+data.comments.data[x].message+likes+"</li>";
 		}
@@ -703,7 +663,7 @@ function loadComments(toAppend, data){
 		for(var pic in response.data){
 			var likes = ""; 
 			if(response.data[pic].like_count>0){
-				likes="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+response.data[pic].like_count+"</div>";
+				likes="<div class='like_container'><img src='/images/LikeButton.svg'> "+response.data[pic].like_count+"</div>";
 			}
 			data.data.push(response.data[pic]);
 			$(toAppend).append("<div class='comment_div'><span class='name'> "+response.data[pic].from.name+"</span> "+response.data[pic].message+likes+"</div>");
