@@ -54,6 +54,8 @@ $(window).load(function() {
 
 	// Binds "submit" button on right bar to submitting comment form
 	$("#right_bar").on("click","#tmp_button",function(e){
+		console.log(e);
+		e.stopPropagation();
 		if(!shouldPause("main")){
 			$("#form_button").click();
 		}
@@ -64,6 +66,8 @@ $(window).load(function() {
 	// $("#frame").on("click","#form_button",function(){
 
 	$('#comment_form').submit(function(e) {
+		console.log(e);
+		e.stopPropagation();
 		e.preventDefault();
 		var body = $('#form_input').val();
 		$('#comment_form textarea').html('');
@@ -81,6 +85,8 @@ $(window).load(function() {
 	// Binds thumbnail picture image with click event
 	$('#mainPhoto').dwell(1000, true, 'white', 'white');
 	$("#mainPhoto").on("click", ".photos", function(e){
+		console.log(e);
+		e.stopPropagation();
 		if(!shouldPause("main")){
 			var data = $(this).attr("data-all").split(",");
 			if(data.length<3){
@@ -191,26 +197,42 @@ $(window).load(function() {
 	
 	// Dwell clicks when user mouses over image thumbnail
 	$("#mainPhoto").on("mouseenter", ".photos", function(e){
+		console.log(e);
+		e.stopPropagation();
 		if(shouldPause("main")){
-			return;
+			return false;
 		}
 		$(this).dwell(1000, true);	
 	});
 
-	// Enables dwell click for dynamically generated html folders
+	// // Enables dwell click for dynamically generated html folders
 	$(".folders").on("mouseenter", ".outfold", function(e){
+		e.stopPropagation();
 		if(shouldPause("main")){
 			return;
 		}
 		$(this).dwell(1000, true);
 	});
+
+	// $(".folders").on("mouseenter", "#phot", function(e){
+	// 	console.log(e);
+	// 	e.stopPropagation();
+	// 	if(shouldPause("main")){
+	// 		return;
+	// 	}
+	// 	$(this).dwell(1000, true);
+	// })
 	// $(".folders").on("mouseenter", "#photTag", function(e){
+	// 	console.log(e);
+	// 	e.stopPropagation();
 	// 	if(shouldPause("main")){
 	// 		return;
 	// 	}
 	// 	$(this).dwell(1000, true);
 	// });
 	// $(".folders").on("mouseenter", "#alb", function(e){
+	// 	console.log(e);
+	// 	e.stopPropagation();
 	// 	if(shouldPause("main")){
 	// 		return;
 	// 	}
@@ -219,6 +241,8 @@ $(window).load(function() {
 
 	// Enables dwell click for dynamically generated html folders
 	$("#main_container").on("mouseenter", ".innerfolder", function(e){
+		console.log(e);
+		e.stopPropagation();
 		if(pause){
 			return;
 		}
@@ -267,6 +291,7 @@ function start(FB) {
 function getNextPause(){
 	var currName = $("#left_bar li:last-of-type p").text();
 	if(currName=="Pause Main Content"){
+		// $(".")
 		return "Pause All Content";
 	}else if(currName=="Pause All Content"){
 		return "Unpause All Content";
@@ -430,15 +455,6 @@ var album_data = {};
 // Function that shows folders at top bar
 function renderApp(id) {
 	console.log('renderApp was called');
-	// $("#folders").append("<a id='phot' class='innerfolder' data-all='/"+id+"/photos/photos'>Photos</a>");
-	// $("#folders").append("<a id='photTag' class='innerfolder' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</a>");
-	// $("#folders").append("<a id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</a>");
-
-	// $("#folders").append("<button id='phot' class='innerfolder' data-all='/"+id+"/photos/photos'>Photos</button>");
-	// $("#folders").append("<button id='photTag' class='innerfolder' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</button>");
-	// $("#folders").append("<button id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</button>");
-	
-
 	$("#folders").append("<div id='phot' class='outfold'><a href='/"+id+"/photos/photos'>Photos</a></div>");
 	$("#folders").append("<div id='photTag' class='outfold'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
 	$("#folders").append("<div id='alb' class='outfold'><a href='/"+id+"/photos/albums'>Albums</a></div>");
@@ -460,12 +476,9 @@ function showAlbum(name,id){
 	var data = pic_data.albums.data;
 	$("#mainPhoto").empty();
 	$("#mainPhoto").show();
-
 	$('#mainPhoto').append(pic_data.albums.loadMore);
 	for(var x in data){
 		$("#mainPhoto").append("<button class='innerfolder'><a href='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</a></button>");
-
-		// $("#mainPhoto").append("<button class='innerfolder' data-all='/"+id+"/photos/albums/"+x+"'>"+data[x].name+"</button>");
 	}
 }
 
