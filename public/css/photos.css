@@ -111,9 +111,20 @@ li {
 	color:#3b5998;
 }
 
-/*.comment{
-	
-}*/
+.like_container{
+	display: inline-block;
+	margin-right: 1em;
+	margin-left: 2em;
+	left:0;
+	color:rgb(72,96,165);
+
+}
+
+.like_container img{
+	height: 1em;
+	width: 1em;
+	position: relative;
+}
 
 #form_input{
 	width: 98%;

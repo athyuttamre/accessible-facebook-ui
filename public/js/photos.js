@@ -617,15 +617,28 @@ function goToPic(fold, id, folderID){
 	if(folderID!=undefined&&fold=="albums"){
 		data = album_data[folderID].pics[id];
 	}
+	console.log(data);
+	var main_likes = data.likes.data.length;
+	var main_likes_data="";
+	if(main_likes==1){
+		main_likes_data="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+main_likes+" person likes this</div>";
+	}else if(main_likes>0){
+		main_likes_data="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+main_likes+" people like this</div>";
+	}
+
 	$("#mainPhoto").empty();
 	$("#mainPhoto").show();
-	$("#mainPhoto").append("<img class='main_image' src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'>");
+	$("#mainPhoto").append("<img class='main_image' src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'>"+main_likes_data);
 
 	// Adds comments to picture 
 	var comment = "<ul class='comment_container'>";
 	if(data.comments!=undefined){
 		for(var x in data.comments.data){
-			comment+="<li class='comment_div'><span class='name'> "+data.comments.data[x].from.name+"</span> "+data.comments.data[x].message+"</li>";
+			var likes = ""; 
+			if(data.comments.data[x].like_count>0){
+				likes="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+data.comments.data[x].like_count+"</div>";
+			}
+			comment+="<li class='comment_div'><span class='name'> "+data.comments.data[x].from.name+"</span> "+data.comments.data[x].message+likes+"</li>";
 		}
 		comment+="</ul>";	
 		$("#mainPhoto").append(comment);
@@ -689,8 +702,12 @@ function loadAlbumPosts(dataID){
 function loadComments(toAppend, data){
 	$.get(data.paging.next,function (response){
 		for(var pic in response.data){
+			var likes = ""; 
+			if(response.data[pic].like_count>0){
+				likes="<div class='like_container'><img src='/images/thumbs/thumb.png'> "+response.data[pic].like_count+"</div>";
+			}
 			data.data.push(response.data[pic]);
-			$(toAppend).append("<div class='comment_div'><span class='name'> "+response.data[pic].from.name+"</span> "+response.data[pic].message+"</div>");
+			$(toAppend).append("<div class='comment_div'><span class='name'> "+response.data[pic].from.name+"</span> "+response.data[pic].message+likes+"</div>");
 		}
 		data.paging.next=response.paging.next;
 		if(response.paging.next!=undefined){
