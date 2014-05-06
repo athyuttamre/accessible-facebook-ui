@@ -54,7 +54,7 @@ $(window).load(function() {
 
 	// Binds "submit" button on right bar to submitting comment form
 	$("#right_bar").on("click","#tmp_button",function(e){
-		console.log(e);
+		
 		e.stopPropagation();
 		if(!shouldPause("main")){
 			$("#form_button").click();
@@ -66,7 +66,7 @@ $(window).load(function() {
 	// $("#frame").on("click","#form_button",function(){
 
 	$('#comment_form').submit(function(e) {
-		console.log(e);
+		
 		e.stopPropagation();
 		e.preventDefault();
 		var body = $('#form_input').val();
@@ -83,9 +83,8 @@ $(window).load(function() {
 	});
 
 	// Binds thumbnail picture image with click event
-	$('#mainPhoto').dwell(1000, true, 'white', 'white');
 	$("#mainPhoto").on("click", ".photos", function(e){
-		console.log(e);
+		
 		e.stopPropagation();
 		if(!shouldPause("main")){
 			var data = $(this).attr("data-all").split(",");
@@ -197,7 +196,7 @@ $(window).load(function() {
 	
 	// Dwell clicks when user mouses over image thumbnail
 	$("#mainPhoto").on("mouseenter", ".photos", function(e){
-		console.log(e);
+		
 		e.stopPropagation();
 		if(shouldPause("main")){
 			return false;
@@ -215,7 +214,7 @@ $(window).load(function() {
 	});
 
 	// $(".folders").on("mouseenter", "#phot", function(e){
-	// 	console.log(e);
+	// 	
 	// 	e.stopPropagation();
 	// 	if(shouldPause("main")){
 	// 		return;
@@ -223,7 +222,7 @@ $(window).load(function() {
 	// 	$(this).dwell(1000, true);
 	// })
 	// $(".folders").on("mouseenter", "#photTag", function(e){
-	// 	console.log(e);
+	// 	
 	// 	e.stopPropagation();
 	// 	if(shouldPause("main")){
 	// 		return;
@@ -231,7 +230,7 @@ $(window).load(function() {
 	// 	$(this).dwell(1000, true);
 	// });
 	// $(".folders").on("mouseenter", "#alb", function(e){
-	// 	console.log(e);
+	// 	
 	// 	e.stopPropagation();
 	// 	if(shouldPause("main")){
 	// 		return;
@@ -241,7 +240,7 @@ $(window).load(function() {
 
 	// Enables dwell click for dynamically generated html folders
 	$("#main_container").on("mouseenter", ".innerfolder", function(e){
-		console.log(e);
+		
 		e.stopPropagation();
 		if(pause){
 			return;
