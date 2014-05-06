@@ -37,7 +37,7 @@ li {
 	position: relative;
 }
 
-.innerfolder{
+.outfold, .innerfolder{
 	width: 10em;
 	height: 5em;
 	display: inline-block;
@@ -54,7 +54,7 @@ li {
 	/*padding-top:2em;*/
 }
 
-.innerfolder a{
+.outfold a, .innerfolder a{
 	display: block;
 	position: relative;	
 	text-decoration: none;

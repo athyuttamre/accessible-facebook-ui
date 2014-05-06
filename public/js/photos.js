@@ -165,12 +165,8 @@ $(window).load(function() {
 	});
 
 	// *DWELL*
-	// ***************KEYBOARD START
+	// KEYBOARD START
 	$('textarea, input').dwell(1000, true, 'white', 'black');
-	// $('#frame').dwell(1000, true, $('#frame').css('background-color'));
-	// $('#frame').click(function(){
-		// $('textarea').blur();
-	// })
 	$('#right_bar').mouseenter(function(){
 		if(!shouldPause("main")){
 			$('textarea').blur();
@@ -192,37 +188,43 @@ $(window).load(function() {
 	});
 	// Dwell for top bar
 	$("#top_bar").dwell(1000, true);
-	// Enables dwell click for dynamically generated html folders
-	$("#main_container").on("mouseenter", ".innerfolder", function(e){
-		// if(!shouldPause("main")){
-		if(!pause){
-			console.log(pause);
-			$(this).dwell(1000, true);
-		}
-	});
-
-	$(".folders").on("mouseenter", ".innerfolder", function(e){
-		if(!shouldPause("main")){
-			$(this).dwell(1000, true);
-		}
-	});
-
-	// $(".folders").on("click", ".innerfolder", function(e){
-	// 	console.log("hahah here ");
-	// 	if(!pause){
-	// 		// var data = $(this).attr("data-all");
-	// 		// console.log("DATA DDD "+data);
-	// 		// window.location.href=data;
-	// 	}
-	// });
-
+	
 	// Dwell clicks when user mouses over image thumbnail
 	$("#mainPhoto").on("mouseenter", ".photos", function(e){
-		if(!shouldPause("main")){
-			$(this).dwell(1000, true);
+		if(shouldPause("main")){
+			return;
 		}
+		$(this).dwell(1000, true);	
 	});
 
+	// Enables dwell click for dynamically generated html folders
+	$(".folders").on("mouseenter", ".outfold", function(e){
+		if(shouldPause("main")){
+			return;
+		}
+		$(this).dwell(1000, true);
+	});
+	// $(".folders").on("mouseenter", "#photTag", function(e){
+	// 	if(shouldPause("main")){
+	// 		return;
+	// 	}
+	// 	$(this).dwell(1000, true);
+	// });
+	// $(".folders").on("mouseenter", "#alb", function(e){
+	// 	if(shouldPause("main")){
+	// 		return;
+	// 	}
+	// 	$(this).dwell(1000, true);
+	// });
+
+	// Enables dwell click for dynamically generated html folders
+	$("#main_container").on("mouseenter", ".innerfolder", function(e){
+		if(pause){
+			return;
+		}
+		console.log(pause);
+		$(this).dwell(1000, true);
+	});
 	
 	// Binds back bar with dwell click
 	$("#left_bar li").dwell(1000, true);
@@ -232,6 +234,7 @@ $(window).load(function() {
 	$("#right_bar .side_button:first-of-type").dwell(1000, true);
 });
 
+	
 /*
 * start
 * 
@@ -436,9 +439,9 @@ function renderApp(id) {
 	// $("#folders").append("<button id='alb' class='innerfolder' data-all='/"+id+"/photos/albums'>Albums</button>");
 	
 
-	$("#folders").append("<div id='phot' class='innerfolder'><a href='/"+id+"/photos/photos'>Photos</a></div>");
-	$("#folders").append("<div id='photTag' class='innerfolder'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
-	$("#folders").append("<div id='alb' class='innerfolder'><a href='/"+id+"/photos/albums'>Albums</a></div>");
+	$("#folders").append("<div id='phot' class='outfold'><a href='/"+id+"/photos/photos'>Photos</a></div>");
+	$("#folders").append("<div id='photTag' class='outfold'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
+	$("#folders").append("<div id='alb' class='outfold'><a href='/"+id+"/photos/albums'>Albums</a></div>");
 }
 
 // Checks to see if nav bars should be displayed or not
