@@ -39,6 +39,21 @@ window.onload = function() {
         }
     )
 
+    //set arrow width/height
+    var ArrowWH = paper.width*0.027;
+    //set arrows
+    var nwArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.15, centerY-paper.width*0.183, ArrowWH, ArrowWH);
+    var neArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.122, centerY-paper.width*0.183, ArrowWH, ArrowWH);
+    var wArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.23, centerY-paper.width*0.013, ArrowWH, ArrowWH);
+    var eArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.202, centerY-paper.width*0.013, ArrowWH, ArrowWH);
+    var swArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.15, centerY+paper.width*0.155, ArrowWH, ArrowWH);
+    var seArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.122, centerY+paper.width*0.155, ArrowWH, ArrowWH);
+    nwArrow.transform("r50");
+    neArrow.transform("r130");
+    eArrow.transform("r180");
+    swArrow.transform("r-50");
+    seArrow.transform("r-130");
+
     //define main button paths
     var northWest = paper.path("M "+centerX+" "+centerY+" "/**/+left+" "+y1+" "/**/+left+" "+top+" "/**/+centerX+" "+top+" "/**/+centerX+" "+centerY+" z");
     var northEast = paper.path("M "+centerX+" "+centerY+" "/**/+right+" "+y1+" "/**/+right+" "+top+" "/**/+centerX+" "+top+" "/**/+centerX+" "+centerY+" z");
@@ -66,22 +81,22 @@ window.onload = function() {
                 console.log('dwell activated');
         
                     //e.css('cursor','pointer');
-                    if (e.id == 6) {
+                    if (e.id == 12) {
                         console.log('newsfeed was clicked');
                         goto('newsfeed');
-                    } else if (e.id == 7) {
+                    } else if (e.id == 13) {
                         console.log('messaging was clicked');
                         goto('messaging');
-                    } else if (e.id == 8) {
+                    } else if (e.id == 14) {
                         console.log('status was clicked');
                         goto('status');
-                    } else if (e.id == 9) {
+                    } else if (e.id == 15) {
                         console.log('profile was clicked');
                         goto('me/profile');
-                    } else if (e.id == 10) {
+                    } else if (e.id == 16) {
                         console.log('photos was clicked');
                         goto('me/photos');
-                    } else if (e.id == 11) {
+                    } else if (e.id == 17) {
                         console.log('logout was clicked');
                         performLogout();
                     } else {
@@ -118,13 +133,12 @@ window.onload = function() {
     );
 
     //defuine icon width/height
-    console.log(circle.height);
-    var iconWH = paper.width*0.06;
+    var iconWH = paper.width*0.05;
     //add icons
-    var newsfeedIcon = paper.image("../../images/indexImages/newsfeedIcon.png", centerX-paper.width*0.11, centerY-paper.width*0.16, iconWH, iconWH);
-    var messagingIcon = paper.image("../../images/indexImages/messagingIcon.png", centerX+paper.width*0.05, centerY-paper.width*0.155, iconWH, iconWH);
-    var statusIcon = paper.image("../../images/indexImages/statusIcon.png", centerX-paper.width*0.17, centerY-paper.width*0.03, iconWH, iconWH);
-    var profileIcon = paper.image("../../images/indexImages/profileIcon.png", centerX+paper.width*0.11, centerY-paper.width*0.03, iconWH, iconWH);
-    var photosIcon = paper.image("../../images/indexImages/photosIcon.png", centerX-paper.width*0.11, centerY+paper.width*0.09, iconWH, iconWH);
-    var logoutIcon = paper.image("../../images/indexImages/logoutIcon.png", centerX+paper.width*0.05, centerY+paper.width*0.09, iconWH, iconWH);
+    var newsfeedIcon = paper.image("../../images/indexImages/newsfeedIcon.png", centerX-paper.width*0.12, centerY-paper.width*0.15, iconWH, iconWH);
+    var messagingIcon = paper.image("../../images/indexImages/messagingIcon.png", centerX+paper.width*0.06, centerY-paper.width*0.145, iconWH, iconWH);
+    var statusIcon = paper.image("../../images/indexImages/statusIcon.png", centerX-paper.width*0.18, centerY-paper.width*0.025, iconWH, iconWH);
+    var profileIcon = paper.image("../../images/indexImages/profileIcon.png", centerX+paper.width*0.13, centerY-paper.width*0.028, iconWH, iconWH);
+    var photosIcon = paper.image("../../images/indexImages/photosIcon.png", centerX-paper.width*0.11, centerY+paper.width*0.105, iconWH, iconWH);
+    var logoutIcon = paper.image("../../images/indexImages/logoutIcon.png", centerX+paper.width*0.065, centerY+paper.width*0.105, iconWH, iconWH);
 }
