@@ -2,6 +2,13 @@ var user;
 var curr_pic;
 var first_photo=null;
 var pause = false;
+// Global variable to store picture info and album info
+var pic_data = {"photos":{"next":null,"data":{},"num":0,"loadMore":null},"albums":{"next":null,"data":{},"num":0,"loadMore":null},"photos_tagged":{"next":null,"data":{},"num":0,"loadMore":null}};
+
+// Global variable to store picture info albums
+var album_data = {};
+var times = {};
+var colors = {};
 // $(document).ready(function() {
 $(window).load(function() {
 
@@ -197,13 +204,49 @@ $(window).load(function() {
 		$(this).dwell(1000, true);	
 	});
 
-	// // Enables dwell click for dynamically generated html folders
+	$(".folders").on("click", ".outfold", function(e){
+		var data = $(this).attr("data-all");
+		goToUrl(data);
+	});
+
+	// Dwell click for dynamically generated folders
 	$(".folders").on("mouseenter", ".outfold", function(e){
 		e.stopPropagation();
 		if(shouldPause("main")){
-			return;
+			console.log("paused");
+			return false;
+		}else{
+			var data = $(this).attr("data-all");
+			var oldTime = times[$(this).attr("id")];
+			if(oldTime!=null&&oldTime!=undefined){
+				 clearTimeout(oldTime);
+			}
+			var color = $(this).css("background-color");
+			if(colors[$(this).attr("id")]==null||colors[$(this).attr("id")]==undefined){
+				colors[$(this).attr("id")]=color;
+			}
+			var time = setTimeout(function(){
+				console.log("dwelling");
+				goToUrl(data);
+			}, 1000);
+			times[$(this).attr("id")]=time;
+			$(this).animate({
+                backgroundColor: '#038'
+            }, 1000);
 		}
-		$(this).dwell(1000, true);
+	});
+
+	// Quits dwell on exit of item for top bar folders 
+	$(".folders").on("mouseleave", ".outfold", function(e){
+		$(this).attr({fill: '#eee',});
+		var oldTime = times[$(this).attr("id")];
+		if(oldTime!=null&&oldTime!=undefined){
+			 clearTimeout(oldTime);
+		}
+
+		times[$(this).attr("id")]=null;
+		$(this).css("background-color", colors[$(this).attr("id")]);
+		$(this).stop();
 	});
 
 	// Enables dwell click for dynamically generated html folders
@@ -214,7 +257,6 @@ $(window).load(function() {
 		}
 		$(this).dwell(1000, true);
 	});
-	
 	// Binds back bar with dwell click
 	$("#left_bar li").dwell(1000, true);
 	// Dwell for bottom bar
@@ -222,7 +264,6 @@ $(window).load(function() {
 	// Dwell for next bar
 	$("#right_bar .side_button:first-of-type").dwell(1000, true);
 });
-
 	
 /*
 * start
@@ -405,19 +446,17 @@ function meta(name) {
     return '';
 }
 
-// Global variable to store picture info and album info
-var pic_data = {"photos":{"next":null,"data":{},"num":0,"loadMore":null},"albums":{"next":null,"data":{},"num":0,"loadMore":null},"photos_tagged":{"next":null,"data":{},"num":0,"loadMore":null}};
-
-// Global variable to store picture info albums
-var album_data = {};
-
 // Loads the preliminary info on the page when user first enters
 // Function that shows folders at top bar
 function renderApp(id) {
 	console.log('renderApp was called');
-	$("#folders").append("<div id='phot' class='outfold'><a href='/"+id+"/photos/photos'>Photos</a></div>");
-	$("#folders").append("<div id='photTag' class='outfold'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
-	$("#folders").append("<div id='alb' class='outfold'><a href='/"+id+"/photos/albums'>Albums</a></div>");
+	$("#folders").append("<button id='phot' class='outfold' data-all='/"+id+"/photos/photos'>Photos</button>");
+	$("#folders").append("<button id='photTag' class='outfold' data-all='/"+id+"/photos/photos_tagged'>Tagged Photos</button>");
+	$("#folders").append("<button id='alb' class='outfold' data-all='/"+id+"/photos/albums'>Albums</button>");
+
+	// $("#folders").append("<div id='phot' class='outfold'><a href='/"+id+"/photos/photos'>Photos</a></div>");
+	// $("#folders").append("<div id='photTag' class='outfold'><a  href='/"+id+"/photos/photos_tagged'>Tagged Photos</a></div>");
+	// $("#folders").append("<div id='alb' class='outfold'><a href='/"+id+"/photos/albums'>Albums</a></div>");
 }
 
 // Checks to see if nav bars should be displayed or not
@@ -558,6 +597,11 @@ function changeMeta(name, toChange){
 	$("meta[name="+name+"]").attr("content", toChange);
 }
 
+// Goes to the given url
+function goToUrl(url) {
+	window.location.href=url;
+}
+
 // Displays photo individually with comments and like data
 function goToPic(fold, id, folderID){
 	$("#frame").animate({
@@ -577,7 +621,12 @@ function goToPic(fold, id, folderID){
 	if(folderID!=undefined&&fold=="albums"){
 		data = album_data[folderID].pics[id];
 	}
-	var main_likes = data.likes.data.length;
+	
+	var main_likes ="";
+	console.log(data);
+	if(data.likes!=undefined){
+		main_likes = data.likes.data.length;
+	}
 	var main_likes_data="";
 	if(main_likes==1){
 		main_likes_data="<div class='like_container'><img src='/images/LikeButton.svg'> "+main_likes+" person likes this</div>";
@@ -587,7 +636,7 @@ function goToPic(fold, id, folderID){
 
 	$("#mainPhoto").empty();
 	$("#mainPhoto").show();
-	$("#mainPhoto").append("<img class='main_image' src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'>"+main_likes_data);
+	$("#mainPhoto").append("<div><img class='main_image' src='"+data.source+"' data-all='"+fold+","+id+","+folderID+"'></div>"+main_likes_data);
 
 	// Adds comments to picture 
 	var comment = "<ul class='comment_container'>";

@@ -76,7 +76,7 @@ li {
 }
 
 .inner_folder{
-	display: inline;
+	display: block;
 }
 
 .photos{
