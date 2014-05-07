@@ -37,15 +37,16 @@ $(window).load(function() {
 	});
 
 	// Shows comment form for pictures
-	$("#right_bar li:nth-of-type(2)").on("click", function(){
+	$("#nav_bar-comment").on("click", function(){
 		if(!shouldPause("bar")){
+			console.log("2nd clicked");
 			// Hides pause button so form won't submit weirdly
 			$("#left_bar li:last-of-type p").text("Pause Main Content");
 			$("#left_bar li:last-of-type").hide();
 			// Hides everything in the frame
 			$("#main_container:not(#keyboard_container)").hide();
 			// Hides all right side bar content (like, comment, next functionality)
-			$("#right_bar li:not(#keyboard_container)").hide();
+			$("#right_bar li").hide();
 			// Appends new right side bar content for submitting form
 			$("#right_bar ul").append("<li id='tmp_button'><div class='side_button'><img src='/images/page_framework/RightButton.svg'><p>Submit</p></div></li>");
 			// Appends form in new div
@@ -130,9 +131,10 @@ $(window).load(function() {
 
 	// Goes to next picture if looking at individual pictures when TOP 
 	//	nav bar on right is clicked (the one that sayd "next")
-	$("#right_bar li:first-of-type").click(function(){
+	$("#nav_bar-next").click(function(){
 		// If one picture is being displayed, as opposed to an album
 		if(!shouldPause("bar")){
+			console.log("here");
 			if(meta("one_pic")=="true"){
 				var data = $("#mainPhoto img").attr("data-all");
 				var data_lis = data.split(",");
@@ -180,7 +182,7 @@ $(window).load(function() {
 	});
 	
 
-	$("#right_bar li:last-of-type").on("click", function(){
+	$("#nav_bar-like").on("click", function(){
 		if(!shouldPause("bar")){
 			FB.api("/"+curr_pic+"/likes", "post",  function(response) {
 			});
@@ -262,7 +264,10 @@ $(window).load(function() {
 	// Dwell for bottom bar
 	$("#bottom_bar").dwell(1000, true);
 	// Dwell for next bar
-	$("#right_bar .side_button:first-of-type").dwell(1000, true);
+	$("#nav_bar-next").dwell(1000, true);
+	$("#nav_bar-like").dwell(1000, true);
+	$("#nav_bar-comment").dwell(1000, true);
+
 });
 	
 /*
@@ -698,7 +703,7 @@ function loadAlbumPosts(dataID){
 				$("#mainPhoto > .loadMore").html("DONENANANA");
 			}
 			if(meta("one_pic")=="true"){
-				$("#right_bar .side_button:first-of-type").click();
+				$("#nav_bar-next").click();
 			}
 		},"json");
 	}else{
@@ -753,7 +758,7 @@ function loadPosts(toAppend){
 				pic_data[toAppend].next=null;
 			}
 			if(meta("one_pic")=="true"){
-				$("#right_bar .side_button:first-of-type").click();
+				$("#nav_bar-next").click();
 			}			
 		},"json");
 	}else{
