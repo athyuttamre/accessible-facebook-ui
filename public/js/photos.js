@@ -115,6 +115,7 @@ $(window).load(function() {
 		}
 	});
 
+	// Pauses main / all content
 	$("#left_bar li:last-of-type").click(function(){
 		var nextMsg = getNextPause();
 		pause = nextMsg.search("Main")<0;

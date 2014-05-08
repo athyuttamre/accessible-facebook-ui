@@ -33,9 +33,10 @@ $(document).ready(function() {
 	$("#top_bar").dwell(1000, true);
 	
 	// Dwell for links on home page
-	$(".side_button_nav").on("mouseenter", ".description_link", function(e){
-		$(this).find("a").dwell(1000, true);
-	});
+	// $(".side_button_nav").on("mouseenter", ".description_link", function(e){
+	// 	$(this).find("a").dwell(1000, true);
+	// });
+
 	// Binds back bar with dwell click
 	$("#left_bar li").dwell(1000, true);
 	// Dwell for bottom bar
