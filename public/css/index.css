@@ -4,3 +4,7 @@
     border: 1px solid #aaa;
     color: #0000ff;
 }
+
+svg > path {
+	cursor: pointer;
+}
