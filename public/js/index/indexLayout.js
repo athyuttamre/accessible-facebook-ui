@@ -43,6 +43,8 @@ window.onload = function() {
     var ArrowWH = paper.width*0.027;
     //set arrows
     var nwArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.15, centerY-paper.width*0.183, ArrowWH, ArrowWH);
+    jQuery(nwArrow.node).prop('preserveAspectRatio').baseVal.align = 6;
+    jQuery(nwArrow.node).prop('preserveAspectRatio').baseVal.meetOrSlice = 1;
     var neArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.122, centerY-paper.width*0.183, ArrowWH, ArrowWH);
     var wArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.23, centerY-paper.width*0.013, ArrowWH, ArrowWH);
     var eArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.202, centerY-paper.width*0.013, ArrowWH, ArrowWH);
@@ -53,6 +55,13 @@ window.onload = function() {
     eArrow.transform("r180");
     swArrow.transform("r-50");
     seArrow.transform("r-130");
+    //preserve arrow svg aspect ratio
+    var arrowSet = paper.set();
+    arrowSet.push(nwArrow, neArrow, wArrow, eArrow, swArrow, seArrow);
+    arrowSet.forEach(function(e){
+        jQuery(e.node).prop('preserveAspectRatio').baseVal.align = 6;
+        jQuery(e.node).prop('preserveAspectRatio').baseVal.meetOrSlice = 1;
+    });
 
     //define main button paths
     var northWest = paper.path("M "+centerX+" "+centerY+" "/**/+left+" "+y1+" "/**/+left+" "+top+" "/**/+centerX+" "+top+" "/**/+centerX+" "+centerY+" z");
