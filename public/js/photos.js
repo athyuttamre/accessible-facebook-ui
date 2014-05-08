@@ -39,7 +39,6 @@ $(window).load(function() {
 	// Shows comment form for pictures
 	$("#nav_bar-comment").on("click", function(){
 		if(!shouldPause("bar")){
-			console.log("2nd clicked");
 			// Hides pause button so form won't submit weirdly
 			$("#left_bar li:last-of-type p").text("Pause Main Content");
 			$("#left_bar li:last-of-type").hide();
@@ -134,7 +133,6 @@ $(window).load(function() {
 	$("#nav_bar-next").click(function(){
 		// If one picture is being displayed, as opposed to an album
 		if(!shouldPause("bar")){
-			console.log("here");
 			if(meta("one_pic")=="true"){
 				var data = $("#mainPhoto img").attr("data-all");
 				var data_lis = data.split(",");
@@ -507,13 +505,13 @@ function getPhotos(id, toAppend, data, toUpload, toHide){
 			data.next=next;
 			data.loadMore="<button class='loadMore' style='display:none' onclick='loadPosts(\""+toAppend+"\")'>Load More</button>";
 			var firstID = arr[0].id;
-			if(next!=null||next!=undefined){
+			if(next!=null&&next!=undefined){
 				firstID = null;
 			}
 			var prevID = null;
 			for(var x in arr){
 				arr[x].my_previous = prevID;
-				arr[x].my_next = firstID;
+				arr[x].my_next = null;//firstID;
 				
 				if(prevID!=null){
 					data.data[prevID].my_next=arr[x].id;
@@ -571,13 +569,15 @@ function goToAlbum(dataID) {
 			var obj = {"next":next,"pics":{},"button":"<button class='loadMore' style='display:none' onclick='loadAlbumPosts(\""+dataID+"\")'>Load More</button>"}
 			$('#mainPhoto').append(obj.button);
 			var firstID=arr[0].id;
-			if(next!=null||next!=undefined){
+			if(next!=null&&next!=undefined){
 				firstID = null;
 			}
 			var prevID = null;
 			for(var x in arr){
 				arr[x].my_previous = prevID;
-				arr[x].my_next = firstID;
+
+				// HERE???
+				arr[x].my_next = null;// firstID;
 				if(prevID!=null){
 					obj["pics"][prevID].my_next=arr[x].id;
 				}
@@ -628,7 +628,6 @@ function goToPic(fold, id, folderID){
 	}
 	
 	var main_likes ="";
-	console.log(data);
 	if(data.likes!=undefined){
 		main_likes = data.likes.data.length;
 	}
@@ -686,7 +685,7 @@ function loadAlbumPosts(dataID){
 					firstID=response.data[pic].id;
 				}
 				response.data[pic].my_previous = prevID;
-				response.data[pic].my_next = firstID;
+				response.data[pic].my_next = null;//firstID;
 				if(prevID!=null){
 					album_data[dataID]["pics"][prevID].my_next = response.data[pic].id;
 				}
@@ -741,7 +740,7 @@ function loadPosts(toAppend){
 					firstID=response.data[pic].id;
 				}
 				response.data[pic].my_previous = prevID;
-				response.data[pic].my_next = firstID;
+				response.data[pic].my_next = null;//firstID;
 				if(prevID!=null){
 					pic_data[toAppend]["data"][prevID].my_next=response.data[pic].id;
 				}
