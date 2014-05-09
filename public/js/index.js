@@ -20,4 +20,6 @@ function start(FB) {
 		e.preventDefault();
 		logout();
 	})*/
+
+	// $('svg image').attr('preserveAspectRatio', true);
 }
