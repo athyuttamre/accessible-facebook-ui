@@ -13,18 +13,30 @@ body, html{
 	height: 100%;
 }*/
 #newsfeed{
-	margin: 3%;
+	max-height: 72%;
 }
-#from{
+#feedItem {
 	background-color: #e5e5e5;
-	padding: 20px;
+	padding: 10px 20px;
 	margin: 0 auto;
-	overflow: hidden;
+	overflow: auto;
 }
+
+#loading {
+	vertical-align: middle;
+	display: block;
+	position: relative;
+	margin: auto;
+	height: 30px;
+	width: 30px;
+	margin: auto;
+	top: 30px;
+}
+
 #image img {
- height:auto;
+ max-height: 300px;
  width:auto;
- margin: 5px;
+ margin: 5px 0px;
 
 }
 #from div {
@@ -39,7 +51,7 @@ body, html{
 #from_photo img{
 	height: 80px;
 	float: left;
-	margin: 8px;
+	margin: 8px 0px;
 	float: left;
 /*	position:absolute;
 	clip:rect(0px,60px,200px,0px);
@@ -52,12 +64,14 @@ body, html{
 	margin-top: 45px;
 	margin-left: 20px;
 }
-#refresh{
+
+#refresh {
 	display: none;
 }
+
 #message{
 	clear: both;
-	padding: 5px;
+	padding: 5px 0px;
 	background-color: #e5e5e5;
 }
 /*#image img{
@@ -65,16 +79,20 @@ body, html{
 	margin: 10px;
 	border: 2px red solid;
 }*/
-#image{
-	background-color: #e5e5e5;
-}
+
 #story{
 	clear: both;
 	color: gray;
 	font-size: 14px;
-	padding: 5px;
+	padding: 5px 0px;
 }
+
 #description{
-	padding: 5px;
+	padding: 5px 0px;
 	background-color: #e5e5e5;
+}
+
+#likes {
+	margin: 5px 0px;
+	color: #4860a5;
 }
