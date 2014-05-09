@@ -95,7 +95,7 @@ function start(FB) {
 				callback(JSON.parse(content));
 			}
 			else {
-				alert(message);
+				console.log(message);
 			}
 		});
 
@@ -103,6 +103,7 @@ function start(FB) {
 	}
 
 	function renderItem(index) {
+		$('#loading').hide();
 		var item = feedItems[index];
 		console.log("Rendering item " + index);
 		console.log(item);
@@ -126,6 +127,8 @@ function start(FB) {
 			});
 		}
 
+		renderLikes(item);
+
 		var story = (item.story) ? item.story : "";
 		var description = (item.description) ? item.description : "";
 		var message = (item.message) ? item.message : "";
@@ -135,7 +138,7 @@ function start(FB) {
 			picture = picture.substring(0, picture.length - 5) + "n.jpg";
 		}
 
-		console.log('PICTURE '+picture);
+		console.log('PICTURE ' + picture);
 
 		$("#from").html(from.name);
 		$("#story").html(story);
@@ -148,22 +151,76 @@ function start(FB) {
 		//dynamically formats image
 		// var w = '600px';
 		// var h = '480px';
-		var w = (window.innerWidth * .6).toString()+'px';
-		var h = (window.innerHeight * .4).toString()+'px';
-		// var w2 = (window.innerWidth * .4).toString()+'px';
-		var h2 = (window.innerHeight * .6).toString()+'px';
+		
+		// var w = (window.innerWidth * .6).toString()+'px';
+		// var h = (window.innerHeight * .4).toString()+'px';
+		// // var w2 = (window.innerWidth * .4).toString()+'px';
+		// var h2 = (window.innerHeight * .6).toString()+'px';
 
-		$('#from').css('height', h2);
-		$('#image > img').css('max-height', h);
-		$('#from').css('width', w);
-		$('#image > img').css('max-width', w);
-		console.log('heigt: '+h);
+		// $('#from').css('height', h2);
+		// $('#image > img').css('max-height', h);
+		// $('#from').css('width', w);
+		// $('#image > img').css('max-width', w);
+		// console.log('height: '+h);
 
 		// if(picture){
 		// 	$('#image > img').css('min-height', h2);
 		// 	$('#image > img').css('min-width', w2);
 		// }
 		
+	}
+
+	function renderLikes(item) {
+		if(item.likes) {
+			FB.api(
+			    "/" + currentItemID + "/likes?summary=true",
+			    function (response) {
+			      if (response && !response.error) {
+			        var likes = response;
+			        console.log(likes);
+			        var total_count = likes.summary.total_count;
+
+			        var likesText = "";
+
+			        if(likes.data.length > 3) {
+			        	for(var i = 0; i < 3; i++) {
+			        		likesText += likes.data[i].name;
+			        		if(i != 2) likesText += ", ";
+			        	}
+
+			        	var leftoverLikes = total_count - 3;
+			        	likesText += " and " + leftoverLikes;
+
+			        	if(leftoverLikes == 1) likesText += " other person like this post.";
+			        	else likesText += " others like this post.";
+			        } else {
+			        	if(likes.data.length == 1) {
+			        		likesText += likes.data[0].name + " likes this post.";
+			        	} else if(likes.data.length == 2) {
+			        		likesText += likes.data[0].name + " and " + likes.data[1].name + " like this post.";
+			        	} else {
+			        		for(var i = 0; i < likes.data.length; i++) {
+				        		if(i != likes.data.length - 1) {
+				        			likesText += likes.data[i].name + ", ";
+				        		} else {
+				        			likesText += " and " + likes.data[i].name + " like this post.";
+				        		} 
+				        	}
+			        	}
+			        }
+
+			        $("#likes").html(likesText);
+			      }
+			      else {
+			      	console.log("Error retrieving likes.")
+			      	$("#likes").html("");
+			      	console.log(response);
+			      }
+			    }
+			);
+		} else {
+			$('#likes').html("");
+		}
 	}
 
 	$('#like').click(function(e) {
@@ -173,6 +230,7 @@ function start(FB) {
 			if(response && !response.error) {
 				console.log("Succesfully liked post " + postID);
 				console.log(response);
+				renderLikes(feedItems[currentItemIndex]);
 			} else {
 				console.log("Error in liking.");
 				console.log(response);
