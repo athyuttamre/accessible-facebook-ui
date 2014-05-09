@@ -84,6 +84,7 @@ body {
   text-align: center;
   background-color: #4860a5;
   opacity: .4;
+  min-height: 55px;
   z-index: 10000000;
 }
 #top_bar img,
