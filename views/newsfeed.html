@@ -20,7 +20,7 @@
                     </div>
                 </li>
                 <li>
-                    <div class='side_button'>
+                    <div id='back_button' class='side_button'>
                         <img src="images/page_framework/LeftButton.svg">
                         <p>Back</p>
                     </div>
@@ -43,6 +43,12 @@
 				</header>
 
 				<div id='newsfeed'>
+                    <div id='commentBox'>
+                        <form id='comment_form'>
+                            <textarea id='form_input' type='text' name='status' autocomplete='off' placeholder="Leave a comment..."></textarea>
+                            <!--<input id='form_button' type='submit'>-->
+                        </form>
+                    </div>
 					<div id='feedItem'>
                         <img id='loading' src='images/loading.gif'/>
 						<div id='from'>
@@ -74,6 +80,12 @@
                         <img src="images/CommentIcon.png">
                         <p>Comment</p>
                     </div>                    
+                </li>
+                <li>
+                    <div id='submitComment' class='side_button'>
+                        <img src="images/page_framework/RightButton.svg">
+                        <p>Submit</p>
+                    </div> 
                 </li>
             </ul>
         </div>

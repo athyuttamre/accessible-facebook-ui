@@ -96,3 +96,11 @@ body, html{
 	margin: 5px 0px;
 	color: #4860a5;
 }
+
+#commentBox {
+	display: none;
+}
+
+#submitComment {
+	display: none;
+}

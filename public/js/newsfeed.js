@@ -45,8 +45,6 @@ function start(FB) {
 	})	
 
 
-
-
 	FB.api('/me', function(response) {
 				user = response;
 				console.log('Doing this in newsfeed.js, ' + response.name + '.');
@@ -236,6 +234,44 @@ function start(FB) {
 				console.log(response);
 			}
 		})
+	});
+
+	$('#comment').click(function(e) {
+		e.preventDefault();
+		$('#feedItem, #top_bar, #bottom_bar, #like, #comment').hide();
+		$('#commentBox, #submitComment').show();
+		
+		$('#back_button').click(function() {
+			$('#feedItem, #top_bar, #bottom_bar, #like, #comment').show();
+			$('#commentBox, #submitComment').hide();
+			$(this).click(function() {
+				parent.history.back();
+			});
+		});
+	});
+
+	$('#submitComment').dwell(1000, true);
+	$('#submitComment').click(function(e) {
+		e.preventDefault();
+		$('#comment_form').submit();
+	})
+
+	$('#comment_form').submit(function(e) {
+		e.preventDefault();
+		var commentBody = $('#form_input').val();
+		console.log("Attempting to comment '" + commentBody +"'...");
+
+		FB.api("/" + currentItemID + "/comments", "post", {message:commentBody},  function(response) {
+			if(response && !response.error) {
+				console.log("Succesfully posted comment.");
+				console.log(response);
+			} else {
+				console.log("Error posting comment!");
+				console.log(response);
+			}
+		});
+
+		$(this).val("");
 	});
 
 	$('.next').dwell(1000, true);
