@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="Converse.js: A chat client for your website" />
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="converse.css">
+    <!--<script data-main="main" src="components/requirejs/require.js"></script>-->
+    <script src="builds/converse.min.js"></script>
+    <title>Converse.js</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/jcbrand/converse.js">View on GitHub</a>
+        <h1 id="project_title"><a href="http://conversejs.org">Converse.js</a></h1>
+        <h2 id="project_tagline">An XMPP chat client for your website</h2>
+        <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/jcbrand/converse.js/releases">Download</a>
+        </section>
+    </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+
+    <p><strong>Converse.js</strong> is an open source webchat client, that
+    runs in the browser and can be integrated into any website.</p>
+
+    <p>It's similar to <a href="https://www.facebook.com/sitetour/chat.php" target="_blank">Facebook chat</a>, but also supports multi-user chatrooms.</p>
+
+    <p><em>Converse.js</em> can connect to any accessible <a href="http://xmpp.org" target="_blank">XMPP/Jabber</a> server, either from a public provider such as <a href="http://jabber.org">jabber.org</a>, or to one you have set up yourself.</p>
+
+    <p>It's possible to enable single-site-login, whereby users already authenticated in your website will also automatically be logged in on the chat server,
+    but you will have to pre-authenticate them on your server. You can refer to the <a href="/docs/html/index.html">documentation</a> for more
+    info.</p>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Single-user chat</li>
+        <li>Multi-user chat in chatrooms (<a href="http://xmpp.org/extensions/xep-0045.html" target="_blank">XEP 45</a>)</li>
+        <li>vCard support (<a href="http://xmpp.org/extensions/xep-0054.html" target="_blank">XEP 54</a>)</li>
+        <li>Service discovery (<a href="http://xmpp.org/extensions/xep-0030.html" target="_blank">XEP 30</a>)</li>
+        <li>Contact rosters</li>
+        <li>Manually or automically subscribe to other contacts</li>
+        <li>Accept or decline contact requests</li>
+        <li>Roster item exchange (<a href="http://xmpp.org/extensions/tmp/xep-0144-1.1.html" target="_blank">XEP 144</a>)</li>
+        <li>Chat statuses (online, busy, away, offline)</li>
+        <li>Custom status messages</li>
+        <li>Typing notifications</li>
+        <li>Third person messages (/me )</li>
+        <li>Translated into multiple languages  (af, de, en, es, fr, he, hu, id, it, ja, nl, pt_BR, ru)</li>
+        <li>Off-the-record encryption (via <a href="http://arlolra.github.io/otr/" target="_blank">OTR.js</a>)</li>
+    </ul>
+
+    <h2>Screencasts</h2>
+    <ul>
+        <li><a href="http://opkode.com/media/blog/instant-messaging-for-plone-with-javascript-and-xmpp" target="_blank">Screencast 1</a>:
+            Integrated into a Plone site via <strong>collective.xmpp.chat</strong>.
+        </li>
+        <li><a href="http://opkode.com/media/blog/2013/04/02/converse.js-xmpp-instant-messaging-with-javascript" target="_blank">Screencast 2</a>:
+            A static webpage with <em>Converse.js</em>. Here we chat to external XMPP accounts on Jabber.org and Gmail.
+        </li>
+        <li><a href="https://opkode.com/media/blog/2013/11/11/conversejs-otr-support" target="_blank">Screencast 3</a>:
+            Off-the-record encryption in <em>Converse.js</em> 0.7.
+        </li>
+    </ul>
+
+    <h2>Integration into other frameworks</h2>
+    <ul>
+        <li><h4><a href="http://plone.org" target="_blank">Plone</a></h4>
+            <strong><a href="http://github.com/collective/collective.xmpp.chat" target="_blank">collective.xmpp.chat</a></strong>
+            is an add-on for Plone that uses <em>Converse.js</em>.
+            Together with <a href="http://github.com/collective/collective.xmpp.core" target="_blank">collective.xmpp.core</a>, it provides for single-signon-support (SSO)
+            and also enables you to manually or automatically
+            register your Plone users onto your XMPP server.
+        </li>
+        <li><h4><a href="http://www.djangoproject.com" target="_blank">Django</a></h4>
+            <strong><a href="https://pypi.python.org/pypi/django-conversejs" target="_blank">django-conversejs</a></strong> is an app that makes it easer to integrate <em>Converse.js</em>
+            into Django. It adds single-signon-support (SSO) support and a database model to store XMPP credentials.
+        </li>
+        <li><h4><a href="http://roundcube.net" target="_blank">Roundcube</a></h4>
+            <strong><a href="https://github.com/priyadi/roundcube-converse.js-xmpp-plugin" target="_blank">roundcube-converse.js-xmpp-plugin</a></strong> is a plugin for Roundcube Webmail.
+        </li>
+
+        <li><h4><a href="http://wordpress.org" target="_blank">Wordpress</a></h4>
+            Here's the <strong><a href="http://wordpress.org/plugins/conversejs" target="_blank">ConverseJS</a></strong> plugin for Wordpress.
+        </li>
+    </ul>
+
+    <p>If you have integrated <em>Converse.js</em> into any other CMS or framework,
+    <a href="http://opkode.com/contact.html" target="_blank">please let me know</a> and I'll mention it on this page.</p>
+
+    <h2>Demo</h2>
+    <p>You can log in with any existing XMPP account. There is also a list of public XMPP providers on <a href="http://xmpp.net" target="_blank">xmpp.net</a>.</p>
+
+    <h3>Is it secure?</h3>
+    <p>
+        Yes, barring any undiscovered security holes and as long as you can trust that the Javascript being downloaded is
+        not tampered with. Its therefore important to serve your pages encrypted with <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a>.
+    </p>
+    <p> 
+        <em>Converse.js</em> itself makes encrypted HTTPS requests to a <em>connection manager</em>, which will make an 
+        SSL/TLS encrypted connection to an XMPP server (if the server supports it).
+    </p>
+    <p>
+        Logging in happens via <a href="https://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer">SASL</a>.
+    </p>
+    <p>
+        That said, the developers don't assume any liability for any loss or damages as a result of using this software or demo. Use at your own risk. 
+    </p>
+
+    <h3>Session support</h3>
+    <p>
+        The chat client will disconnect whenever you reload the page. If you
+        want the user's session to persist across page reloads, you can
+        establish an authenticated connection on the server side and then attach to
+        this connection in your browser.
+   </p>
+    <p><em>Converse.js</em> already supports this usecase, but you'll have to do some integration work yourself.</p>
+
+
+    <h2>Documentation</h2>
+    <p>
+        The documentation is included in the source download under the <em>docs</em>
+        folder, or <a href="/docs/html/index.html" target="_blank">can be read online</a>.
+    </p>
+
+    <h2>Tests</h2>
+    <p>
+        We use the <a href="http://pivotal.github.io/jasmine" target="_blank">Jasmine</a> testing framework to write tests.
+        Tests can be run in the browser (just open tests.html) or in the
+        commandline via ``grunt test``.
+    </p>
+
+    <h2>Credits and Dependencies</h2>
+    <p><strong>Converse.js</strong> depends on a few third party libraries, including:</p>
+    <ul>
+        <li><a href="http://jquery.com" target="_blank">JQuery</a></li>
+        <li><a href="http://strophe.im/strophejs" target="_blank">strophe.js</a></li>
+        <li><a href="http://backbonejs.org" target="_blank">backbone.js</a></li>
+        <li><a href="http://arlolra.github.io/otr/" target="_blank">OTR.js</a></li>
+        <li><a href="http://requirejs.org" target="_blank">require.js</a> (optional dependency)</li>
+    </ul>
+
+    <h2>Licence</h2>
+    <p><strong>Converse.js</strong> is released under both the <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT</a> 
+    and <a href="http://opensource.org/licenses/GPL-2.0" target="_blank">GPL</a> licenses.</p>
+
+    <h2>Tips</h2>
+    <p><strong>Bitcoin address:</strong> 16FsPqE9DhFTryxrUenpsGX4LJ1TPu8GqS</p>
+
+    <h2>Contact</h2>
+    You can:
+    <ul>
+        <li>Follow me on <a href="http://twitter.com/jcopkode" target="_blank">Twitter</a></li>
+        <li>Chat with me via XMPP: <a href="xmpp:jc@opkode.com" class="xmpp JSnocheck" title="XMPP/Jabber">jc@opkode.com</a></li>
+    <ul>
+    <p>
+        For <strong>support queries</strong>, please write to the mailing list: <a href="mailto:conversejs@librelist.com">conversejs@librelist.com</a>
+    </p>
+    <p>
+        Please <a target="_blank" href="https://github.com/jcbrand/converse.js/issues">file <strong>bugs</strong> on Github</a>.
+    </p>
+    <p>
+        I'm available for special features and consulting work. Please <a href="http://opkode.com/contact" target="_blank">contact me here</a>.
+    </p>
+</section>
+</div>
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+    <footer class="inner">
+    <p class="copyright">Converse.js created by <a href="http://opkode.com" target="_blank">jcbrand</a></p>
+    </footer>
+</div>
+
+<div id="conversejs"></div>
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">try { var pageTracker = _gat._getTracker("UA-2128260-8"); pageTracker._trackPageview(); } catch(err) {}</script>
+</body>
+
+<script>
+    require(['converse'], function (converse) {
+        converse.initialize({
+            allow_otr: true,
+            auto_list_rooms: false,
+            auto_subscribe: false,
+            bosh_service_url: 'https://bind.opkode.im', // Please use this connection manager only for testing purposes
+            debug: true ,
+            hide_muc_server: false,
+            i18n: locales['en'], // Refer to ./locale/locales.js to see which locales are supported
+            prebind: false,
+            show_controlbox_by_default: true,
+            xhr_user_search: false,
+        });
+    });
+</script>
+</html>

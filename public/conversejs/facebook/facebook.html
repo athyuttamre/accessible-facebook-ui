@@ -1,0 +1,104 @@
+<html>
+<head>
+<script src="http://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="strophe.min.js" type="text/javascript"></script>
+<script src="facebook.js" type="text/javascript"></script>
+<script>
+// var BOSH_SERVICE = 'http://localhost:8273/xmpp-httpbind'
+var BOSH_SERVICE = 'http://bind.conversejs.org';
+var connection = null;
+
+function log(msg) 
+{
+    $('#log').append('<div></div>').append(document.createTextNode(msg));
+}
+
+function rawInput(data)
+{
+    log('RECV: ' + data);
+}
+
+function rawOutput(data)
+{
+    log('SENT: ' + data);
+}
+
+function onConnect(status)
+{
+    if (status == Strophe.Status.CONNECTING) {
+	log('Strophe is connecting.');
+    } else if (status == Strophe.Status.CONNFAIL) {
+	log('Strophe failed to connect.');
+	$('#connect').get(0).value = 'connect';
+    } else if (status == Strophe.Status.DISCONNECTING) {
+	log('Strophe is disconnecting.');
+    } else if (status == Strophe.Status.DISCONNECTED) {
+	log('Strophe is disconnected.');
+	$('#connect').get(0).value = 'connect';
+    } else if (status == Strophe.Status.CONNECTED) {
+	log('Strophe is connected.');
+	connection.disconnect();
+    }
+}
+
+$(document).ready(function () {
+	var access_token;
+	FB.init({
+            appId      : '345255002170399',
+            status     : true, 
+            cookie     : true,
+            xfbml      : true,
+            oauth      : true,
+    });
+          
+    FB.login(function (response) {
+        console.log(response);
+		if (response.authResponse) {
+			access_token = response.authResponse.accessToken;
+			console.log(access_token);
+		} else {
+			alert('User is logged out');
+		}
+	});
+          
+    connection = new Strophe.Connection(BOSH_SERVICE);
+    connection.rawInput = rawInput;
+    connection.rawOutput = rawOutput;
+
+    $('#connect').bind('click', function () {
+	var button = $('#connect').get(0);
+	if (button.value == 'connect') {
+	    button.value = 'disconnect';
+
+		connection.facebookConnect($('#jid').get(0).value,
+					onConnect,
+					300,
+					1,
+					'345255002170399' , /*app id*/
+					'098f4361f4d30f6c0e658b1a6d98319d',/*secret key*/
+					access_token);
+	} else {
+	    button.value = 'connect';
+	    connection.disconnect();
+	}
+    });
+});
+</script>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<div id='login' style='text-align: center'>
+      <form name='cred'>
+        <label for='jid'>JID:</label>
+        <input type='text' id='jid'>
+        <label for='pass'>Password:</label>
+        <input type='password' id='pass'>
+        <input type='button' id='connect' value='connect'>
+      </form>
+    </div>
+    <hr>
+    <div id='log'></div>
+</body>
+</html>

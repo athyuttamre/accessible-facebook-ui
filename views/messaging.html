@@ -1,24 +1,128 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	    <title>Messaging | Accessible Facebook UI</title>
-	    <!--Meta Tags-->
-	    <!--CSS-->
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="Converse.js: A chat client for your website" />
 
-	    <link rel='stylesheet' type='text/css' href='css/main.css'/>
-	    <!-- <link rel='stylesheet' type='text/css' href='css/messaging.css'> -->
-	</head>
-	
-	<body>
-		<div id='fb-root'></div>
-		<header>
-			<h1>Messaging</h1>
-		</header>
-	</body>
-	
-	<!--Scripts-->
-	<script type='text/javascript' src='js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='js/messaging.js'></script>
-	<script type='text/javascript' src='js/login.js'></script>
-    <script type='text/javascript' src='js/main.js'></script>
+    <!-- CSS -->
+
+<!-- COMMENT THESE OUT -->
+<!--     <link rel="stylesheet" type="text/css" media="screen" href="conversejs/stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="conversejs/converse.css">  -->
+<!-- ^^^^^^^^ -->
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/page_framework.css">
+   <link rel="stylesheet" type="text/css" media="screen" href="css/messaging.css">
+
+    <!-- SCRIPTS -->
+
+
+    <!-- Strophe Facebook Plugin -->
+	<script type='text/javascript' src='conversejs/facebook/strophe.min.js'></script>
+	<!-- Require.JS -->
+    <!-- // <script data-main='conversejs/main' src='conversejs/components/requirejs/require.js'></script> -->
+    <!-- min.js Build file (of Converse.js) -->
+    <script src='conversejs/builds/converse.min.js'></script>
+    
+    <!-- LiveQuery plugin for JQuery -->
+    <!--AccessibleFacebookUI Scripts (public)-->
+    <script type='text/javascript' src='js/jquery/jquery.js'></script>
+
+    <!-- Global js files -->
+     <script type='text/javascript' src='js/login.js'></script>
+     <script type='text/javascript' src='js/main.js'></script>
+
+    <!-- JS File for messaging.html -->
+    // <script type='text/javascript' src='js/messaging.js'></script>
+    <!-- // <script src="abby_js.js"></script> -->
+
+    <title> Messaging </title>
+</head>
+
+<body>
+    <div id='fb-root'></div>
+	 <div id='left_bar'> 
+	    <ul class='bar_content'>
+	        <li>
+	            <div class='side_button_back' id='back_full_convo'>
+	                <img src="images/page_framework/LeftButton.svg">
+	                <p>Back full convo</p>
+	            </div>
+	        </li>
+	         <li>
+	            <div class='side_button_back' id = 'back_reply'>
+	                <img src="images/page_framework/LeftButton.svg">
+	                <p>Back reply</p>
+	            </div>
+	        </li>
+	    </ul>
+	</div>
+
+
+
+<!--                     <div class='side_button'>
+                        <img src="/images/page_framework/LeftButton.svg">
+                        <p>Home</p>
+                    </div>
+                </li>
+                <li>
+                    <div class='side_button'>
+                        <img class='LeftButton' src="images/page_framework/LeftButton.svg">
+
+                        <p>Back</p>
+                    </div>
+                </li> -->
+
+
+
+
+	<div id='container'>
+	    <div id='top_bar'>
+	        <img src="images/page_framework/WhiteTopButton.svg">
+	    </div>
+
+	    <div id='bottom_bar'>
+	        <img src="images/page_framework/WhiteBottomButton.svg">
+	    </div>
+
+	    <div id='frame'>
+
+			<!-- FRAME CODE START -->
+	        <!-- THIS IS THE CHAT WINDOW -->
+	        <div id="conversejs">
+	        </div>
+	        <script type="text/javascript">
+	            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	        </script>
+	        <script type="text/javascript">try { var pageTracker = _gat._getTracker("UA-2128260-8"); pageTracker._trackPageview(); } catch(err) {}</script>
+			<!-- FRAME CODE END -->
+
+	   </div>
+	</div>
+
+	<div id='right_bar'>
+	    <ul class='bar_content'>
+	<!--                     <div class='compose_button'>
+	                <img src='images/page_framework/RightButton.svg'>
+	                    <p>Reply</p>
+	            </div>;   -->
+	        <li>     
+	            <div id='compose_button'>
+	                <img src='images/page_framework/RightButton.svg'>
+	                    <p>Reply</p>
+	            </div>
+	        </li>
+	        <li>
+	            <div id='post_button'>
+	                <img src='images/page_framework/RightButton.svg'>
+	                <p>post</p>
+	            </div>
+	        </li>
+	    </ul>
+	</div>
+</body>
 </html>

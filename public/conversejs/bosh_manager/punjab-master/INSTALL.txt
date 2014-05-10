@@ -1,0 +1,73 @@
+=================
+INSTALLING PUNJAB
+=================
+
+This document contains instructions on installing punjab
+on your system.
+
+-------------
+Obtaining Punjab
+-------------
+
+Punjab can be located at the punjab web site,
+
+   http://github.com/twonds/punjab
+
+You can also download an ubuntu package at the following URL:
+
+https://launchpad.net/~karjala/+archive/jabber
+
+
+-------------
+Dependencies
+-------------
+
+Please make sure all dependencies are met before submitting a troubleshooting question.
+
+- Python 2.6>=
+
+- Twisted 11.1>=
+    http://twistedmatrix.com/
+
+- pyopenssl - if you want tls to work.
+
+- A jabber server like jabberd2
+
+
+-------------
+Installing Punjab
+-------------
+
+1. Untar the current punjab-X.X.tar.gz file in a directory you would
+   like punjab to reside.
+
+shell>tar vxzf punjab-X.X.tar.gz
+
+2. Run setup to install
+
+shell>python setup.py install
+
+3. Run punjab
+
+shell>twistd punjab
+
+Run "twistd punjab --help" for options.
+
+4. HAVE FUN!!
+
+
+
+---------------------------
+Extending Punjab
+---------------------------
+
+You are able to extend punjab in many ways.
+
+For configuration flexibility you can use a .tac file. See punjab.tac for
+details.
+
+-------------
+Support
+-------------
+
+ http://github.com/twonds/punjab

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="Converse.js: A chat client for your website" />
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="converse.css">
+
+<!-- I ADDED THIS SCRIPT LINE -->
+    <script data-main="main" src="components/requirejs/require.js"></script>
+    <script src="builds/converse.min.js"></script>
+
+    <!--AccessibleFacebookUI Scripts (public)-->
+    <script type='text/javascript' src='../js/jquery/jquery.js'></script>
+    <script type='text/javascript' src='../js/messaging.js'></script>
+    <script type='text/javascript' src='../js/login.js'></script>
+    <script type='text/javascript' src='../js/main.js'></script>
+
+    <title> Messaging: Converse.js </title>
+</head>
+
+<body>
+
+<!-- THIS IS THE CHAT WINDOW -->
+<div id="conversejs">
+</div>
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">try { var pageTracker = _gat._getTracker("UA-2128260-8"); pageTracker._trackPageview(); } catch(err) {}</script>
+</body>
+<!-- <script>
+    require(['converse'], function (converse) {
+        converse.initialize({
+            allow_otr: true,
+            auto_list_rooms: false,
+            auto_subscribe: false,
+//// I added this connection manager from Punjab
+            // bosh_service_url: "localhost:5280",
+            // bosh_service_url: 'https://bind.opkode.im', 
+            bosh_service_url: 'https://bind.conversejs.org/',
+//////^^^^
+            // Please use this connection manager only for testing purposes
+            debug: true ,
+            hide_muc_server: false,
+            i18n: locales['en'], // Refer to ./locale/locales.js to see which locales are supported
+            prebind: false,
+            show_controlbox_by_default: true,
+            xhr_user_search: false,
+        });
+    });
+</script> -->
+</html>
