@@ -42,14 +42,14 @@ window.onload = function() {
     //set arrow width/height
     var ArrowWH = paper.width*0.027;
     //set arrows
-    var nwArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.15, centerY-paper.width*0.183, ArrowWH, ArrowWH);
+    var nwArrow = paper.image("../../images/indexImages/LeftButton.svg", centerX-paper.width*0.15, centerY-paper.width*0.183, ArrowWH, ArrowWH);
     jQuery(nwArrow.node).prop('preserveAspectRatio').baseVal.align = 6;
     jQuery(nwArrow.node).prop('preserveAspectRatio').baseVal.meetOrSlice = 1;
-    var neArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.122, centerY-paper.width*0.183, ArrowWH, ArrowWH);
-    var wArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.23, centerY-paper.width*0.013, ArrowWH, ArrowWH);
-    var eArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.202, centerY-paper.width*0.013, ArrowWH, ArrowWH);
-    var swArrow = paper.image("../../images/indexImages/leftButton.svg", centerX-paper.width*0.15, centerY+paper.width*0.155, ArrowWH, ArrowWH);
-    var seArrow = paper.image("../../images/indexImages/leftButton.svg", centerX+paper.width*0.122, centerY+paper.width*0.155, ArrowWH, ArrowWH);
+    var neArrow = paper.image("../../images/indexImages/LeftButton.svg", centerX+paper.width*0.122, centerY-paper.width*0.183, ArrowWH, ArrowWH);
+    var wArrow = paper.image("../../images/indexImages/LeftButton.svg", centerX-paper.width*0.23, centerY-paper.width*0.013, ArrowWH, ArrowWH);
+    var eArrow = paper.image("../../images/indexImages/LeftButton.svg", centerX+paper.width*0.202, centerY-paper.width*0.013, ArrowWH, ArrowWH);
+    var swArrow = paper.image("../../images/indexImages/LeftButton.svg", centerX-paper.width*0.15, centerY+paper.width*0.155, ArrowWH, ArrowWH);
+    var seArrow = paper.image("../../images/indexImages/LeftButton.svg", centerX+paper.width*0.122, centerY+paper.width*0.155, ArrowWH, ArrowWH);
     nwArrow.transform("r50");
     neArrow.transform("r130");
     eArrow.transform("r180");
