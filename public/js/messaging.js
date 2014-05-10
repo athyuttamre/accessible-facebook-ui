@@ -91,7 +91,7 @@ var id='';
 	});
 
 	// Catches event triggered by Post button click
-	// $('textarea.chat-textarea').dwell(1000, true);
+	$('textarea.chat-textarea').dwell(1000, true);
 	$('textarea.chat-textarea').keypress(function(e){
 		chatBoxView.keyPressed(e);
 	});	
@@ -274,9 +274,11 @@ function refactor2(message, id){
 	if(count === 0){
 		count++;
 		styleStart(); //ADDED FRIDAY 3:30
+		$.getScript('js/keyboard.js');
+		$('#keyboard li').dwell(1000, true);
+
 	}
 
-	$.getScript('js/keyboard.js');
 
 
 }
