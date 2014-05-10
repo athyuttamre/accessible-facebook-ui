@@ -4,21 +4,22 @@ Accessible Facebook UI
 An accessible reimplementation of Facebook's core functions, designed to work with eye-tracking technology.
 
 ### Contents
-- Intro
-- Global Features
+Intro
+Global Features
 	- Server
 	- Dwell
-- Login
-- Homepage
-- Newsfeed
-- Messaging
-- Status
-- Profile
-- Photos
-- Logout
-- Future Features
-- Bugs
-- Credits
+Pages	
+	- Login
+	- Homepage
+	- Newsfeed
+	- Messaging
+	- Status
+	- Profile
+	- Photos
+	- Logout
+Future Features
+Bugs
+Credits
 
 ### Intro
 The Accessible Facebook UI project is a collaboration between students of CS132 at Brown University and the SpeakYourMind Foundation. It provides a simpler user interface for Facebook that can be controlled by eye-trackers, and uses dwell-click technology. The target users are clients with disabilities that force them to use eye-tracking software to navigate computer systems.
@@ -74,29 +75,26 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 ### Photos
 
 ### Future Features
-- Chat only works with 
-- Compose a new message
-- Instant messaging only so you only see the messages you only get in a certain session.
+Messaging: Compose a new message
+Messaging: Instant messaging only so you only see the messages you only get in a certain session.
+Messaging: We want to use our own node.js server as a BOSH server; right now we still use Converse.JS's test BOSH servier bind.converse.org
+Search
+Friend Requests
+Newsfeed: Reading comments on newsfeed
 
 ### Bugs
 - Blurry photos for Chat
 - If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
 
 ### Credits
-- Elyse McManus
-- Abby Moses
-- Athyuttam Reddy
-- Matt Sanders
-	- Designed interface
-	- Coded Homepage
-	- Created icons
-	- Ongoing design of global features
-- Michael Weinstein
-
-The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
-
 - Abigail Moses (abigail_moses@brown.edu)
 - Athyuttam Eleti (athyuttam_eleti@brown.edu)
 - Elyse McManus (elyse_mcmanus@brown.edu)
 - Matt Sanders (msanders@risd.edu)
+	- Designed interface
+	- Coded Homepage
+	- Created icons
+	- Ongoing design of global features
 - Michael Weinstein (michael_weinstein@brown.edu)
+
+The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
