@@ -11,7 +11,7 @@ var id='';
 	$('.side_button').on('click', function(){
 		// frame
 		$('.side_button').hide();
-		$('.border-div').hide();
+		// $('.border-div').hide();
 		$('.chatbox').hide();
 		$('.chat-message').show();
 		$(this).parent().css('display', 'block');
@@ -21,16 +21,18 @@ var id='';
 		//buttons
 		$('#compose_button').show();
 		$('#back_full_convo').show();
+		$('#back_home').hide()
 	})
 	$('#back_full_convo').dwell(1000, true);
 	$('#back_full_convo').on('click', function(){
 		$('.side_button').show();
-		$('.border-div').show();
+		// $('.border-div').show();
 		$('.chatbox').show();
 		$('.chat-message').hide();
 
 		$('#compose_button').hide();
 		$('#back_full_convo').hide();
+		$('#back_home').show()
 
 	})
 
@@ -67,19 +69,20 @@ var id='';
 		//burrons
 		$('#compose_button').show();
 		$('#back_full_convo').show();
+		$('#back_home').hide()
 		$('#back_reply').hide();
 		$('#post_button').hide();			
 	});
 
 	$('#back_home').dwell(1000, true);
 	$('#back_home').on('click', function(){
-		// goto('index');
+		goto('index');
 	})
 
 	/* Posting a message */
 
 	//Post button click
-	// $('#post_button').dwell(1000, true);
+	$('#post_button').dwell(1000, true);
 	$('#post_button').on('click', function(){
 		console.log('Posting message (emitting keypress event)');
 		var e = jQuery.Event("keypress", {keyCode: 13});
@@ -219,9 +222,9 @@ function refactor2(message, id){
 	if(count === 0){	
 		//And get ourselves set up
 	    $(".chat-content").before("<br>");
-		$('.chatbox').after('<div class="border-div"></div>');
-		$('.border-div:first').css('display', 'none');
-		$('.border-div:last').css('display', 'none');
+		// $('.chatbox').after('<div class="border-div"></div>');
+		// $('.border-div:first').css('display', 'none');
+		// $('.border-div:last').css('display', 'none');
    }
 
 		if( rendered_rooms[thisID] == undefined ){
@@ -272,6 +275,8 @@ function refactor2(message, id){
 		count++;
 		styleStart(); //ADDED FRIDAY 3:30
 	}
+
+	$.getScript('js/keyboard.js');
 
 
 }
