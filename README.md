@@ -100,8 +100,6 @@ The Accessible Facebook UI project was a semeseter-long project by students of *
 
 - Abigail Moses (abigail_moses@brown.edu)
 - Athyuttam Eleti (athyuttam_eleti@brown.edu)
-	- Built first prototype, SimplePost
-	- Developed foundations of Webapp
 	- Implemented Facebook API initialization
 	- Implemented Login Workflow
 	- Implemented Status Update
