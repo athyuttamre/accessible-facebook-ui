@@ -3,7 +3,7 @@ Accessible Facebook UI
 
 An accessible reimplementation of Facebook's core functions, designed to work with eye-tracking technology.
 
-### Contents
+## Contents
 - Intro
 - Global Features
 	- Server
