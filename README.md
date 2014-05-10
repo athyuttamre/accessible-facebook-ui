@@ -10,7 +10,7 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - Global Features
 	- Server
 	- Dwell
-Pages	
+- Pages	
 	- Login
 	- Homepage
 	- Newsfeed
@@ -19,20 +19,24 @@ Pages
 	- Profile
 	- Photos
 	- Logout
-Future Features
-Bugs
-Credits
+- Future Features
+- Bugs
+- Credits
 
 ## Intro
 The Accessible Facebook UI project is a collaboration between students of CS132 at Brown University and the SpeakYourMind Foundation. It provides a simpler user interface for Facebook that can be controlled by eye-trackers, and uses dwell-click technology. The target users are clients with disabilities that force them to use eye-tracking software to navigate computer systems.
 
 This README explains the Accessible Facebook UI app by feature. First, it explains all global features that apply to multiple sections. Then, it explains each page's functionality. Finally, it explains potential future features, bugs, and credits.
 
-### Global Features
+##Workflow
 
-#### Server
+Clone the repository locally, and run <code>npm install</code> to initialize the node modules. Next run <code>node server.js</code> while within the root directory. Navigate to <code>http://localhost:8080/</code> in your browser to interact with the app.
 
-- / (/index)
+## Global Features
+
+### Server
+
+- Index
 	- index.html - Home page
 	- First page that is loaded (will redirect to /login if first time)
 - Login
@@ -50,10 +54,14 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 	- notifications.html
 - Search
 	- search.html
-	
-#### Facebook API
 
-#### Dwell-Click
+### Facebook API
+We use Facebook's Graph API v2.0. Login as well as all HTTP requests are controlled through Facebook's Javascript SDK.
+
+### Dwell-Click
+We implemented a dwell-click functionality by which a user may dwell over clickable elements such as buttons and links for 1000ms to click them. The app presents the user with a color-fading visual cue to indicate the process of dwelling and finishing clicking.
+
+##Pages
 
 ### Login
 - Users can login by dwelling upon the login button in /login. Since login must be controlled through Facebook's dialog boxes, a caretaker would be expected to login once for each user.
@@ -73,10 +81,13 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 - /status is a simple way for the user to post a text-based status update. It makes use of a dwell-controlled on-screen QWERTY keyboard.
 
 ### Profile
+- /profile renders the user's personal profile. It links to the person's About page, Photos page, and Status Update page.
 
 ### Photos
+- /photos displays user's Profile Photos, Tagged Photos and Albums.
+- User can navigate between photos within an album, like them, and comment on them.
 
-### Future Features
+## Future Features
 - Messaging: Compose a new message
 - Messaging: Instant messaging only so you only see the messages you only get in a certain session.
 - Messaging: We want to use our own node.js server as a BOSH server; right now we still use Converse.JS's test BOSH servier bind.converse.org
@@ -88,18 +99,19 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 - Blurry photos for Chat
 - If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
 
-### Credits
+## Credits
 The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
 
 - Abigail Moses (abigail_moses@brown.edu)
 - Athyuttam Eleti (athyuttam_eleti@brown.edu)
-	- Built first prototype, SimplePost
-	- Developed foundations of Webapp
 	- Implemented Facebook API initialization
 	- Implemented Login Workflow
 	- Implemented Status Update
 	- Implemented Newsfeed
 - Elyse McManus (elyse_mcmanus@brown.edu)
+	- Implemented Photos
+	- Implemented Profile
+	- Developed prototype to pause dwell-click functionality
 - Matt Sanders (msanders@risd.edu)
 	- Designed interface
 	- Coded Homepage
