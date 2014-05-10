@@ -56,8 +56,9 @@ Clone the repository locally, and run <code>npm install</code> to initialize the
 	- search.html
 
 ## Bugs
-- Blurry photos for Chat
+- IMPORTANT: If the user has no previous messages in /messaging, the screen appears to be blank even after it's loaded. Have someone send you a message on Facebook while you are on /messaging, and it should appear in realtime.
 - If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
+- Blurry photos for Chat
 
 ### Facebook API
 We use Facebook's Graph API v2.0. Login as well as all HTTP requests are controlled through Facebook's Javascript SDK.
