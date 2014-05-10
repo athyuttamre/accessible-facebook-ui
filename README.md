@@ -80,16 +80,24 @@ window.onload = function() {
 - It is written using the Raphael.js library which allows for vector drawing.
 
 ### Future Features
-- Chat only 
+- Chat only works with 
 - Compose a new message
-- 
-- instant messaging only so you only see the messages you only get in a certain session.
+- Instant messaging only so you only see the messages you only get in a certain session.
 
 ### Bugs
 - Blurry photos for Chat
 - If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
 
 ### Credits
+- Elyse McManus
+- Abby Moses
+- Athyuttam Reddy
+- Matt Sanders
+	- Designed interface
+	- Coded Homepage
+	- Created icons
+	- Ongoing design of global features
+- Michael Weinstein
 
 and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
 For more, see the dwell example
