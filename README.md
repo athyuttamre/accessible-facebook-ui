@@ -75,6 +75,7 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 
 ## Future Features
 - Chat only 
+- Chat only works with 
 - Compose a new message
 - Instant messaging only so you only see the messages you only get in a certain session.
 
@@ -86,8 +87,18 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 
 The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
 
-- Abigail Moses (abigail_moses@brown.edu)
-- Athyuttam Eleti (athyuttam_eleti@brown.edu)
-- Elyse McManus (elyse_mcmanus@brown.edu)
-- Matt Sanders (msanders@risd.edu)
-- Michael Weinstein (michael_weinstein@brown.edu)
+- Elyse McManus
+- Abby Moses
+- Athyuttam Reddy
+	- Built first prototype, SimplePost
+	- Developed foundations of Webapp
+	- Implemented Facebook API initialization
+	- Implemented Login Workflow
+	- Implemented Status Update
+	- Implemented Newsfeed
+- Matt Sanders
+	- Designed interface
+	- Coded Homepage
+	- Created icons
+	- Ongoing design of global features
+- Michael Weinstein
