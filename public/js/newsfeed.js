@@ -23,26 +23,21 @@ function start(FB) {
 
 
 
-	$('#left_bar li:last-of-type').dwell(1000, true);
-		$('#left_bar li:last-of-type').click(function(){
+	$('#back_button').dwell(1000, true);
+	$('#back_button').click(function(){
 		parent.history.back();
+		console.log("Back was clicked.");
 		// alert('clicked');
 	});
-	$('#left_bar li:first-of-type').dwell(1000, true);
-		$('#left_bar li:first-of-type').click(function(){
+	$('#home_button').dwell(1000, true);
+	$('#home_button').click(function(){
 		window.location.href="/";
+		console.log("Home was clicked.");
 		// alert('clicked');
 	});
-	$('#like').dwell(1000, true);
-		$('#left_bar').click(function(){
-		parent.history.back();
-		// alert('clicked');
-	})		
+	$('#like').dwell(1000, true);		
 	$('#comment').dwell(1000, true);
-		$('#left_bar li:last-of-type').click(function(){
-		parent.history.back();
-		// alert('clicked');
-	})	
+	$('#form_input').dwell(1000, true, '#ffffff');
 
 
 	FB.api('/me', function(response) {
@@ -236,25 +231,32 @@ function start(FB) {
 		})
 	});
 
+	var originalLayoutElements = $('#feedItem, #top_bar, #bottom_bar, #like, #comment, #back_button')
+	var commentLayoutElements = $('#commentBox, #submitComment, #comment_back_button')
+
 	$('#comment').click(function(e) {
 		e.preventDefault();
-		$('#feedItem, #top_bar, #bottom_bar, #like, #comment').hide();
-		$('#commentBox, #submitComment').show();
-		
-		$('#back_button').click(function() {
-			$('#feedItem, #top_bar, #bottom_bar, #like, #comment').show();
-			$('#commentBox, #submitComment').hide();
-			$(this).click(function() {
-				parent.history.back();
-			});
-		});
+
+		originalLayoutElements.hide();
+		commentLayoutElements.show();
+		$('#form_input').focus();
+
+		console.log("Comment was clicked.");
+	});
+
+	$('#comment_back_button').dwell(1000, true);
+	$('#comment_back_button').click(function(e) {
+		e.preventDefault();
+		console.log("Comment Back was called.");
+		commentLayoutElements.hide();
+		originalLayoutElements.show();
 	});
 
 	$('#submitComment').dwell(1000, true);
 	$('#submitComment').click(function(e) {
 		e.preventDefault();
 		$('#comment_form').submit();
-	})
+	});
 
 	$('#comment_form').submit(function(e) {
 		e.preventDefault();
@@ -271,7 +273,7 @@ function start(FB) {
 			}
 		});
 
-		$(this).val("");
+		$('#form_input').val("");
 	});
 
 	$('.next').dwell(1000, true);
