@@ -77,8 +77,11 @@ We implemented a dwell-click functionality by which a user may dwell over clicka
 - /status is a simple way for the user to post a text-based status update. It makes use of a dwell-controlled on-screen QWERTY keyboard.
 
 ### Profile
+- /profile renders the user's personal profile. It links to the person's About page, Photos page, and Status Update page.
 
 ### Photos
+- /photos displays user's Profile Photos, Tagged Photos and Albums.
+- User can navigate between photos within an album, like them, and comment on them.
 
 ## Future Features
 - Messaging: Compose a new message
@@ -104,6 +107,9 @@ The Accessible Facebook UI project was a semeseter-long project by students of *
 	- Implemented Status Update
 	- Implemented Newsfeed
 - Elyse McManus (elyse_mcmanus@brown.edu)
+	- Implemented Photos
+	- Implemented Profile
+	- Developed prototype to pause dwell-click functionality
 - Matt Sanders (msanders@risd.edu)
 	- Designed interface
 	- Coded Homepage
