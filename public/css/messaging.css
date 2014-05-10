@@ -1,0 +1,153 @@
+#conversejs{
+	margin-top: 8%;
+}
+/* This disappears the text entry, which should be added to the next page functionality*/
+.chat-textarea{
+	display: none;
+}
+#toggle-controlbox{
+	display: none;
+}
+
+/******  CONTACT LIST  *****/
+#converse-roster > dd{
+	display: none;
+}
+#controlbox{
+	display: none !important;
+}
+#converse-roster{
+	display: none !important;
+}
+
+/******  Conversation Previews  *****/
+.chatbox{
+	/*border-bottom: 2px solid #eeeeee;*/
+	/*margin-bottom: 20px;*/
+	/*padding-bottom: 20px;*/
+	color: gray;
+	font-size: 20px;
+	clear: both;
+}
+.border-div{
+	border: 2px solid #eeeeee;
+	width: 90%;
+	/*margin-right: 50px;*/
+	/*margin-top: 80px;*/
+	margin-bottom: 10px;
+	clear: both;
+}
+.border-div:first{
+	/*border: none;*/
+}
+/*div.chat-head.chat-head-chatbox:first-child{
+	border: none;
+}*/
+.avatar{
+	height: 100px;
+	width: 100px;
+	/*display: inline;*/
+	float: left;
+	margin-right: 50px;
+}
+.chat-title{
+	text-decoration: none;
+	float: left;
+}
+.user{
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	float: left;
+	/*margin-left: 20px;*/
+}
+.name{
+	color: black;
+	font-weight: bold;
+}
+.txt li{
+	/*border: 2px red solid;*/
+	margin-top: 20px;
+}
+.txt{
+	padding-top: 3px;
+	float: left;
+}
+.chat-date{
+	font-size: 12px;
+	margin-right: 10px;
+}
+.chat-message:last-child{
+	display: inline;
+}
+.chat-message{
+	display: none;
+}
+li.toggle-otr.unencrypted{
+	display: none;
+}
+.chat-content{
+	float: right;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 50%;
+	text-overflow:ellipsis;
+	margin-right: 100px;
+}
+.chat-message-me{
+	display: none
+}
+.chat-message-them{
+	display: none;
+}
+/*li:nth-child(2).a{
+	display: none;
+}*/
+#newline{
+	/*clear: right;*/
+	float: left;
+}
+.box_list li{
+	display: inline-block;
+}
+div.chat-head.chat-head-chatbox{
+	/*display: none;*/
+}
+/*.right_bar_button{
+	border: 2px black solid;
+	float: right;
+}*/
+.side_button{
+	float: right;
+	width: auto;
+}
+.compose_button{
+	display: none;
+}
+#back_full_convo{
+	display: none;
+}
+#back_reply{
+	display: none;
+}
+#post_button{
+	display: none;
+}
+#compose_button{
+	display: none;
+}
+.side_button_back {
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5%;
+  text-align: center;
+}
+.side_button_back img {
+  height: 50px;
+  width: 50px;
+  margin: 7% 0%;
+}
+.side_button_back p {
+  margin: 2% 0%;
+}

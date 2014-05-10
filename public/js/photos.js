@@ -40,6 +40,7 @@ $(window).load(function() {
 	$("#nav_bar-comment").on("click", function(){
 		if(!shouldPause("bar")){
 			console.log("2nd clicked");
+			$('#bottom_bar').hide();
 			// Hides pause button so form won't submit weirdly
 			$("#left_bar li:last-of-type p").text("Pause Main Content");
 			$("#left_bar li:last-of-type").hide();

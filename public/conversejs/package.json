@@ -1,0 +1,42 @@
+{
+  "name": "converse.js",
+  "version": "0.7.4",
+  "description": "Browser based XMPP instant messaging client",
+  "main": "main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jcbrand/converse.js.git"
+  },
+  "keywords": [
+    "XMPP",
+    "Jabber",
+    "chat",
+    "messaging",
+    "chatrooms",
+    "webchat"
+  ],
+  "author": "JC Brand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcbrand/converse.js/issues"
+  },
+  "devDependencies": {
+    "grunt-cli": "~0.1.9",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "phantomjs": "~1.9.1-0",
+    "jasmine-reporters": "~0.2.1",
+    "bower": "~1.0.0",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.6.1"
+  },
+  "dependencies": {
+    "requirejs": "~2.1.8"
+  }
+}
