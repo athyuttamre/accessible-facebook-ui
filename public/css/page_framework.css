@@ -29,24 +29,13 @@ body {
   list-style: none;
   margin: auto;
 }
-#right_bar > ul > li {
-  margin-bottom: 60px;
-}
-/*#right_bar > ul > li:nth-child(1){
-	margin-bottom: 60px; 
-}*/
-#left_bar > ul > li:nth-child(1) {
-  margin-bottom: 60px;
-}
-#left_bar > ul > li:nth-child(2) {
-  margin-bottom: 60px;
-}
 .side_button {
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
   padding: 5%;
   text-align: center;
+  margin-bottom: 60px;
 }
 .side_button img {
   height: 50px;
@@ -106,4 +95,8 @@ body {
 }
 #top_bar {
   top: 0;
+}
+textarea {
+  display: block;
+  margin: auto;
 }
