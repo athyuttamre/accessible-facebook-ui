@@ -77,12 +77,12 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 ### Photos
 
 ### Future Features
-Messaging: Compose a new message
-Messaging: Instant messaging only so you only see the messages you only get in a certain session.
-Messaging: We want to use our own node.js server as a BOSH server; right now we still use Converse.JS's test BOSH servier bind.converse.org
-Search
-Friend Requests
-Newsfeed: Reading comments on newsfeed
+- Messaging: Compose a new message
+- Messaging: Instant messaging only so you only see the messages you only get in a certain session.
+- Messaging: We want to use our own node.js server as a BOSH server; right now we still use Converse.JS's test BOSH servier bind.converse.org
+- Search
+- Friend Requests
+- Newsfeed: Reading comments on newsfeed
 
 ## Bugs
 - Blurry photos for Chat
