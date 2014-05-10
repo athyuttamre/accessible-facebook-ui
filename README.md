@@ -56,7 +56,9 @@ Clone the repository locally, and run <code>npm install</code> to initialize the
 	- search.html
 
 ## Bugs
+- IMPORTANT: Please test on modern computer and web browser. Be wary of department machines! Things that work great on our computer seem to, after handing it in on a Linux machine, be buggy (i.e. keyboard on some pages). Tested on Macbook Pro's with Chrome/Firefox
 - IMPORTANT: If the user has no previous messages in /messaging, the screen appears to be blank even after it's loaded. Have someone send you a message on Facebook while you are on /messaging, and it should appear in realtime.
+- Keyboard does NOT work in /messaging: we simply didn't have time when it came down to the wire, after we finally implemented Facebook Chat.
 - If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
 - Blurry photos for Chat
 
@@ -126,3 +128,8 @@ The Accessible Facebook UI project was a semeseter-long project by students of *
 	- Created icons
 	- Ongoing design of global features
 - Michael Weinstein (michael_weinstein@brown.edu)
+	- Facebook Chat
+	- Adapting Converse.js
+	- Building initial Server structure
+	- Setting up Facebook Authentication
+	- Tested modules (i.e. passport-facebook, node-xmpp, Strophe)
