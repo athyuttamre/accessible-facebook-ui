@@ -20,7 +20,7 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - Bugs
 - Credits
 
-### Intro
+## Intro
 The Accessible Facebook UI project is a collaboration between students of CS132 at Brown University and the SpeakYourMind Foundation. It provides a simpler user interface for Facebook that can be controlled by eye-trackers, and uses dwell-click technology. The target users are clients with disabilities that force them to use eye-tracking software to navigate computer systems.
 
 This README explains the Accessible Facebook UI app by feature. First, it explains all global features that apply to multiple sections. Then, it explains each page's functionality. Finally, it explains potential future features, bugs, and credits.
@@ -73,16 +73,16 @@ This README explains the Accessible Facebook UI app by feature. First, it explai
 
 ### Photos
 
-### Future Features
+## Future Features
 - Chat only 
 - Compose a new message
 - Instant messaging only so you only see the messages you only get in a certain session.
 
-### Bugs
+## Bugs
 - Blurry photos for Chat
 - If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
 
-### Credits
+## Credits
 
 The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
 
