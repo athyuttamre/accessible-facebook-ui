@@ -1,4 +1,4 @@
-html, body{
+body{
 	padding:0;
 	margin:0;
 }
@@ -127,11 +127,14 @@ li {
 }
 
 #form_input{
-	width: 98%;
+	width: 90%;
 	height: 70%;
 	font-size: 20px;
-	position: absolute;
+	position: relative;
 	line-height: 100%;
+	display: block;
+	margin: auto;
+	margin-top: 8%;
 }
 
 #form_button{

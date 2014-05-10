@@ -7,7 +7,7 @@ body{
 	/*width: 500px;*/
 	height: 70%;
 	font-size: 20px;
-	position: absolute;
+	position: relative;
 	/*vertical-align: top;*/
 	line-height: 100%;
 }

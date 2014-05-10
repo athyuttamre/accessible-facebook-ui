@@ -104,3 +104,15 @@ body, html{
 #submitComment {
 	display: none;
 }
+
+#comment_back_button {
+	display: none;
+}
+
+#form_input{
+	width: 98%;
+	height: 70%;
+	font-size: 20px;
+	position: relative;
+	line-height: 100%;
+}
