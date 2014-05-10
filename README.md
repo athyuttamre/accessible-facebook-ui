@@ -105,6 +105,12 @@ We implemented a dwell-click functionality by which a user may dwell over clicka
 The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
 
 - Abigail Moses (abigail_moses@brown.edu)
+	- Chat Frontend
+	- Implemented dwell_gist to create easy to access dwell-click functionality
+	- Colaborated on Design Interface
+	- Newsfeed Frontend
+	- Status Frontend
+
 - Athyuttam Eleti (athyuttam_eleti@brown.edu)
 	- Implemented Facebook API initialization
 	- Implemented Login Workflow

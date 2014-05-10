@@ -275,7 +275,7 @@ function refactor2(message, id){
 		count++;
 		styleStart(); //ADDED FRIDAY 3:30
 		$.getScript('js/keyboard.js');
-		$('#keyboard li').dwell(1000, true);
+		// $.getScript('js/dwell_gist.js');
 
 	}
 
