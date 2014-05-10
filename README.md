@@ -3,26 +3,48 @@ Accessible Facebook UI
 
 An accessible reimplementation of Facebook's core functions, designed to work with eye-tracking technology.
 
+### Contents
+- Intro
+- Global Features
+	- Server
+	- HTML File Instructions
+	- Dwell
+- Login
+- Homepage
+- Newsfeed
+- Messaging
+- Status
+- Profile
+- Photos
+- Logout
+- Future Features
+- Bugs
+- Credits
+
+### Intro
+This ReadMe explains the Accessible Facebook UI app by feature. First, it explains all global features that apply to multiple sections. Then, it explains each page's functionality. Finally, it explains potential future features, bugs, and credits.
+
+### Global Features
 
 ### Server
 
 - / (/index)
 	- index.html - Home page
 	- First page that is loaded (will redirect to /login if first time)
-- /login
+- Login
 	- login.html - Login page
 	- Redirects here from any page if login.js says user not logged in
-- /messaging
+- Messaging
 	- messaging.html
-- /status
+- Status
 	- status.html
-- /profile
+- Profile
 	- profile.html
-- /newsfeed
+- Newsfeed
 	- newsfeed.html
-- /notifications
+- Notifications
 	- notifications.html
-- /search
+- Search
 	- search.html
 
 ### HTML File Instructions
@@ -51,21 +73,28 @@ window.onload = function() {
 	})
 };
 
+### Login
+
+### Homepage
+- /index.html is the homepage for the chat application.
+- It is written using the Raphael.js library which allows for vector drawing.
+
+### Future Features
+- Chat only 
+- Compose a new message
+- 
+- instant messaging only so you only see the messages you only get in a certain session.
+
+### Bugs
+- Blurry photos for Chat
+- If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
+
+### Credits
+
 and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
 For more, see the dwell example
 
 ADDED TO DWELL
 Dwell will now change the background color of the clicked element.  It takes a color as an optional third argument, it defaults to 'facebook blue'.
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> must be added to get the color change properties
-
-### ATTY and MICHAEL To-Do
-
-- Implement SimplePost with new architecture
-- server.js basic template
-- login.js function (with functions for other js files to call for -login info)
-- Links to each of the functionality pages from the homepage, no GUI
-	-- i.e. link to Status page, simplepost functionality
-- Create .html files for each page (can just be stubs)
-- Side bars (copy and paste two divs + center div)
-
 

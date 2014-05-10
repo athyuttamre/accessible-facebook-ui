@@ -5,4 +5,6 @@
 	 width="72px" height="122.4px" viewBox="0 0 72 122.4" enable-background="new 0 0 72 122.4" xml:space="preserve">
 <line fill="none" stroke="#9DACCB" stroke-width="15" stroke-miterlimit="10" x1="17" y1="18.8" x2="17" y2="105.501"/>
 <line fill="none" stroke="#9DACCB" stroke-width="15" stroke-miterlimit="10" x1="54" y1="18.8" x2="54" y2="105.501"/>
+<rect x="9.833" y="18.8" fill="none" stroke="#3B5998" stroke-width="3" stroke-miterlimit="10" width="14.333" height="86.701"/>
+<rect x="46.832" y="18.8" fill="none" stroke="#3B5998" stroke-width="3" stroke-miterlimit="10" width="14.334" height="86.701"/>
 </svg>
