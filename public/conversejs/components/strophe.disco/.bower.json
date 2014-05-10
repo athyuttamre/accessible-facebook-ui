@@ -1,0 +1,12 @@
+{
+  "name": "strophe.disco",
+  "_cacheHeaders": {
+    "ETag": "\"eb3f9139d2b238479606ac001ff821484cd276d1\"",
+    "Content-Length": "6734",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:eb3f9139d",
+  "main": "index.js",
+  "_source": "https://raw.github.com/jcbrand/strophejs-plugins/75c8693992bc357c699b6d615eeb396e799f5c02/disco/strophe.disco.js",
+  "_target": "*"
+}

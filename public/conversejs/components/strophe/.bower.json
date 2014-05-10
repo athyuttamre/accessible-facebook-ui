@@ -1,0 +1,12 @@
+{
+  "name": "strophe",
+  "homepage": "https://github.com/jcbrand/strophejs",
+  "_release": "692798597e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "converse",
+    "commit": "692798597e5cf6c908ed7dbf51e5f7f8e9cc085a"
+  },
+  "_source": "https://github.com/jcbrand/strophejs.git",
+  "_target": "converse"
+}

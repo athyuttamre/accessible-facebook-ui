@@ -1,0 +1,12 @@
+{
+  "name": "strophe.vcard",
+  "_cacheHeaders": {
+    "ETag": "\"bc7e780962b4266e8117e8f814ed4bd907417c09\"",
+    "Content-Length": "1523",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:bc7e78096",
+  "main": "index.js",
+  "_source": "https://raw.github.com/jcbrand/strophejs-plugins/75c8693992bc357c699b6d615eeb396e799f5c02/vcard/strophe.vcard.js",
+  "_target": "*"
+}

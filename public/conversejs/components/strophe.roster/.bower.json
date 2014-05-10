@@ -1,0 +1,12 @@
+{
+  "name": "strophe.roster",
+  "_cacheHeaders": {
+    "ETag": "\"5007fc120bdddaf85e08357437fceb0c82df6a2d\"",
+    "Content-Length": "13730",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:5007fc120",
+  "main": "index.js",
+  "_source": "https://raw.github.com/jcbrand/strophejs-plugins/75c8693992bc357c699b6d615eeb396e799f5c02/roster/strophe.roster.js",
+  "_target": "*"
+}

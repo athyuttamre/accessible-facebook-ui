@@ -1,0 +1,8 @@
+version.txt
+ndproj
+doc
+.taperc
+plugins/*.min.js
+*.tar.gz
+*.zip
+*~
