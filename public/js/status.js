@@ -35,6 +35,7 @@ function start(FB) {
 		$('textarea').blur();
 		console.log('lol');
 	})
+	$('#statusInput').focus();
 	$('textarea, input').click(function(e){
 		$('textarea, input').focus();
 	});
