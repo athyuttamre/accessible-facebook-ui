@@ -3,7 +3,7 @@ Accessible Facebook UI
 
 An accessible reimplementation of Facebook's core functions, designed to work with eye-tracking technology.
 
-![Accessible Facebook UI Homepage](screenshot_homepage.png =600x "Accessible Facebook UI Homepage")
+![Accessible Facebook UI Homepage](screenshot_homepage.png "Accessible Facebook UI Homepage")
 
 ## Contents
 - Intro
