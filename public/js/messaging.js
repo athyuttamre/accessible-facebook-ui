@@ -7,6 +7,7 @@ Creates listeners for created elements. */
 function styleStart() {
 var id='';
 	//View full convo
+	$('.side_button').dwell(1000, true);
 	$('.side_button').on('click', function(){
 		// frame
 		$('.side_button').hide();
@@ -21,6 +22,7 @@ var id='';
 		$('#compose_button').show();
 		$('#back_full_convo').show();
 	})
+	$('#back_full_convo').dwell(1000, true);
 	$('#back_full_convo').on('click', function(){
 		$('.side_button').show();
 		$('.border-div').show();
@@ -34,6 +36,7 @@ var id='';
 
 	// alert('set up');
 	//Compose Reply	
+	$('#compose_button').dwell(1000, true);
 	$('#compose_button').on('click',function(){
 		$('.chat-message').hide();
 		$('.chat-textarea').show();
@@ -47,6 +50,7 @@ var id='';
 		$('#post_button').show();	
 	})
 
+	$('#back_reply').dwell(1000, true);
 	$('#back_reply').on('click', function(){
 		// $('.chatbox').show();
 
@@ -58,7 +62,7 @@ var id='';
 
 		// $(this).parent().css('display', 'block');
 		$('#'+id).css('display', 'block');
-		console.log('#'+id);
+		// console.log('#'+id);
 
 		//burrons
 		$('#compose_button').show();
@@ -67,9 +71,15 @@ var id='';
 		$('#post_button').hide();			
 	});
 
+	$('#back_home').dwell(1000, true);
+	$('#back_home').on('click', function(){
+		// goto('index');
+	})
+
 	/* Posting a message */
 
 	//Post button click
+	// $('#post_button').dwell(1000, true);
 	$('#post_button').on('click', function(){
 		console.log('Posting message (emitting keypress event)');
 		var e = jQuery.Event("keypress", {keyCode: 13});
@@ -78,6 +88,7 @@ var id='';
 	});
 
 	// Catches event triggered by Post button click
+	// $('textarea.chat-textarea').dwell(1000, true);
 	$('textarea.chat-textarea').keypress(function(e){
 		chatBoxView.keyPressed(e);
 	});	
@@ -102,6 +113,9 @@ function start(FB) {
 
 
 
+	
+	$('#bottom_bar').dwell(1000, true);
+	$('#top_bar').dwell(1000, true);
 	//Frame stuff
 	// Scrolls down
 	$("#bottom_bar").click(function(){
@@ -117,7 +131,7 @@ function start(FB) {
 		}
 	});
 
-	// styleStart(); //ADDED FRIDAY 3:30
+	
 }
 
 /* Initialize Converse.js; pass it valid FB object on start() */
@@ -145,7 +159,7 @@ function startConverse(FB) {
 //////
 		// .chat-message (<div> message object)
 		converse.on('show_new_message', function(e, message_package) {
-			console.log('CAUGHT -- show_new_message Event CAUGHT!!');
+			// console.log('CAUGHT -- show_new_message Event CAUGHT!!');
 			// console.log('-----------------');
 			// console.log(message);
 			// $(message).show();
@@ -164,14 +178,14 @@ function startConverse(FB) {
 		});
 		// .chat-box (box id)
 		converse.on('new_chat_box', function(e, boxID) {
-			console.log('CAUGHT -- new_chat_box Event Caught');
-			console.log(boxID);
+			// console.log('CAUGHT -- new_chat_box Event Caught');
+			// console.log(boxID);
 			// refactor2(boxID);
 		});
 
 		/* Receives instance of ChatBoxView when it is initialized */
 		converse.on('set_chat_box_view', function(e, obj) {
-			console.log('CAUGHT -- set_key_pressed Event');
+			// console.log('CAUGHT -- set_key_pressed Event');
 			chatBoxView = obj;
 		});
 
@@ -184,18 +198,8 @@ var rendered_rooms = {};
 var rendered_array = [];
 
 function refactor2(message, id){
-		console.log('HERE');
-		console.log($(message));
-
-	if(count === 0){
-		
-		//And get ourselves set up
-	    $(".chat-content").before("<br>");
-		$('.chatbox').after('<div class="border-div"></div>');
-		$('.border-div:first').css('display', 'none');
-		$('.border-div:last').css('display', 'none');
-		count++;
-   }
+		// console.log('HERE');
+		// console.log($(message));
 
 	// var message = $.trim($(content).html());
 	// var txt = "<ul class='txt'><li class='name'> " + name + " </li><li class='message'> "+ message +" <li></ul>";
@@ -206,6 +210,15 @@ function refactor2(message, id){
 // for each chatbox       	
 	$('.chatbox').each(function(){
 		var thisID = $(this).attr('id');
+
+	if(count === 0){	
+		//And get ourselves set up
+	    $(".chat-content").before("<br>");
+		$('.chatbox').after('<div class="border-div"></div>');
+		$('.border-div:first').css('display', 'none');
+		$('.border-div:last').css('display', 'none');
+   }
+
 		if( rendered_rooms[thisID] == undefined ){
 			//Let's hide some stuff we don't need
 			$('.chat-title').hide();
@@ -241,14 +254,19 @@ function refactor2(message, id){
 		// var txt = "<ul class='txt'><li class='name'> " + name + " </li><li class='message'> "+ message +" <li></ul>";
 		// var right_bar_button='';	
 		$('#'+id+'-ul').append(message);
-		console.log($('#'+id+'-ul'));	
+		// console.log($('#'+id+'-ul'));	
 
 
 
-		styleStart();
+		// styleStart();
+
 			
 
   });
+	if(count === 0){
+		count++;
+		styleStart(); //ADDED FRIDAY 3:30
+	}
 
 
 }

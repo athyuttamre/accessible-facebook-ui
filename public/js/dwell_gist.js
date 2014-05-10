@@ -78,6 +78,8 @@ $.fn.dwell = function(delay, click, new_color, new_color_2){
 						$target.trigger('focus');
 					}
 					$(this).css("background-color",original_color);
+					// alert('clicked');
+					console.log('dwell clicked');
 				}
 			},delay);
 		});
