@@ -55,6 +55,10 @@ Clone the repository locally, and run <code>npm install</code> to initialize the
 - Search
 	- search.html
 
+## Bugs
+- Blurry photos for Chat
+- If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
+
 ### Facebook API
 We use Facebook's Graph API v2.0. Login as well as all HTTP requests are controlled through Facebook's Javascript SDK.
 
@@ -76,6 +80,7 @@ We implemented a dwell-click functionality by which a user may dwell over clicka
 - Newsfeed also allows one to like posts and comment on them. It also shows the people who've liked each post.
 
 ### Messaging
+- /messaging is an XMPP chat client that uses X-Facebook-Platform OAuth Authentication to login to Facebook. Instead of creating an XMPP client from scratch, which we would not have had time for, we used an open-source browser XMPP client called Converse.js. We integrated Converse.js with our application, and I modified the code of the file to authenticate using Facbeook, instead of having the user log in directly.
 
 ### Status
 - /status is a simple way for the user to post a text-based status update. It makes use of a dwell-controlled on-screen QWERTY keyboard.
@@ -94,10 +99,6 @@ We implemented a dwell-click functionality by which a user may dwell over clicka
 - Search
 - Friend Requests
 - Newsfeed: Reading comments on newsfeed
-
-## Bugs
-- Blurry photos for Chat
-- If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
 
 ## Credits
 The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
