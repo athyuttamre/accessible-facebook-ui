@@ -175,6 +175,11 @@ function startConverse(FB) {
 			chatBoxView = obj;
 		});
 
+		converse.on('on_connect', function(e) {
+			console.log('CAUGHT on_connect');
+			$('#loading_div').hide();
+		});
+
     });
 }
 

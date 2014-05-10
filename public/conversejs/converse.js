@@ -2491,6 +2491,10 @@
                         }
                     }, this)
                 });
+//////////
+//                 console.log('EMITTING on_connect');
+                // Triggers event when finished connecting
+//                 converse.emit('on_connect');
             },
 
             onMessage: function (message) {
