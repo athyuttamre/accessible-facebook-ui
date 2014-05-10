@@ -7,7 +7,6 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - Intro
 - Global Features
 	- Server
-	- HTML File Instructions
 	- Dwell
 - Login
 - Homepage
@@ -22,11 +21,13 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - Credits
 
 ### Intro
-This ReadMe explains the Accessible Facebook UI app by feature. First, it explains all global features that apply to multiple sections. Then, it explains each page's functionality. Finally, it explains potential future features, bugs, and credits.
+The Accessible Facebook UI project is a collaboration between students of CS132 at Brown University and the SpeakYourMind Foundation. It provides a simpler user interface for Facebook that can be controlled by eye-trackers, and uses dwell-click technology. The target users are clients with disabilities that force them to use eye-tracking software to navigate computer systems.
+
+This README explains the Accessible Facebook UI app by feature. First, it explains all global features that apply to multiple sections. Then, it explains each page's functionality. Finally, it explains potential future features, bugs, and credits.
 
 ### Global Features
 
-### Server
+#### Server
 
 - / (/index)
 	- index.html - Home page
@@ -46,44 +47,36 @@ This ReadMe explains the Accessible Facebook UI app by feature. First, it explai
 	- notifications.html
 - Search
 	- search.html
+	
+#### Facebook API
 
-### HTML File Instructions
-
-- Load CSS files in the <head>
-- Load JS files at the bottom
-- In the JS files, keep this order: 
-	1. JQuery
-	2. The JS file for this particular page. For index.html, this would be index.js. Copy the start function from
-	     index.js, and put all functionality within this. This is exactly like how you would use $('document').ready()
-	     in a normal project. Except here you're writing all your code in the 'start' method.
-	3. login.js, this is for testing whether or not the user is logged in. If yes, your code above will be executed,
-		if not, the user will be redirected.
-	4. main.js, where the FB object is fetched, and the 'start' function from your file above is called. If you want to 
-		modify main.js, please talk to Atty and work on this together.
-
-### Dwell
-For the moment, the only important thing for you guys is, when you do want to create any kind of clickable function 
-including for buttons and divs, instead of using onclick in the html, use .click in the js.  For the moment, you will need to add $(foo).dwell(1000, true) to enable dwell click on anything, but this should be abstracted out to main.js.
-
-So the js should look like this:
-window.onload = function() {
-	$(foo).dwell(1000, true);
-	$(foo).click(function(){
-		alert('dwell clicked');
-	})
-};
+#### Dwell-Click
 
 ### Login
+- Users can login by dwelling upon the login button in /login. Since login must be controlled through Facebook's dialog boxes, a caretaker would be expected to login once for each user.
+- Whenever a user navigates to a page without being logged in, they are redirected to the login page.
 
 ### Homepage
-- /index.html is the homepage for the chat application.
+- /index is the homepage for the chat application.
 - It is written using the Raphael.js library which allows for vector drawing.
+
+### Newsfeed
+- /newsfeed renders a user's newsfeed. Facebook's feed items are varied and complex (photos, videos, links etc.); our implementation only displays basic versions of these.
+- Newsfeed also allows one to like posts and comment on them. It also shows the people who've liked each post.
+
+### Messaging
+
+### Status
+- /status is a simple way for the user to post a text-based status update. It makes use of a dwell-controlled on-screen QWERTY keyboard.
+
+### Profile
+
+### Photos
 
 ### Future Features
 - Chat only 
 - Compose a new message
-- 
-- instant messaging only so you only see the messages you only get in a certain session.
+- Instant messaging only so you only see the messages you only get in a certain session.
 
 ### Bugs
 - Blurry photos for Chat
@@ -91,10 +84,10 @@ window.onload = function() {
 
 ### Credits
 
-and add <script type="text/javascript" src="js/dwell_gist.js"></script>  to the html
-For more, see the dwell example
+The Accessible Facebook UI project was a semeseter-long project by students of *CS132 - Making Modern Web Apps* at Brown University during Spring 2014 in collaboration with the SpeakYourMind Foundation. Members of the team were:
 
-ADDED TO DWELL
-Dwell will now change the background color of the clicked element.  It takes a color as an optional third argument, it defaults to 'facebook blue'.
-<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> must be added to get the color change properties
-
+- Abigail Moses (abigail_moses@brown.edu)
+- Athyuttam Eleti (athyuttam_eleti@brown.edu)
+- Elyse McManus (elyse_mcmanus@brown.edu)
+- Matt Sanders (msanders@risd.edu)
+- Michael Weinstein (michael_weinstein@brown.edu)
