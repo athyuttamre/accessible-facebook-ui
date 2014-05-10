@@ -276,6 +276,8 @@ function refactor2(message, id){
 		styleStart(); //ADDED FRIDAY 3:30
 	}
 
+	$.getScript('js/keyboard.js');
+
 
 }
 
