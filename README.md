@@ -28,11 +28,15 @@ The Accessible Facebook UI project is a collaboration between students of CS132 
 
 This README explains the Accessible Facebook UI app by feature. First, it explains all global features that apply to multiple sections. Then, it explains each page's functionality. Finally, it explains potential future features, bugs, and credits.
 
+##Workflow
+
+Clone the repository locally, and run <code>npm install</code> to initialize the node modules. Next run <code>node server.js</code> while within the root directory. Navigate to <code>http://localhost:8080/</code> in your browser to interact with the app.
+
 ## Global Features
 
 ### Server
 
-- / (/index)
+- Index
 	- index.html - Home page
 	- First page that is loaded (will redirect to /login if first time)
 - Login
