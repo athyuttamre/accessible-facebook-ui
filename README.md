@@ -109,10 +109,9 @@ The Accessible Facebook UI project was a semeseter-long project by students of *
 - Abigail Moses (abigail_moses@brown.edu)
 	- Chat Frontend
 	- Implemented dwell_gist to create easy to access dwell-click functionality
-	- Colaborated on Design Interface
+	- Collaborated on Design Interface
 	- Newsfeed Frontend
 	- Status Frontend
-
 - Athyuttam Eleti (athyuttam_eleti@brown.edu)
 	- Implemented Facebook API initialization
 	- Implemented Login Workflow
@@ -124,7 +123,7 @@ The Accessible Facebook UI project was a semeseter-long project by students of *
 	- Developed prototype to pause dwell-click functionality
 - Matt Sanders (msanders@risd.edu)
 	- Designed interface
-	- Coded Homepage
+	- Implemented Homepage
 	- Created icons
 	- Ongoing design of global features
 - Michael Weinstein (michael_weinstein@brown.edu)
