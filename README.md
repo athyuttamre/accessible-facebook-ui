@@ -11,7 +11,9 @@ An accessible reimplementation of Facebook's core functions, designed to work wi
 - Intro
 - Global Features
 	- Server
-	- Dwell
+	- Facebook API
+	- Dwell-Click
+	- UI Design
 - Pages	
 	- Login
 	- Homepage
@@ -57,18 +59,14 @@ Clone the repository locally, and run <code>npm install</code> to initialize the
 - Search
 	- search.html
 
-## Bugs
-- IMPORTANT: Please test on modern computer and web browser. Be wary of department machines! Things that work great on our computer seem to, after handing it in on a Linux machine, be buggy (i.e. keyboard on some pages). Tested on Macbook Pro's with Chrome/Firefox
-- IMPORTANT: If the user has no previous messages in /messaging, the screen appears to be blank even after it's loaded. Have someone send you a message on Facebook while you are on /messaging, and it should appear in realtime.
-- Keyboard does NOT work in /messaging: we simply didn't have time when it came down to the wire, after we finally implemented Facebook Chat.
-- If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
-- Blurry photos for Chat
-
 ### Facebook API
 We use Facebook's Graph API v2.0. Login as well as all HTTP requests are controlled through Facebook's Javascript SDK.
 
 ### Dwell-Click
 We implemented a dwell-click functionality by which a user may dwell over clickable elements such as buttons and links for 1000ms to click them. The app presents the user with a color-fading visual cue to indicate the process of dwelling and finishing clicking.
+
+### UI Design
+Read more about our design process [here](https://www.behance.net/gallery/15351395/Accessible-Facebook-UI "Accessible Facebook UI on Behance").
 
 ##Pages
 
@@ -96,6 +94,13 @@ We implemented a dwell-click functionality by which a user may dwell over clicka
 ### Photos
 - /photos displays user's Profile Photos, Tagged Photos and Albums.
 - User can navigate between photos within an album, like them, and comment on them.
+
+## Bugs
+- IMPORTANT: Please test on modern computer and web browser. Be wary of department machines! Things that work great on our computer seem to, after handing it in on a Linux machine, be buggy (i.e. keyboard on some pages). Tested on Macbook Pro's with Chrome/Firefox
+- IMPORTANT: If the user has no previous messages in /messaging, the screen appears to be blank even after it's loaded. Have someone send you a message on Facebook while you are on /messaging, and it should appear in realtime.
+- Keyboard does NOT work in /messaging: we simply didn't have time when it came down to the wire, after we finally implemented Facebook Chat.
+- If internet times out while loading Chat, Chat will never load. Can be fixed by refreshing.
+- Blurry photos for Chat
 
 ## Future Features
 - Messaging: Compose a new message
