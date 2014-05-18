@@ -129,6 +129,10 @@ app.get('/', function(request, response) {
 	response.render('index.html');
 });
 
-app.listen(5000, function() {
-	console.log('Accessible Facebook UI listening on Port 5000...')
+app.listen(process.env.PORT || 5000, function() {
+	if(process.env.PORT) {
+		console.log('HEROKU: Accessible Facebook UI listening on Port ' + process.env.PORT + '...');
+	} else {
+		console.log('Accessible Facebook UI listening on Port 5000...')
+	}
 });
